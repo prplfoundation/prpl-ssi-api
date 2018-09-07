@@ -1,0 +1,576 @@
+{
+  "paths": {
+    "Delete": {
+      "operationId": "DeleteServices.Diagnostics.NetworkSpeed.Tests.{TestId}",
+      "summary": "Deletes the specified Network Speed Test.",
+      "tags": [
+        "Services.Diagnostics.NetworkSpeed.Tests.{TestId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Diagnostics.NetworkSpeed.Tests"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "TestId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Test",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Get": {
+      "operationId": "GetServices.Diagnostics.NetworkSpeed.Tests.{TestId}",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Network Speed Test.",
+      "tags": [
+        "Services.Diagnostics.NetworkSpeed.Tests.{TestId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"prplTest\", \"Address\": \"https://speedtest.prpl.com\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"Protocol\": {\"IP\": \"v4\", \"Transport\": \"TCP\"}, \"Traffic\": {\"Direction\": \"Download\", \"Streams\": 4, \"DSCP\": \"46\"}, \"Status\": \"Complete\", \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Throughput\": {\"Minimum\": 100000000, \"Average\": 120000000, \"Maximum\": 140000000}, \"TransferedData\": 3600000000, \"Duration\": 30}}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Diagnostics.NetworkSpeed.Tests"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "TestId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Test",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Services.Diagnostics.NetworkSpeed.Tests": {
+        "description": "Services.Diagnostics.NetworkSpeed.Tests Object",
+        "id": "Services.Diagnostics.NetworkSpeed.Tests",
+        "type": "object",
+        "required": [],
+        "properties": {
+          "Address": {
+            "type": "String",
+            "description": "Network Speed Test address.",
+            "format": "-",
+            "default_value": "The default system speedtest.",
+            "possible_values": "FQDN, IPv4 or IPv6 address"
+          },
+          "Id": {
+            "type": "String",
+            "description": "Network Speed Test unique identifier.",
+            "format": "1 up to 64 chars",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars",
+            "readOnly": true
+          },
+          "Interface": {
+            "type": "String",
+            "description": "Network Speed Test interface.",
+            "format": "-",
+            "default_value": "The currently active \"Services.Broadband.Data\" interface.",
+            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object"
+          },
+          "Protocol": {
+            "type": "object",
+            "properties": {
+              "IP": {
+                "type": "String",
+                "description": "Network Speed Test Layer 3 protocol to be used.",
+                "format": "-",
+                "default_value": "v4",
+                "possible_values": ":\n- \"v4\" (IPv4).\n- \"v6\" (IPv6)"
+              },
+              "Transport": {
+                "type": "String",
+                "description": "Network Speed Test transport protocol.",
+                "format": "-",
+                "default_value": "TCP",
+                "possible_values": "\"TCP\" or \"UDP\"",
+                "enum": [
+                  "TCP",
+                  "UDP"
+                ]
+              }
+            },
+            "required": []
+          },
+          "Traffic": {
+            "type": "object",
+            "properties": {
+              "DSCP": {
+                "type": "Integer",
+                "description": "Network Speed Test DSCP value to be tagged on packets.",
+                "format": "-",
+                "default_value": "0",
+                "possible_values": ":\n- 0 (\"CS0\").\n- 8 (\"CS1\").\n- 10 (\"AF11\").\n- 12 (\"AF12\").\n- 14 (\"AF13\").\n- 16 (\"CS2\").\n- 18 (\"AF21\").\n- 20 (\"AF22\").\n- 22 (\"AF23\").\n- 24 (\"CS3\").\n- 26 (\"AF31\").\n- 28 (\"AF32\").\n- 30 (\"AF33\").\n- 32 (\"CS4\").\n- 34 (\"AF41\").\n- 36 (\"AF42\").\n- 38 (\"AF43\").\n- 40 (\"CS5\").\n- 46 (\"EF\").\n- 48 (\"CS6\").\n- 56 (\"CS7\")"
+              },
+              "Direction": {
+                "type": "String",
+                "description": "Network Speed Test traffic direction.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"Download\" or \"Upload\"",
+                "enum": [
+                  "Download",
+                  "Upload"
+                ]
+              },
+              "Streams": {
+                "type": "Integer",
+                "description": "Network Speed Test traffic concurrent streams.",
+                "format": "-",
+                "default_value": "4",
+                "possible_values": "1-10"
+              }
+            },
+            "required": [
+              "Direction"
+            ]
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Duration": {
+                "type": "Integer",
+                "description": "Network Speed Test duration.",
+                "format": "expressed in seconds",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Throughput": {
+                "type": "Integer",
+                "description": "Network Speed Test average observed throughput.",
+                "format": "expressed in bps",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "TransferedData": {
+                "type": "Integer",
+                "description": "Network Speed Test transfered data.",
+                "format": "expressed in bits",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "Network Speed Test operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": ":\n- \"Queued\" (requested or waiting on a queue for an ongoing test to be completed).\n- \"Ongoing\" (in progress/running).\n- \"Completed\" (finished successfully).\n- \"Failed\" (finished unsuccessfully, was not able to complete the test)",
+            "readOnly": true
+          },
+          "Timestamp": {
+            "type": "String",
+            "description": "Network Speed Test timestamp.",
+            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+            "default_value": "-",
+            "possible_values": "the timestamp corresponding to the test status. For example, if status = \"Queued\" then the timestamp should reflect the time when the test was requested. If the status changes to \"Completed\" the timestamp should change to the time when the test has been completed",
+            "readOnly": true
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_COMPLETE\"}, \"Body\": {\"TestId\": \"Services.Diagnostics.NetworkSpeed.Tests.0\"}}"
+              }
+            },
+            "description": "Raised when a queued Network Speed Test Test is complete.",
+            "code": "SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_COMPLETE"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_FAILED\"}, \"Body\": {\"TestId\": \"Services.Diagnostics.NetworkSpeed.Tests.0\"}}"
+              }
+            },
+            "description": "Raised when a queued Network Speed Test Test fails.",
+            "code": "SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_FAILED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_TIMEOUT\"}, \"Body\": {\"TestId\": \"Services.Diagnostics.NetworkSpeed.Tests.0\"}}"
+              }
+            },
+            "description": "Raised when a queued Network Speed Test Test times out.",
+            "code": "SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_TIMEOUT"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}

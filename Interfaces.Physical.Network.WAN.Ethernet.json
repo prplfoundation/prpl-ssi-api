@@ -1,0 +1,735 @@
+{
+  "paths": {
+    "Get": {
+      "operationId": "GetInterfaces.Physical.Network.WAN.Ethernet",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Ethernet WAN Interface.",
+      "tags": [
+        "Interfaces.Physical.Network.WAN.Ethernet"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Ethernet\", \"Name\": \"Ethernet\", \"Enabled\": true, \"Mode\": [\"FastEthernet\", \"GigabitEthernet\"], \"EnergyEfficientEthernet\": true, \"AutoNegotiation\": true, \"Duplex\": [\"Half\", \"Full\"], \"Status\": {\"State\": \"Active\", \"Protocol\": \"GigabitEthernet\", \"Duplex\": \"Full\", \"Uptime\": 3600}, \"Statistics\": {\"Frames\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}}}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Ethernet"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    },
+    "ResetStatistics": {
+      "operationId": "ResetStatisticsInterfaces.Physical.Network.WAN.Ethernet",
+      "summary": "Resets the statistics counters of the (specified) Ethernet WAN Interface.",
+      "tags": [
+        "Interfaces.Physical.Network.WAN.Ethernet"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Ethernet"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    },
+    "Set": {
+      "operationId": "SetInterfaces.Physical.Network.WAN.Ethernet",
+      "summary": "Modifies the status and configuration parameters of the (specified) Ethernet WAN Interface.",
+      "tags": [
+        "Interfaces.Physical.Network.WAN.Ethernet"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Name\": \"Ethernet\", \"Enabled\": true, \"Mode\": [\"FastEthernet\", \"GigabitEthernet\"], \"EnergyEfficientEthernet\": true, \"AutoNegotiation\": true, \"Duplex\": [\"Half\", \"Full\"]}"
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Ethernet"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Interfaces.Physical.Network.WAN.Ethernet": {
+        "description": "Interfaces.Physical.Network.WAN.Ethernet Object",
+        "id": "Interfaces.Physical.Network.WAN.Ethernet",
+        "type": "object",
+        "required": [],
+        "properties": {
+          "AutoNegotiation": {
+            "type": "Boolean",
+            "description": "Ethernet WAN Interface auto-negotation administrative status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "Duplex": {
+            "type": "List",
+            "description": "Ethernet WAN Interface duplex mode.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"Full\" or \"Half\"",
+            "enum": [
+              "Full",
+              "Half"
+            ]
+          },
+          "Enabled": {
+            "type": "Boolean",
+            "description": "Ethernet WAN Interface administrative status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "EnergyEfficientEthernet": {
+            "type": "Boolean",
+            "description": "Ethernet WAN Interface Energy Efficient Ethernet (EEE) administrative status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "Id": {
+            "type": "String",
+            "description": "Ethernet WAN Interface unique identifier.",
+            "format": "1 up to 64 chars",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars",
+            "readOnly": true
+          },
+          "Mode": {
+            "type": "List",
+            "description": "Ethernet WAN Interface mode.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"GigabitEthernet\", \"FastEthernet\" or \"Ethernet\"",
+            "enum": [
+              "GigabitEthernet, FastEthernet",
+              "Ethernet"
+            ]
+          },
+          "Name": {
+            "type": "String",
+            "description": "Ethernet WAN Interface name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Bytes": {
+                "type": "Integer",
+                "description": "Ethernet WAN Interface received bytes count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Frames": {
+                "type": "Integer",
+                "description": "Ethernet WAN Interface received frames count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "object",
+            "properties": {
+              "Duplex": {
+                "type": "String",
+                "description": "Ethernet WAN Interface duplex mode in use.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"Full\" or \"Half\"",
+                "enum": [
+                  "Full",
+                  "Half"
+                ],
+                "readOnly": true
+              },
+              "Protocol": {
+                "type": "String",
+                "description": "Ethernet WAN Interface protocol in use.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"Ethernet\", \"FastEthernet\" or \"GigabitEthernet\"",
+                "enum": [
+                  "Ethernet, FastEthernet",
+                  "GigabitEthernet"
+                ],
+                "readOnly": true
+              },
+              "State": {
+                "type": "String",
+                "description": "Ethernet WAN Interface operational status.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                "readOnly": true
+              },
+              "Uptime": {
+                "type": "Integer",
+                "description": "Ethernet WAN Interface system uptime.",
+                "format": "expressed in seconds",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_CONNECTED\"}}"
+              }
+            },
+            "description": "Raised when a Ethernet WAN Interface connects.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_CONNECTED"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_DISABLED\"}}"
+              }
+            },
+            "description": "Raised when an existing Ethernet WAN Interface is disabled.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_DISABLED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_DISCONNECTED\"}}"
+              }
+            },
+            "description": "Raised when a Ethernet WAN Interface disconnects.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_DISCONNECTED"
+          },
+          "4": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 4, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_ENABLED\"}}"
+              }
+            },
+            "description": "Raised when an existing Ethernet WAN Interface is enabled.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_ENABLED"
+          },
+          "5": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 5, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_MODIFIED\"}}"
+              }
+            },
+            "description": "Raised when an existing Ethernet WAN Interface is modified.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_ETHERNET_MODIFIED"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}

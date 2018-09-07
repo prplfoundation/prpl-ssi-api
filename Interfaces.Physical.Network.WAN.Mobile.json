@@ -1,0 +1,840 @@
+{
+  "paths": {
+    "Get": {
+      "operationId": "GetInterfaces.Physical.Network.WAN.Mobile",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Mobile WAN Interface.",
+      "tags": [
+        "Interfaces.Physical.Network.WAN.Mobile"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"Mode\": {\"4G\": true, \"3G\": true, \"2G\": false}, \"Standards\": {\"4G\": {\"LTEAdvanced\": true, \"LTE\": true}, \"3G\": {\"HSPA+\": true, \"HSUPA\": false, \"HSDPA\": false, \"UMTS\": false}, \"2G\": {\"EDGE\": true, \"GPRS\": false, \"GSM\": false}}, \"Status\": {\"State\": \"Connected\", \"Carrier\": \"prplFoundation\", \"Mode\": \"4G\", \"Standard\": \"LTE\", \"Grade\": 0.7, \"SignalNoiseRatio\": 25, \"ReferenceSignalReceivedQuality\": -10, \"ReferenceSignalReceivedPower\": -80, \"ReceivedSignalStrengthIndicator\": 0, \"Uptime\": 3600}, \"Statistics\": {\"Frames\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}}}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Mobile"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    },
+    "ResetStatistics": {
+      "operationId": "ResetStatisticsInterfaces.Physical.Network.WAN.Mobile",
+      "summary": "Resets the statistics counters of the (specified) Mobile WAN Interface.",
+      "tags": [
+        "Interfaces.Physical.Network.WAN.Mobile"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Mobile"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    },
+    "Set": {
+      "operationId": "SetInterfaces.Physical.Network.WAN.Mobile",
+      "summary": "Modifies the status and configuration parameters of the (specified) Mobile WAN Interface.",
+      "tags": [
+        "Interfaces.Physical.Network.WAN.Mobile"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Name\": \"Mobile\", \"Enabled\": true, \"Mode\": {\"4G\": true, \"3G\": true, \"2G\": false}, \"Standards\": {\"4G\": {\"LTEAdvanced\": true, \"LTE\": true}, \"3G\": {\"HSPA+\": true, \"HSUPA\": false, \"HSDPA\": false, \"UMTS\": false}, \"2G\": {\"EDGE\": true, \"GPRS\": false, \"GSM\": false}}}"
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Mobile"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Interfaces.Physical.Network.WAN.Mobile": {
+        "description": "Interfaces.Physical.Network.WAN.Mobile Object",
+        "id": "Interfaces.Physical.Network.WAN.Mobile",
+        "type": "object",
+        "required": [],
+        "properties": {
+          "Enabled": {
+            "type": "Boolean",
+            "description": "Mobile WAN Interface administrative status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "Id": {
+            "type": "String",
+            "description": "Mobile WAN Interface unique identifier.",
+            "format": "1 up to 64 chars",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars",
+            "readOnly": true
+          },
+          "Mode": {
+            "type": "object",
+            "properties": {
+              "2G": {
+                "type": "Boolean",
+                "description": "Mobile WAN Interface enable 2G mode flag.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              },
+              "3G": {
+                "type": "Boolean",
+                "description": "Mobile WAN Interface enable 3G mode flag.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              },
+              "4G": {
+                "type": "Boolean",
+                "description": "Mobile WAN Interface enable 4G mode flag.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              }
+            },
+            "required": []
+          },
+          "Name": {
+            "type": "String",
+            "description": "Mobile WAN Interface name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Standards": {
+            "type": "object",
+            "properties": {
+              "2G": {
+                "type": "Boolean",
+                "description": "Mobile WAN Interface enable EDGE flag.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              },
+              "3G": {
+                "type": "Boolean",
+                "description": "Mobile WAN Interface enable HSDPA standard flag.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              },
+              "4G": {
+                "type": "Boolean",
+                "description": "Mobile WAN Interface enable LTE standard flag.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              }
+            },
+            "required": []
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Bytes": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface received bytes count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Frames": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface received frames count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "object",
+            "properties": {
+              "Carrier": {
+                "type": "String",
+                "description": "Mobile WAN Interface current connected carrier.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "-",
+                "readOnly": true
+              },
+              "Grade": {
+                "type": "Float",
+                "description": "Mobile WAN Interface current grade.",
+                "format": "2 digital places",
+                "default_value": "-",
+                "possible_values": ">= 0.00 and <= 1.00",
+                "readOnly": true
+              },
+              "Mode": {
+                "type": "String",
+                "description": "Mobile WAN Interface current mode.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"4G\", \"3G\" or \"2G\"",
+                "enum": [
+                  "4G, 3G",
+                  "2G"
+                ],
+                "readOnly": true
+              },
+              "ReceivedSignalStrengthIndicator": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface current Received Signal Strength Indicator (RSSI).",
+                "format": "expressed in dBm",
+                "default_value": "-",
+                "possible_values": "-",
+                "readOnly": true
+              },
+              "ReferenceSignalReceivedPower": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface current Reference Signal Received Power (RSRP).",
+                "format": "expressed in dBm",
+                "default_value": "-",
+                "possible_values": "-",
+                "readOnly": true
+              },
+              "ReferenceSignalReceivedQuality": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface current Reference Signal Received Quality (RSRQ).",
+                "format": "expressed in dBm",
+                "default_value": "-",
+                "possible_values": "-",
+                "readOnly": true
+              },
+              "SignalNoiseRatio": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface current Signal to Noise Ratio (SNR).",
+                "format": "expressed in dB",
+                "default_value": "-",
+                "possible_values": "-",
+                "readOnly": true
+              },
+              "Standard": {
+                "type": "String",
+                "description": "Mobile WAN Interface current standard.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"LTE Advanced\", \"LTE\", \"UMTS\", \"HSUPA\", \"HSPA+\", \"HSDPA\", \"GSM\", \"GPRS\", \"EDGE\"",
+                "readOnly": true
+              },
+              "State": {
+                "type": "String",
+                "description": "Mobile WAN Interface operational status.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                "readOnly": true
+              },
+              "Uptime": {
+                "type": "Integer",
+                "description": "Mobile WAN Interface system uptime.",
+                "format": "expressed in seconds",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_CONNECTED\"}}"
+              }
+            },
+            "description": "Raised when a Mobile WAN Interface connects.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_CONNECTED"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_DISABLED\"}}"
+              }
+            },
+            "description": "Raised when an existing Mobile WAN Interface is disabled.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_DISABLED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_DISCONNECTED\"}}"
+              }
+            },
+            "description": "Raised when a Mobile WAN Interface disconnects.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_DISCONNECTED"
+          },
+          "4": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 4, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_ENABLED\"}}"
+              }
+            },
+            "description": "Raised when an existing Mobile WAN Interface is enabled.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_ENABLED"
+          },
+          "5": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 5, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_MODIFIED\"}}"
+              }
+            },
+            "description": "Raised when an existing Mobile WAN Interface is modified.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_MODIFIED"
+          },
+          "6": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 6, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_SIGNAL_STRENGTH_BELLOW_MINIMUM_THRESHOLD\"}}"
+              }
+            },
+            "description": "Raised when the Mobile WAN Interface signal strength is bellowed the minimum set threshold.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_SIGNAL_STRENGTH_BELLOW_MINIMUM_THRESHOLD"
+          },
+          "7": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 7, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_SIM_CARD_INSERTED\"}}"
+              }
+            },
+            "description": "Raised when the Mobile WAN Interface SIM Card is inserted.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_SIM_CARD_INSERTED"
+          },
+          "8": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 8, \"Name\": \"INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_SIM_CARD_REMOVED\"}}"
+              }
+            },
+            "description": "Raised when the Mobile WAN Interface SIM Card is removed.",
+            "code": "INTERFACES_PHYSICAL_NETWORK_WAN_MOBILE_SIM_CARD_REMOVED"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}

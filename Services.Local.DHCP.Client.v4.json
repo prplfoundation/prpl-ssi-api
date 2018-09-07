@@ -1,0 +1,1290 @@
+{
+  "paths": {
+    "Delete": {
+      "operationId": "DeleteServices.Local.DHCP.Client.v4.{ClientId}",
+      "summary": "Deletes the specified DHCPv4 Client.",
+      "tags": [
+        "Services.Local.DHCP.Client.v4.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DHCP.Client.v4"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Get": {
+      "operationId": "GetServices.Local.DHCP.Client.v4.{ClientId}",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) DHCPv4 Client.",
+      "tags": [
+        "Services.Local.DHCP.Client.v4.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Enabled\": true, \"PreferredAddress\": \"20.0.0.2\", \"Status\": {\"State\": \"Bound\", \"Lease\": {\"Address\": \"20.0.0.1\", \"Expires\": 1800, \"Duration\": 3600}}, \"Statistics\": {\"Packets\": {\"Sent\": {\"Discover\": 1, \"Request\": 1}, \"Received\": {\"Offer\": 0, \"Ack\": 1, \"Nak\": 0}}}}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DHCP.Client.v4"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Release": {
+      "operationId": "ReleaseServices.Local.DHCP.Client.v4.{ClientId}",
+      "summary": "Forces the client DHCPv4 Client to release its lease.",
+      "tags": [
+        "Services.Local.DHCP.Client.v4.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DHCP.Client.v4"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Renew": {
+      "operationId": "RenewServices.Local.DHCP.Client.v4.{ClientId}",
+      "summary": "Forces a DHCPv4 Client communication with the configured service provider.",
+      "tags": [
+        "Services.Local.DHCP.Client.v4.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DHCP.Client.v4"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "ResetStatistics": {
+      "operationId": "ResetStatisticsServices.Local.DHCP.Client.v4.{ClientId}",
+      "summary": "Resets the statistics counters of the (specified) DHCPv4 Client.",
+      "tags": [
+        "Services.Local.DHCP.Client.v4.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DHCP.Client.v4"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Set": {
+      "operationId": "SetServices.Local.DHCP.Client.v4.{ClientId}",
+      "summary": "Modifies the status and configuration parameters of the (specified) DHCPv4 Client.",
+      "tags": [
+        "Services.Local.DHCP.Client.v4.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Enabled\": true, \"PreferredAddress\": \"20.0.0.2\"}"
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DHCP.Client.v4"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Services.Local.DHCP.Client.v4": {
+        "description": "Services.Local.DHCP.Client.v4 Object",
+        "id": "Services.Local.DHCP.Client.v4",
+        "type": "object",
+        "required": [
+          "Interface",
+          "Name"
+        ],
+        "properties": {
+          "Id": {
+            "type": "String",
+            "description": "DHCPv4 Client unique identifier.",
+            "format": "-",
+            "default_value": "Integer starting at 0",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Interface": {
+            "type": "String",
+            "description": "DHCPv4 Client interface.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Name": {
+            "type": "String",
+            "description": "DHCPv4 Client name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object"
+          },
+          "Enabled": {
+            "type": "Boolean",
+            "description": "DHCPv4 Client administrative status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "PreferredAddress": {
+            "type": "String",
+            "description": "DHCPv4 Client preferred address.",
+            "format": "[0-255].[0-255].[0-255].[0-255]",
+            "default_value": "-",
+            "possible_values": "valid IPv4 address"
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Packets": {
+                "type": "Integer",
+                "description": "DHCPv4 Client DHCPAck received packets count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "object",
+            "properties": {
+              "Lease": {
+                "type": "String",
+                "description": "DHCPv4 Client active lease address.",
+                "format": "[0-255].[0-255].[0-255].[0-255]",
+                "default_value": "-",
+                "possible_values": "\"0.0.0.0\" or \"valid IP Address\"",
+                "readOnly": true
+              },
+              "State": {
+                "type": "String",
+                "description": "DHCPv4 Client operational status.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ":\n- \"Enabled\", client is enabled but inactive.\n- \"Selecting\", client is enabled and initiated the server discovery process.\n- \"Requesting\", client has found a server but is negotiating a lease.\n- \"Bound\", client has an active lease.\n- \"Renewing\", client is renewing the lease due to T1 expire.\n- \"Rebinding\", client failed to renew the lease and will attempt at T2.\n- \"Disabled\", client is disabled.\n- \"Error\", client is enabled but cannot run due to error",
+                "readOnly": true
+              }
+            },
+            "required": []
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_ADDED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when a new DHCPv4 Client is added.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_ADDED"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_DELETED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing DHCPv4 Client is deleted.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_DELETED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_MODIFIED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing DHCPv4 Client is modified.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_MODIFIED"
+          },
+          "4": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 4, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_ENABLED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing DHCPv4 Client is enabled.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_ENABLED"
+          },
+          "5": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 5, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_DISABLED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing DHCPv4 Client is disabled.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_DISABLED"
+          },
+          "6": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 6, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_LEASE_ACQUIRED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\", \"LeaseAddress\": \"20.0.0.1\"}}"
+              }
+            },
+            "description": "Raised when a DHCPv4 Client Lease is acquired.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_LEASE_ACQUIRED"
+          },
+          "7": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 7, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_LEASE_RENEWED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\", \"LeaseAddress\": \"20.0.0.1\"}}"
+              }
+            },
+            "description": "Raised when an existing DHCPv4 Client Lease is renewed.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_LEASE_RENEWED"
+          },
+          "8": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 8, \"Name\": \"SERVICES_LOCAL_DHCP_CLIENT_V4_LEASE_EXPIRED\"}, \"Body\": {\"ClientId\": \"Services.Local.DHCP.Client.v4.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when a DHCPv4 Client Lease expires.",
+            "code": "SERVICES_LOCAL_DHCP_CLIENT_V4_LEASE_EXPIRED"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,918 @@
+{
+  "paths": {
+    "Delete": {
+      "operationId": "DeleteServices.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}",
+      "summary": "Deletes the specified Dynamic DNS Hostname.",
+      "tags": [
+        "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProviderId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Provider",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        },
+        {
+          "in": "path",
+          "name": "HostnameId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Hostname",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Get": {
+      "operationId": "GetServices.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Dynamic DNS Hostname.",
+      "tags": [
+        "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Enabled\": true, \"Name\": \"prpl-drive\", \"FQDN\": \"prpl-drive.no-ip.org\", \"Type\": {\"A\": true, \"AAAA\": false}, \"Interface\": [\"Interfaces.IP.WAN:xDSL\", \"Interfaces.IP.WAN:GPON\", \"Interfaces.IP.WAN:Mobile\"], \"Status\": \"Synced\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProviderId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Provider",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        },
+        {
+          "in": "path",
+          "name": "HostnameId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Hostname",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Renew": {
+      "operationId": "RenewServices.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}",
+      "summary": "Forces a Dynamic DNS Hostname communication with the configured service provider.",
+      "tags": [
+        "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProviderId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Provider",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        },
+        {
+          "in": "path",
+          "name": "HostnameId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Hostname",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Set": {
+      "operationId": "SetServices.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}",
+      "summary": "Modifies the status and configuration parameters of the (specified) Dynamic DNS Hostname.",
+      "tags": [
+        "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Enabled\": true, \"Name\": \"prpl-drive\", \"FQDN\": \"prpl-drive.no-ip.org\", \"Type\": {\"A\": true, \"AAAA\": false}, \"Interface\": [\"Interfaces.IP.WAN:xDSL\", \"Interfaces.IP.WAN:GPON\", \"Interfaces.IP.WAN:Mobile\"]}"
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProviderId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Provider",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        },
+        {
+          "in": "path",
+          "name": "HostnameId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Hostname",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames": {
+        "description": "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames Object",
+        "id": "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames",
+        "type": "object",
+        "required": [
+          "FQDN"
+        ],
+        "properties": {
+          "Enabled": {
+            "type": "Boolean",
+            "description": "Dynamic DNS Hostname administrative status.",
+            "format": "-",
+            "default_value": "false",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "FQDN": {
+            "type": "String",
+            "description": "Dynamic DNS Hostname Fully Qualified Domain Name (FQDN).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "valid FQDN"
+          },
+          "Id": {
+            "type": "String",
+            "description": "Dynamic DNS Hostname unique identifier.",
+            "format": "-",
+            "default_value": "Integer starting at 0",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Interface": {
+            "type": "List",
+            "description": "Dynamic DNS Hostname interface.",
+            "format": "-",
+            "default_value": "same interfaces as specified on the \"Services.Broadband.Data\" service.",
+            "possible_values": "any valid \"Interface.IP.{InterfaceId}\" object"
+          },
+          "Name": {
+            "type": "String",
+            "description": "Dynamic DNS Hostname name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "copies the FQDN value"
+          },
+          "Type": {
+            "type": "object",
+            "properties": {
+              "A": {
+                "type": "Boolean",
+                "description": "Dynamic DNS Hostname update IPv4 address enable flag.",
+                "format": "-",
+                "default_value": "true",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              },
+              "AAAA": {
+                "type": "Boolean",
+                "description": "Dynamic DNS Hostname update IPv6 address enable flag.",
+                "format": "-",
+                "default_value": "false",
+                "possible_values": "\"true\" or \"false\"",
+                "enum": [
+                  "true",
+                  "false"
+                ]
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "Dynamic DNS Hostname operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\n- \"Synced\" (the client has performed an update request since the last IP address change).\n- \"Pending\" (the IP has changed, but the client has not yet updated the server).\n- \"Disabled\" (the client is disabled).\n- \"Unauthorized\" (client is able to reach the server but credentials were refused).\n- \"Unreachable\" (client is not able to reach the server).\n- \"Error\" (generic error used in other circumstances such as invalid configuration).",
+            "readOnly": true
+          }
+        },
+        "events": {},
+        "example": {}
+      }
+    }
+  }
+}

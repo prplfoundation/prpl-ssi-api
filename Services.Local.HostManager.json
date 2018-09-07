@@ -1,0 +1,496 @@
+{
+  "paths": {
+    "Get": {
+      "operationId": "GetServices.Local.HostManager",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) HostManager.",
+      "tags": [
+        "Services.Local.HostManager"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Enabled\": true, \"History\": true, \"Status\": \"Active\", \"Statistics\": {\"Devices\": {\"Online\": 6, \"Offline\": 2, \"Total\": 8}, \"Interfaces\": {\"Interfaces.Physical.Network.LAN.EthernetSwitch\": {\"Online\": 5, \"Offline\": 0, \"Total\": 5}, \"Interfaces.Physical.Data.LAN.Wi-Fi\": {\"Online\": 1, \"Offline\": 2, \"Total\": 3}, \"Interfaces.Physical.Data.USB\": {\"Online\": 0, \"Offline\": 0, \"Total\": 0}}}}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.HostManager"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    },
+    "Set": {
+      "operationId": "SetServices.Local.HostManager",
+      "summary": "Modifies the status and configuration parameters of the (specified) HostManager.",
+      "tags": [
+        "Services.Local.HostManager"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Enabled\": true, \"History\": true}"
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.HostManager"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Services.Local.HostManager": {
+        "description": "Services.Local.HostManager Object",
+        "id": "Services.Local.HostManager",
+        "type": "object",
+        "required": [],
+        "properties": {
+          "Enabled": {
+            "type": "Boolean",
+            "description": "HostManager administrative status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "History": {
+            "type": "Boolean",
+            "description": "HostManager keep track of offline devices flag.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Devices": {
+                "type": "Integer",
+                "description": "HostManager offline devices count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Interfaces": {
+                "type": "Integer",
+                "description": "HostManager wi-fi offline devices count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "HostManager operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\n- \"Active\" (service is enabled and running).\n- \"Disabled\" (service is disabled).\n- \"Error\" (service is enabled but not running due to some error such as invalid configuration)",
+            "readOnly": true
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"SERVICES_LOCAL_HOSTMANAGER_ENABLED\"}}"
+              }
+            },
+            "description": "Raised when an existing HostManager is enabled.",
+            "code": "SERVICES_LOCAL_HOSTMANAGER_ENABLED"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"SERVICES_LOCAL_HOSTMANAGER_DISABLED\"}}"
+              }
+            },
+            "description": "Raised when an existing HostManager is disabled.",
+            "code": "SERVICES_LOCAL_HOSTMANAGER_DISABLED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"SERVICES_LOCAL_HOSTMANAGER_MODIFIED\"}}"
+              }
+            },
+            "description": "Raised when an existing HostManager is modified.",
+            "code": "SERVICES_LOCAL_HOSTMANAGER_MODIFIED"
+          },
+          "4": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 4, \"Name\": \"SERVICES_LOCAL_HOSTMANAGER_HOST_ADDED\"}, \"Body\": {\"HostId\": \"Services.Local.HostManager.Hosts.{HostId}\"}}"
+              }
+            },
+            "description": "Raised when a new HostManager Host is added.",
+            "code": "SERVICES_LOCAL_HOSTMANAGER_HOST_ADDED"
+          },
+          "5": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 5, \"Name\": \"SERVICES_LOCAL_HOSTMANAGER_HOST_DELETED\"}, \"Body\": {\"HostId\": \"Services.Local.HostManager.Hosts.{HostId}\"}}"
+              }
+            },
+            "description": "Raised when an existing HostManager Host is deleted.",
+            "code": "SERVICES_LOCAL_HOSTMANAGER_HOST_DELETED"
+          },
+          "6": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 6, \"Name\": \"SERVICES_LOCAL_HOSTMANAGER_HOST_MODIFIED\"}, \"Body\": {\"HostId\": \"Services.Local.HostManager.Hosts.{HostId}\"}}"
+              }
+            },
+            "description": "Raised when an existing HostManager Host is modified.",
+            "code": "SERVICES_LOCAL_HOSTMANAGER_HOST_MODIFIED"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}

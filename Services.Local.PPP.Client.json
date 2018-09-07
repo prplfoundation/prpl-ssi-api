@@ -1,0 +1,762 @@
+{
+  "paths": {
+    "Delete": {
+      "operationId": "DeleteServices.Local.PPP.Client.{ClientId}",
+      "summary": "Deletes the specified PPP Client.",
+      "tags": [
+        "Services.Local.PPP.Client.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.PPP.Client"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Get": {
+      "operationId": "GetServices.Local.PPP.Client.{ClientId}",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) PPP Client.",
+      "tags": [
+        "Services.Local.PPP.Client.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Authentication\": \"PAP\", \"Username\": \"prpl\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}, \"Status\": \"Active\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.PPP.Client"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Set": {
+      "operationId": "SetServices.Local.PPP.Client.{ClientId}",
+      "summary": "Modifies the status and configuration parameters of the (specified) PPP Client.",
+      "tags": [
+        "Services.Local.PPP.Client.{ClientId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Authentication\": \"PAP\", \"Username\": \"prpl\", \"Password\": \"foundation\"}"
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Local.PPP.Client"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ClientId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Client",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Services.Local.PPP.Client": {
+        "description": "Services.Local.PPP.Client Object",
+        "id": "Services.Local.PPP.Client",
+        "type": "object",
+        "required": [
+          "Authentication",
+          "Interface",
+          "Name",
+          "Password",
+          "Username"
+        ],
+        "properties": {
+          "Authentication": {
+            "type": "String",
+            "description": "PPP Client authentication type.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"PAP\" or \"CHAP\"",
+            "enum": [
+              "PAP",
+              "CHAP"
+            ]
+          },
+          "Id": {
+            "type": "String",
+            "description": "PPP Client unique identifier.",
+            "format": "-",
+            "default_value": "Integer starting at 0",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Interface": {
+            "type": "String",
+            "description": "PPP Client interface.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "valid \"Interface.IP.{InterfaceId}\" object"
+          },
+          "Name": {
+            "type": "String",
+            "description": "PPP Client name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Password": {
+            "type": "String",
+            "description": "PPP Client password.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars",
+            "writeOnly": true
+          },
+          "Username": {
+            "type": "String",
+            "description": "PPP Client username.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Hash": {
+            "type": "object",
+            "properties": {
+              "Fingerprint": {
+                "type": "String",
+                "description": "PPP Client password hash fingerprint.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "-",
+                "readOnly": true
+              },
+              "Type": {
+                "type": "String",
+                "description": "PPP Client password hash type.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                "enum": [
+                  "MD5, SHA-256",
+                  "SHA-512"
+                ],
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "PPP Client operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\n- \"Disabled\" (disabled).\n- \"Discovery (enabled and in discovery process).\n- \"Active\" (enabled with active session).\n- \"Error\" (enabled but possible configuration error)",
+            "readOnly": true
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_ADDED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when a new PPP Client is added.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_ADDED"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_DELETED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing PPP Client is deleted.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_DELETED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_MODIFIED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing PPP Client is modified.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_MODIFIED"
+          },
+          "4": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 4, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_ENABLED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing PPP Client is enabled.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_ENABLED"
+          },
+          "5": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 5, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_DISABLED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when an existing PPP Client is disabled.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_DISABLED"
+          },
+          "6": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 6, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_SESSION_ESTABLISHED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\", \"LeaseAddress\": \"20.0.0.1\"}}"
+              }
+            },
+            "description": "Raised when the PPP Client session has been established.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_SESSION_ESTABLISHED"
+          },
+          "7": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 7, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_SESSION_EXPIRED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when the PPP Client session has expired.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_SESSION_EXPIRED"
+          },
+          "8": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 8, \"Name\": \"SERVICES_LOCAL_PPP_CLIENT_SESSION_TERMINATED\"}, \"Body\": {\"ClientId\": \"Services.Local.PPP.Client.{ClientId}\"}}"
+              }
+            },
+            "description": "Raised when the PPP Client session has been terminated.",
+            "code": "SERVICES_LOCAL_PPP_CLIENT_SESSION_TERMINATED"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}

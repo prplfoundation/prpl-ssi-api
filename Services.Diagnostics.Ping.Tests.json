@@ -1,0 +1,561 @@
+{
+  "paths": {
+    "Delete": {
+      "operationId": "DeleteServices.Diagnostics.Ping.Tests.{TestId}",
+      "summary": "Deletes the specified Ping Test.",
+      "tags": [
+        "Services.Diagnostics.Ping.Tests.{TestId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Diagnostics.Ping.Tests"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "TestId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Test",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Get": {
+      "operationId": "GetServices.Diagnostics.Ping.Tests.{TestId}",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Ping Test.",
+      "tags": [
+        "Services.Diagnostics.Ping.Tests.{TestId}"
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": ""
+          }
+        }
+      },
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"32\", \"Address\": \"8.8.8.8\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"Count\": 4, \"Size\": 1450, \"Fragment\": false, \"TimeToLive\": 15, \"Status\": \"Complete\", \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Latency\": {\"Minimum\": 3, \"Average\": 5, \"Maximum\": 7}, \"Jitter\": {\"Minimum\": 3, \"Average\": 5, \"Maximum\": 7}, \"PacketLoss\": 0.0, \"Duration\": 30}}}",
+              "schema": {
+                "$ref": "#/components/schemas/Services.Diagnostics.Ping.Tests"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "TestId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Test",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Services.Diagnostics.Ping.Tests": {
+        "description": "Services.Diagnostics.Ping.Tests Object",
+        "id": "Services.Diagnostics.Ping.Tests",
+        "type": "object",
+        "required": [
+          "Address"
+        ],
+        "properties": {
+          "Address": {
+            "type": "String",
+            "description": "Ping Test address.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "FQDN, IPv4 or IPv6 address"
+          },
+          "Count": {
+            "type": "Integer",
+            "description": "Ping Test packet count.",
+            "format": "-",
+            "default_value": "4",
+            "possible_values": "1 up to 10"
+          },
+          "Fragment": {
+            "type": "Boolean",
+            "description": "Ping Test packet fragmentation flag.",
+            "format": "-",
+            "default_value": "true",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "Id": {
+            "type": "String",
+            "description": "Ping Test unique identifier.",
+            "format": "1 up to 64 chars",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars",
+            "readOnly": true
+          },
+          "Interface": {
+            "type": "String",
+            "description": "Ping Test interface.",
+            "format": "-",
+            "default_value": "The currently active \"Services.Broadband.Data\" interface.",
+            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object"
+          },
+          "Size": {
+            "type": "Integer",
+            "description": "Ping Test packet size.",
+            "format": "expressed in bytes",
+            "default_value": "32",
+            "possible_values": "-"
+          },
+          "TimeToLive": {
+            "type": "Integer",
+            "description": "Ping Test packet maximum time to live.",
+            "format": "expressed in hops",
+            "default_value": "30",
+            "possible_values": ">= 1 and <= 50"
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Duration": {
+                "type": "Integer",
+                "description": "Ping Test duration.",
+                "format": "expressed in seconds",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Jitter": {
+                "type": "Integer",
+                "description": "Ping Test average observed jitter.",
+                "format": "expressed in ms",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Latency": {
+                "type": "Integer",
+                "description": "Ping Test average observed latency.",
+                "format": "expressed in ms",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "PacketLoss": {
+                "type": "Float",
+                "description": "Ping Test packet loss.",
+                "format": "2 decimal places",
+                "default_value": "-",
+                "possible_values": ">= 0.00 and <= 1.00",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "Ping Test operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": ":\n- \"Queued\" (requested or waiting on a queue for an ongoing test to be completed).\n- \"Ongoing\" (in progress/running).\n- \"Completed\" (finished successfully).\n- \"Failed\" (finished unsuccessfully, was not able to complete the test)",
+            "readOnly": true
+          },
+          "Timestamp": {
+            "type": "String",
+            "description": "Ping Test timestamp.",
+            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+            "default_value": "-",
+            "possible_values": "the timestamp corresponding to the test status. For example, if status = \"Queued\" then the timestamp should reflect the time when the test was requested. If the status changes to \"Completed\" the timestamp should change to the time when the test has been completed",
+            "readOnly": true
+          }
+        },
+        "events": {
+          "1": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 1, \"Name\": \"SERVICES_DIAGNOSTICS_PING_TESTS_TEST_COMPLETE\"}, \"Body\": {\"TestId\": \"Services.Diagnostics.Ping.Tests.0\"}}"
+              }
+            },
+            "description": "Raised when a queued Ping Test Test is complete.",
+            "code": "SERVICES_DIAGNOSTICS_PING_TESTS_TEST_COMPLETE"
+          },
+          "2": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 2, \"Name\": \"SERVICES_DIAGNOSTICS_PING_TESTS_TEST_FAILED\"}, \"Body\": {\"TestId\": \"Services.Diagnostics.Ping.Tests.0\"}}"
+              }
+            },
+            "description": "Raised when a queued Ping Test Test fails.",
+            "code": "SERVICES_DIAGNOSTICS_PING_TESTS_TEST_FAILED"
+          },
+          "3": {
+            "content": {
+              "application/json": {
+                "example": "{\"Header\": {\"Code\": 3, \"Name\": \"SERVICES_DIAGNOSTICS_PING_TESTS_TEST_TIMEOUT\"}, \"Body\": {\"TestId\": \"Services.Diagnostics.Ping.Tests.0\"}}"
+              }
+            },
+            "description": "Raised when a queued Ping Test Test times out.",
+            "code": "SERVICES_DIAGNOSTICS_PING_TESTS_TEST_TIMEOUT"
+          }
+        },
+        "example": {}
+      }
+    }
+  }
+}
