@@ -6,16 +6,6 @@
       "tags": [
         "Services.Management.CWMP"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Services.Management.CWMP"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Enabled\": true, \"PeriodicInform\": {\"Enabled\": true, \"Interval\": 3600}, \"InterfacesList\": [\"Interfaces.Networknterfaces.network.wan.xdsl.pvcs.035\", \"interfaces.network.mobile\"], \"Mode\": \"Fallback\"}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Management.CWMP"
+            },
+            "example": "{\"Enabled\": true, \"PeriodicInform\": {\"Enabled\": true, \"Interval\": 3600}, \"InterfacesList\": [\"Interfaces.Networknterfaces.network.wan.xdsl.pvcs.035\", \"interfaces.network.mobile\"], \"Mode\": \"Fallback\"}"
+          }
         }
       }
     }

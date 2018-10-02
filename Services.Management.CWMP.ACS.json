@@ -6,16 +6,6 @@
       "tags": [
         "Services.Management.CWMP.ACS"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Services.Management.CWMP.ACS"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Address\": \"https://ACS.prpl.com/CWMP\", \"Port\": 4444, \"Username\": \"prplFoundation\", \"Password\": \"prplFoundation\"}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Management.CWMP.ACS"
+            },
+            "example": "{\"Address\": \"https://ACS.prpl.com/CWMP\", \"Port\": 4444, \"Username\": \"prplFoundation\", \"Password\": \"prplFoundation\"}"
+          }
         }
       }
     }

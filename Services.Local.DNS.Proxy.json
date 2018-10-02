@@ -6,16 +6,6 @@
       "tags": [
         "Services.Local.DNS.Proxy"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Services.Local.DNS.Proxy"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Enabled\": true, \"ForwardingMode\": \"Concurrent\", \"InterfacesList\": [\"Interfaces.IP.Br0\", \"Interfaces.IP.Br1\"]}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Local.DNS.Proxy"
+            },
+            "example": "{\"Enabled\": true, \"ForwardingMode\": \"Concurrent\", \"InterfacesList\": [\"Interfaces.IP.Br0\", \"Interfaces.IP.Br1\"]}"
+          }
         }
       }
     }

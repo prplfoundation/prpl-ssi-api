@@ -6,16 +6,6 @@
       "tags": [
         "Services.Local.VPN.IPSec.Server"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Services.Local.VPN.IPSec.Server"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Local.VPN.IPSec.Server"
+            },
+            "example": ""
+          }
         }
       }
     },
@@ -330,16 +320,6 @@
       "tags": [
         "Services.Local.VPN.IPSec.Server"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Enabled\": true, \"Server\": {\"Port\": 50, \"Authentication\": \"IKE\", \"MTU\": 1200, \"MaxClients\": 1}, \"Interfaces\": {\"Outbound\": \"Interfaces.IP.ffth_dhcp\", \"Inbound\": \"Interfaces.IP.br0\"}}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -483,6 +463,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Local.VPN.IPSec.Server"
+            },
+            "example": "{\"Enabled\": true, \"Server\": {\"Port\": 50, \"Authentication\": \"IKE\", \"MTU\": 1200, \"MaxClients\": 1}, \"Interfaces\": {\"Outbound\": \"Interfaces.IP.ffth_dhcp\", \"Inbound\": \"Interfaces.IP.br0\"}}"
+          }
         }
       }
     }

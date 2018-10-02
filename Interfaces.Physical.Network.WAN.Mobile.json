@@ -6,16 +6,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.Mobile"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.Mobile"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Mobile"
+            },
+            "example": ""
+          }
         }
       }
     },
@@ -330,16 +320,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.Mobile"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Name\": \"Mobile\", \"Enabled\": true, \"Mode\": {\"4G\": true, \"3G\": true, \"2G\": false}, \"Standards\": {\"4G\": {\"LTEAdvanced\": true, \"LTE\": true}, \"3G\": {\"HSPA+\": true, \"HSUPA\": false, \"HSDPA\": false, \"UMTS\": false}, \"2G\": {\"EDGE\": true, \"GPRS\": false, \"GSM\": false}}}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -483,6 +463,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Mobile"
+            },
+            "example": "{\"Name\": \"Mobile\", \"Enabled\": true, \"Mode\": {\"4G\": true, \"3G\": true, \"2G\": false}, \"Standards\": {\"4G\": {\"LTEAdvanced\": true, \"LTE\": true}, \"3G\": {\"HSPA+\": true, \"HSUPA\": false, \"HSDPA\": false, \"UMTS\": false}, \"2G\": {\"EDGE\": true, \"GPRS\": false, \"GSM\": false}}}"
+          }
         }
       }
     }

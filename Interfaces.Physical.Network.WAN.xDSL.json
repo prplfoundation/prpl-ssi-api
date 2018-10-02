@@ -6,16 +6,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.xDSL"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.xDSL"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.xDSL"
+            },
+            "example": ""
+          }
         }
       }
     },
@@ -330,16 +320,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.xDSL"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Name\": \"xDSL\", \"Enabled\": true, \"Mode\": [\"ADSL2+\", \"VDSL2\"]}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -483,6 +463,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.xDSL"
+            },
+            "example": "{\"Name\": \"xDSL\", \"Enabled\": true, \"Mode\": [\"ADSL2+\", \"VDSL2\"]}"
+          }
         }
       }
     }

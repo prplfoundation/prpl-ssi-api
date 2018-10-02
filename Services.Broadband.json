@@ -6,16 +6,6 @@
       "tags": [
         "Services.Broadband"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Limit\": 10, \"Offset\": 0}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -159,6 +149,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ListRequest"
+            },
+            "example": "{\"Limit\": 10, \"Offset\": 0}"
+          }
         }
       },
       "schema": {

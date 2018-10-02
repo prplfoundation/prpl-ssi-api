@@ -6,16 +6,6 @@
       "tags": [
         "Services.Local.Wi-Fi.WPS.Pairing"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -159,6 +149,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Local.Wi-Fi.WPS.Pairing"
+            },
+            "example": ""
+          }
         }
       }
     },
@@ -168,16 +168,6 @@
       "tags": [
         "Services.Local.Wi-Fi.WPS.Pairing"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +311,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Local.Wi-Fi.WPS.Pairing"
+            },
+            "example": ""
+          }
         }
       }
     }

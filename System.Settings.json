@@ -6,16 +6,6 @@
       "tags": [
         "System.Settings"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "System.Settings"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"AutoSave\": {\"Enabled\": true, \"Interval\": 3600}, \"StartupId\": \"System.Settings.Configuration.1\"}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/System.Settings"
+            },
+            "example": "{\"AutoSave\": {\"Enabled\": true, \"Interval\": 3600}, \"StartupId\": \"System.Settings.Configuration.1\"}"
+          }
         }
       }
     }

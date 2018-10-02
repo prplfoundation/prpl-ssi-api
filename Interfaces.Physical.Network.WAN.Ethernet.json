@@ -6,16 +6,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.Ethernet"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.Ethernet"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Ethernet"
+            },
+            "example": ""
+          }
         }
       }
     },
@@ -330,16 +320,6 @@
       "tags": [
         "Interfaces.Physical.Network.WAN.Ethernet"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Name\": \"Ethernet\", \"Enabled\": true, \"Mode\": [\"FastEthernet\", \"GigabitEthernet\"], \"EnergyEfficientEthernet\": true, \"AutoNegotiation\": true, \"Duplex\": [\"Half\", \"Full\"]}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -483,6 +463,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.Physical.Network.WAN.Ethernet"
+            },
+            "example": "{\"Name\": \"Ethernet\", \"Enabled\": true, \"Mode\": [\"FastEthernet\", \"GigabitEthernet\"], \"EnergyEfficientEthernet\": true, \"AutoNegotiation\": true, \"Duplex\": [\"Half\", \"Full\"]}"
+          }
         }
       }
     }

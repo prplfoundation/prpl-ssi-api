@@ -6,16 +6,6 @@
       "tags": [
         "Services.Broadband.TV.IGMP.Snooping"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -168,16 +158,6 @@
       "tags": [
         "Services.Broadband.TV.IGMP.Snooping"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Enabled\": true, \"Interfaces\": [\"Interfaces.Physical.LAN.EthernetSwitch.Ports.0\", \"Interfaces.Physical.LAN.EthernetSwitch.Ports.1\", \"Interfaces.Physical.LAN.EthernetSwitch.Ports.2\", \"Interfaces.Physical.LAN.EthernetSwitch.Ports.3\", \"Interfaces.Physical.LAN.Wi-Fi.Radios.24GHz.BSSs.Private\", \"Interfaces.Physical.LAN.Wi-Fi.Radios.5GHz.BSSs.Private\"]}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -321,6 +301,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Services.Broadband.TV.IGMP.Snooping"
+            },
+            "example": "{\"Enabled\": true, \"Interfaces\": [\"Interfaces.Physical.LAN.EthernetSwitch.Ports.0\", \"Interfaces.Physical.LAN.EthernetSwitch.Ports.1\", \"Interfaces.Physical.LAN.EthernetSwitch.Ports.2\", \"Interfaces.Physical.LAN.EthernetSwitch.Ports.3\", \"Interfaces.Physical.LAN.Wi-Fi.Radios.24GHz.BSSs.Private\", \"Interfaces.Physical.LAN.Wi-Fi.Radios.5GHz.BSSs.Private\"]}"
+          }
         }
       }
     }

@@ -1,21 +1,353 @@
 {
   "paths": {
-    "Delete": {
-      "operationId": "DeleteInterfaces.IP.{InterfaceId}",
-      "summary": "Deletes the specified IP Interface.",
+    "Add": {
+      "operationId": "AddInterfaces.IP",
+      "summary": "Adds a new IP Interface.",
       "tags": [
-        "Interfaces.IP.{InterfaceId}"
+        "Interfaces.IP"
       ],
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"WAN_Mobile\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.IP"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.IP"
+            },
+            "example": "{\"Id\": \"WAN_Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": \"Interfaces.Physical.WAN.xDSL.PVCs.035\"}"
+          }
+        }
+      }
+    },
+    "List": {
+      "operationId": "ListInterfaces.IP",
+      "summary": "Retrieves a list of IP Interfaces.",
+      "tags": [
+        "Interfaces.IP"
+      ],
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"InterfacesList\": [{\"Id\": \"WAN_Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"Status\": \"Connected\", \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": \"Interfaces.Physical.WAN.xDSL.PVCs.035\", \"Statistics\": {\"Packets\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}, \"Dropped\": {\"Transmitted\": 0, \"Received\": 0}, \"Errors\": {\"Transmitted\": 0, \"Received\": 0}, \"Collisions\": 0}}], \"Limit\": 10, \"Offset\": 0}}",
+              "schema": {
+                "$ref": "#/components/schemas/Interfaces.IP"
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
       "requestBody": {
         "content": {
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/ListRequest"
             },
-            "example": ""
+            "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
       },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "description": "Which object index to start with",
+            "example": 45,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "description": "How many objects to return",
+            "min": 1,
+            "max": 200,
+            "default": 20
+          }
+        }
+      }
+    },
+    "Delete": {
+      "operationId": "DeleteInterfaces.IP.{InterfaceId}",
+      "summary": "Deletes the specified IP Interface.",
+      "tags": [
+        "Interfaces.IP.{InterfaceId}"
+      ],
       "responses": {
         "99": {
           "content": {
@@ -185,16 +517,6 @@
       "tags": [
         "Interfaces.IP.{InterfaceId}"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -364,16 +686,6 @@
       "tags": [
         "Interfaces.IP.{InterfaceId}"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": ""
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -517,6 +829,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.IP"
+            },
+            "example": ""
+          }
         }
       },
       "parameters": [
@@ -543,16 +865,6 @@
       "tags": [
         "Interfaces.IP.{InterfaceId}"
       ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ListRequest"
-            },
-            "example": "{\"Name\": \"Mobile\", \"Enabled\": true, \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": \"Interfaces.Physical.WAN.xDSL.PVCs.035\"}"
-          }
-        }
-      },
       "responses": {
         "99": {
           "content": {
@@ -696,6 +1008,16 @@
             }
           },
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Interfaces.IP"
+            },
+            "example": "{\"Name\": \"Mobile\", \"Enabled\": true, \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": \"Interfaces.Physical.WAN.xDSL.PVCs.035\"}"
+          }
         }
       },
       "parameters": [
