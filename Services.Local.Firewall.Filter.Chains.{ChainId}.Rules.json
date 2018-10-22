@@ -1,7 +1,7 @@
 {
   "paths": {
-    "Add": {
-      "operationId": "AddServices.Local.Firewall.Filter.Chains.{ChainId}.Rules",
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.Add": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.Add",
       "summary": "Adds a new Firewall Filter Rule.",
       "tags": [
         "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
@@ -12,7 +12,16 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+                "properties": {
+                  "Id": {
+                    "type": "String",
+                    "description": "Firewall Filter Rule unique identifier.",
+                    "format": "1 up to 64 chars",
+                    "default_value": "Integer starting at 0",
+                    "possible_values": "any string with length from 1 up to 64 chars"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +30,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +108,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,7 +176,150 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "Firewall Filter Rule administrative status.",
+                  "format": "-",
+                  "default_value": "true",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "IP": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule destination IP address.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "IPv4 or IPv6 address",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source IP address.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "IPv4 or IPv6 address",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Id": {
+                  "type": "String",
+                  "description": "Firewall Filter Rule unique identifier.",
+                  "format": "1 up to 64 chars",
+                  "default_value": "Integer starting at 0",
+                  "possible_values": "any string with length from 1 up to 64 chars"
+                },
+                "Interface": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule destination IP interfaces.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source IP interface.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Logging": {
+                  "type": "Boolean",
+                  "description": "Firewall Filter Rule Logging flag.",
+                  "format": "-",
+                  "default_value": "false",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "MAC": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule destination MAC address.",
+                      "format": "AA:BB:CC:00:11:22:33",
+                      "default_value": "null",
+                      "possible_values": "valid MAC Address",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source MAD address.",
+                      "format": "AA:BB:CC:00:11:22:33",
+                      "default_value": "null",
+                      "possible_values": "valid MAC Address",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "Firewall Filter Rule name (alias).",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "Port": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "Integer",
+                      "description": "Firewall Filter Rule destination transport port.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "0-65536",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source transport port.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "0-65536",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "TransportProtocol": {
+                  "type": "String",
+                  "description": "Firewall Filter Rule transport protocol.",
+                  "format": "-",
+                  "default_value": "null",
+                  "possible_values": "\"TCP\" or \"UDP\"",
+                  "enum": [
+                    "TCP",
+                    "UDP"
+                  ],
+                  "writeOnly": true
+                }
+              },
+              "required": [
+                "Name"
+              ]
             },
             "example": "{\"Id\": \"1\", \"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\"}"
           }
@@ -179,8 +343,8 @@
         }
       ]
     },
-    "List": {
-      "operationId": "ListServices.Local.Firewall.Filter.Chains.{ChainId}.Rules",
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.List": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.List",
       "summary": "Retrieves a list of Firewall Filter Rules.",
       "tags": [
         "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
@@ -191,7 +355,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"1\", \"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\", \"Statistics\": {\"Hits\": 0}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "Firewall Filter Rule maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "Firewall Filter Rule list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "Firewall Filter Rule list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -200,67 +388,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -272,61 +466,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -334,7 +534,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "Firewall Filter Rule maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "Firewall Filter Rule list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
@@ -376,11 +592,11 @@
         }
       ]
     },
-    "ResetStatistics": {
-      "operationId": "ResetStatisticsServices.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}",
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.ResetStatistics": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.ResetStatistics",
       "summary": "Resets the statistics counters of the (specified) Firewall Filter Rule.",
       "tags": [
-        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
+        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
       ],
       "responses": {
         "99": {
@@ -388,7 +604,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -397,67 +614,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -469,61 +692,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -531,7 +760,750 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+              "properties": {},
+              "required": []
+            },
+            "example": ""
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ChainId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Chain",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.Delete": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.Delete",
+      "summary": "Deletes the specified Firewall Filter Rule.",
+      "tags": [
+        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
+      ],
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "properties": {},
+                "required": []
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus",
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus",
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ChainId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Chain",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        },
+        {
+          "in": "path",
+          "name": "RuleId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Rule",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.Get": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.Get",
+      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Firewall Filter Rule.",
+      "tags": [
+        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
+      ],
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\", \"Statistics\": {\"Hits\": 0}}}",
+              "schema": {
+                "properties": {
+                  "Enabled": {
+                    "type": "Boolean",
+                    "description": "Firewall Filter Rule administrative status.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"true\" or \"false\"",
+                    "enum": [
+                      "true",
+                      "false"
+                    ],
+                    "readOnly": true
+                  },
+                  "IP": {
+                    "type": "object",
+                    "properties": {
+                      "Destination": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule destination IP address.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "IPv4 or IPv6 address",
+                        "readOnly": true
+                      },
+                      "Source": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule source IP address.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "IPv4 or IPv6 address",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "Firewall Filter Rule unique identifier.",
+                    "format": "1 up to 64 chars",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Interface": {
+                    "type": "object",
+                    "properties": {
+                      "Destination": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule destination IP interfaces.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                        "readOnly": true
+                      },
+                      "Source": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule source IP interface.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Logging": {
+                    "type": "Boolean",
+                    "description": "Firewall Filter Rule Logging flag.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"true\" or \"false\"",
+                    "enum": [
+                      "true",
+                      "false"
+                    ],
+                    "readOnly": true
+                  },
+                  "MAC": {
+                    "type": "object",
+                    "properties": {
+                      "Destination": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule destination MAC address.",
+                        "format": "AA:BB:CC:00:11:22:33",
+                        "default_value": "-",
+                        "possible_values": "valid MAC Address",
+                        "readOnly": true
+                      },
+                      "Source": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule source MAD address.",
+                        "format": "AA:BB:CC:00:11:22:33",
+                        "default_value": "-",
+                        "possible_values": "valid MAC Address",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Name": {
+                    "type": "String",
+                    "description": "Firewall Filter Rule name (alias).",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Port": {
+                    "type": "object",
+                    "properties": {
+                      "Destination": {
+                        "type": "Integer",
+                        "description": "Firewall Filter Rule destination transport port.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "0-65536",
+                        "readOnly": true
+                      },
+                      "Source": {
+                        "type": "String",
+                        "description": "Firewall Filter Rule source transport port.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "0-65536",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Statistics": {
+                    "type": "object",
+                    "properties": {
+                      "Hits": {
+                        "type": "Integer",
+                        "description": "Firewall Filter Rule hits count.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 0",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "TransportProtocol": {
+                    "type": "String",
+                    "description": "Firewall Filter Rule transport protocol.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"TCP\" or \"UDP\"",
+                    "enum": [
+                      "TCP",
+                      "UDP"
+                    ],
+                    "readOnly": true
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus",
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus",
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ChainId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Chain",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        },
+        {
+          "in": "path",
+          "name": "RuleId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Rule",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.ResetStatistics": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.ResetStatistics",
+      "summary": "Resets the statistics counters of the (specified) Firewall Filter Rule.",
+      "tags": [
+        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
+      ],
+      "responses": {
+        "99": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "properties": {},
+                "required": []
+              }
+            }
+          },
+          "description": "A well-formed call was performed to a valid object with valid arguments."
+        },
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
+        },
+        "METHOD_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus",
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
+        },
+        "OBJECT_NOT_FOUND": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus",
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
+        },
+        "OK": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
+        },
+        "OPERATION_ERROR": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
+        },
+        "OPERATION_ILLEGAL": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
+        },
+        "OPERATION_TIMEOUT": {
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          },
+          "raised_by": "Micro-Service",
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {},
+              "required": []
             },
             "example": ""
           }
@@ -570,376 +1542,8 @@
         }
       ]
     },
-    "Delete": {
-      "operationId": "DeleteServices.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}",
-      "summary": "Deletes the specified Firewall Filter Rule.",
-      "tags": [
-        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
-      ],
-      "responses": {
-        "99": {
-          "content": {
-            "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
-              "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
-              }
-            }
-          },
-          "description": "A well-formed call was performed to a valid object with valid arguments."
-        },
-        "ARGUMENT_DATA_TYPE_MISMATCH": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
-        },
-        "ARGUMENT_NOT_FOUND": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
-        },
-        "ARGUMENT_REQUIRED_MISSING": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
-        },
-        "ARGUMENT_VALUE_NOT_SUPPORTED": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
-        },
-        "METHOD_NOT_FOUND": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
-        },
-        "OBJECT_NOT_FOUND": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
-        },
-        "OK": {
-          "content": {
-            "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
-        },
-        "OPERATION_ALREADY_IN_PROGRESS": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
-        },
-        "OPERATION_ERROR": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
-        },
-        "OPERATION_ILLEGAL": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
-        },
-        "OPERATION_PERMISSION_DENIED": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
-        },
-        "OPERATION_TIMEOUT": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
-        }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "ChainId",
-          "type": "integer",
-          "required": true,
-          "description": "ID of a(n) Chain",
-          "schema": {
-            "type": "integer",
-            "format": "int32",
-            "default": 20,
-            "example": {
-              "Limit": 10
-            }
-          }
-        },
-        {
-          "in": "path",
-          "name": "RuleId",
-          "type": "integer",
-          "required": true,
-          "description": "ID of a(n) Rule",
-          "schema": {
-            "type": "integer",
-            "format": "int32",
-            "default": 20,
-            "example": {
-              "Limit": 10
-            }
-          }
-        }
-      ]
-    },
-    "Get": {
-      "operationId": "GetServices.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}",
-      "summary": "Retrieves the status and configuration parameters in regards to the (specified) Firewall Filter Rule.",
-      "tags": [
-        "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
-      ],
-      "responses": {
-        "99": {
-          "content": {
-            "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\", \"Statistics\": {\"Hits\": 0}}}",
-              "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
-              }
-            }
-          },
-          "description": "A well-formed call was performed to a valid object with valid arguments."
-        },
-        "ARGUMENT_DATA_TYPE_MISMATCH": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
-        },
-        "ARGUMENT_NOT_FOUND": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
-        },
-        "ARGUMENT_REQUIRED_MISSING": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
-        },
-        "ARGUMENT_VALUE_NOT_SUPPORTED": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
-        },
-        "METHOD_NOT_FOUND": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
-        },
-        "OBJECT_NOT_FOUND": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
-        },
-        "OK": {
-          "content": {
-            "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"Guest\"}}",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
-        },
-        "OPERATION_ALREADY_IN_PROGRESS": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
-        },
-        "OPERATION_ERROR": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
-        },
-        "OPERATION_ILLEGAL": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
-        },
-        "OPERATION_PERMISSION_DENIED": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
-        },
-        "OPERATION_TIMEOUT": {
-          "content": {
-            "application/json": {
-              "example": "",
-              "schema": {
-                "$ref": "#/components/schemas/Error"
-              }
-            }
-          },
-          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
-        }
-      },
-      "parameters": [
-        {
-          "in": "path",
-          "name": "ChainId",
-          "type": "integer",
-          "required": true,
-          "description": "ID of a(n) Chain",
-          "schema": {
-            "type": "integer",
-            "format": "int32",
-            "default": 20,
-            "example": {
-              "Limit": 10
-            }
-          }
-        },
-        {
-          "in": "path",
-          "name": "RuleId",
-          "type": "integer",
-          "required": true,
-          "description": "ID of a(n) Rule",
-          "schema": {
-            "type": "integer",
-            "format": "int32",
-            "default": 20,
-            "example": {
-              "Limit": 10
-            }
-          }
-        }
-      ]
-    },
-    "Set": {
-      "operationId": "SetServices.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}",
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.Set": {
+      "operationId": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}.Set",
       "summary": "Modifies the status and configuration parameters of the (specified) Firewall Filter Rule.",
       "tags": [
         "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId}"
@@ -950,7 +1554,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -959,67 +1564,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -1031,61 +1642,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -1093,7 +1710,141 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "Firewall Filter Rule administrative status.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "IP": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule destination IP address.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "IPv4 or IPv6 address",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source IP address.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "IPv4 or IPv6 address",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Interface": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule destination IP interfaces.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source IP interface.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Logging": {
+                  "type": "Boolean",
+                  "description": "Firewall Filter Rule Logging flag.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "MAC": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule destination MAC address.",
+                      "format": "AA:BB:CC:00:11:22:33",
+                      "default_value": "the existing configuration",
+                      "possible_values": "valid MAC Address",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source MAD address.",
+                      "format": "AA:BB:CC:00:11:22:33",
+                      "default_value": "the existing configuration",
+                      "possible_values": "valid MAC Address",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "Firewall Filter Rule name (alias).",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "Port": {
+                  "type": "object",
+                  "properties": {
+                    "Destination": {
+                      "type": "Integer",
+                      "description": "Firewall Filter Rule destination transport port.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "0-65536",
+                      "writeOnly": true
+                    },
+                    "Source": {
+                      "type": "String",
+                      "description": "Firewall Filter Rule source transport port.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "0-65536",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "TransportProtocol": {
+                  "type": "String",
+                  "description": "Firewall Filter Rule transport protocol.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"TCP\" or \"UDP\"",
+                  "enum": [
+                    "TCP",
+                    "UDP"
+                  ],
+                  "writeOnly": true
+                }
+              },
+              "required": []
             },
             "example": "{\"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\"}"
           }
@@ -1140,6 +1891,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1152,6 +1904,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1333,7 +2086,8 @@
           }
         },
         "events": {},
-        "example": {}
+        "example": {},
+        "layer": 2
       }
     }
   }

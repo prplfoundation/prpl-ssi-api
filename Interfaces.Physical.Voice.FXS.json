@@ -1,7 +1,7 @@
 {
   "paths": {
-    "List": {
-      "operationId": "ListInterfaces.Physical.Voice.FXS",
+    "Interfaces.Physical.Voice.FXS.List": {
+      "operationId": "Interfaces.Physical.Voice.FXS.List",
       "summary": "Retrieves a list of FXS Voice Interfaces.",
       "tags": [
         "Interfaces.Physical.Voice.FXS"
@@ -12,7 +12,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": 0, \"Name\": \"FXS1\", \"Enabled\": true, \"Status\": \"Active\", \"Signaling\": \"DTMF\"}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Voice.FXS"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "FXS Voice Interface maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "FXS Voice Interface list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "FXS Voice Interface list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +45,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +123,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,7 +191,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "FXS Voice Interface maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "FXS Voice Interface list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
@@ -180,8 +232,8 @@
         }
       }
     },
-    "Get": {
-      "operationId": "GetInterfaces.Physical.Voice.FXS.{InterfaceId}",
+    "Interfaces.Physical.Voice.FXS.{InterfaceId}.Get": {
+      "operationId": "Interfaces.Physical.Voice.FXS.{InterfaceId}.Get",
       "summary": "Retrieves the status and configuration parameters in regards to the (specified) FXS Voice Interface.",
       "tags": [
         "Interfaces.Physical.Voice.FXS.{InterfaceId}"
@@ -192,7 +244,57 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"FXS1\", \"Enabled\": true, \"Status\": \"Active\", \"Signaling\": \"DTMF\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Voice.FXS"
+                "properties": {
+                  "Enabled": {
+                    "type": "Boolean",
+                    "description": "FXS Voice Interface administrative status.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"true\" or \"false\"",
+                    "enum": [
+                      "true",
+                      "false"
+                    ],
+                    "readOnly": true
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "FXS Voice Interface unique identifier.",
+                    "format": "1 up to 64 chars",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Name": {
+                    "type": "String",
+                    "description": "FXS Voice Interface name (alias).",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Signaling": {
+                    "type": "String",
+                    "description": "FXS Voice Interface signaling mode.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"DTMF\" or \"PulseDialing\"",
+                    "enum": [
+                      "DTMF",
+                      "PulseDialing"
+                    ],
+                    "readOnly": true
+                  },
+                  "Status": {
+                    "type": "String",
+                    "description": "FXS Voice Interface operational status.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"Connected\", \"Disconnected\", \"Disabled\", \"Error\"",
+                    "readOnly": true
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -201,67 +303,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -273,61 +381,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -349,8 +463,8 @@
         }
       ]
     },
-    "Set": {
-      "operationId": "SetInterfaces.Physical.Voice.FXS.{InterfaceId}",
+    "Interfaces.Physical.Voice.FXS.{InterfaceId}.Set": {
+      "operationId": "Interfaces.Physical.Voice.FXS.{InterfaceId}.Set",
       "summary": "Modifies the status and configuration parameters of the (specified) FXS Voice Interface.",
       "tags": [
         "Interfaces.Physical.Voice.FXS.{InterfaceId}"
@@ -361,7 +475,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Voice.FXS"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -370,67 +485,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -442,61 +563,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -504,7 +631,33 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Interfaces.Physical.Voice.FXS"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "FXS Voice Interface administrative status.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Signaling": {
+                  "type": "String",
+                  "description": "FXS Voice Interface signaling mode.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"DTMF\" or \"PulseDialing\"",
+                  "enum": [
+                    "DTMF",
+                    "PulseDialing"
+                  ],
+                  "writeOnly": true
+                }
+              },
+              "required": []
             },
             "example": "{\"Enabled\": true, \"Signaling\": \"DTMF\"}"
           }
@@ -536,6 +689,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -548,6 +702,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -669,7 +824,8 @@
             "code": "INTERFACES_PHYSICAL_VOICE_FXS_PORT_ENABLED"
           }
         },
-        "example": {}
+        "example": {},
+        "layer": 3
       }
     }
   }

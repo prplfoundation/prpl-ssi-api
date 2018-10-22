@@ -1,7 +1,7 @@
 {
   "paths": {
-    "List": {
-      "operationId": "ListServices.Local.HostManager.Hosts",
+    "Services.Local.HostManager.Hosts.List": {
+      "operationId": "Services.Local.HostManager.Hosts.List",
       "summary": "Retrieves a list of HostManager Hosts.",
       "tags": [
         "Services.Local.HostManager.Hosts"
@@ -12,7 +12,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"iPhone\", \"Address\": {\"IP\": {\"v4\": \"192.168.1.20\", \"v6\": {\"LinkLocal\": \"fe80::5efe:c000:0201\", \"Global\": \"3ffe:b00:1:2::5efe:c000:0201\"}}, \"MAC\": \"AA:BB:CC:00:11:22\"}, \"Type\": \"Phone\", \"Interface\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.5ghz.BSSs.Private\", \"Status\": {\"State\": \"Online\", \"Time\": {\"Idle\": 0, \"Connected\": 300, \"Stamp\": \"2018-04-09T20:45:00+01:00\"}}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.HostManager.Hosts"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "HostManager Host maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "HostManager Host list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "HostManager Host list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +45,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +123,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,7 +191,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "HostManager Host maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "HostManager Host list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
@@ -180,8 +232,8 @@
         }
       }
     },
-    "Delete": {
-      "operationId": "DeleteServices.Local.HostManager.Hosts.{HostId}",
+    "Services.Local.HostManager.Hosts.{HostId}.Delete": {
+      "operationId": "Services.Local.HostManager.Hosts.{HostId}.Delete",
       "summary": "Deletes the specified HostManager Host.",
       "tags": [
         "Services.Local.HostManager.Hosts.{HostId}"
@@ -192,7 +244,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.HostManager.Hosts"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -201,67 +254,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -273,61 +332,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -349,8 +414,8 @@
         }
       ]
     },
-    "Get": {
-      "operationId": "GetServices.Local.HostManager.Hosts.{HostId}",
+    "Services.Local.HostManager.Hosts.{HostId}.Get": {
+      "operationId": "Services.Local.HostManager.Hosts.{HostId}.Get",
       "summary": "Retrieves the status and configuration parameters in regards to the (specified) HostManager Host.",
       "tags": [
         "Services.Local.HostManager.Hosts.{HostId}"
@@ -361,7 +426,207 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"iPhone\", \"Address\": {\"IP\": {\"v4\": \"192.168.1.20\", \"v6\": {\"LinkLocal\": \"fe80::5efe:c000:0201\", \"Global\": \"3ffe:b00:1:2::5efe:c000:0201\"}}, \"MAC\": \"AA:BB:CC:00:11:22\"}, \"Type\": \"Phone\", \"Interface\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.5ghz.BSSs.Private\", \"Status\": {\"State\": \"Online\", \"Time\": {\"Idle\": 0, \"Connected\": 300, \"Stamp\": \"2018-04-09T20:45:00+01:00\"}}}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.HostManager.Hosts"
+                "properties": {
+                  "Address": {
+                    "type": "object",
+                    "properties": {
+                      "IP": {
+                        "type": "object",
+                        "properties": {
+                          "v4": {
+                            "type": "String",
+                            "description": "HostManager Host IPv4 address.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "null or valid IPv4 address",
+                            "readOnly": true
+                          },
+                          "v6": {
+                            "type": "object",
+                            "properties": {
+                              "Global": {
+                                "type": "String",
+                                "description": "HostManager Host IPv6 Global address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "null or valid IPv6 address",
+                                "readOnly": true
+                              },
+                              "LinkLocal": {
+                                "type": "String",
+                                "description": "HostManager Host IPv6 Link Local address.",
+                                "format": "fe80:*",
+                                "default_value": "-",
+                                "possible_values": "null or valid IPv6 address",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "required": []
+                      },
+                      "MAC": {
+                        "type": "String",
+                        "description": "HostManager Host MAC address.",
+                        "format": "AA:BB:CC:00:11:22:33",
+                        "default_value": "-",
+                        "possible_values": "valid MAC Address",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "HostManager Host unique identifier.",
+                    "format": "1 up to 64 chars",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Interface": {
+                    "type": "String",
+                    "description": "HostManager Host interface.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "valid \"Interfaces.Physical.\" object.",
+                    "readOnly": true
+                  },
+                  "Name": {
+                    "type": "String",
+                    "description": "HostManager Host name (alias).",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Statistics": {
+                    "type": "object",
+                    "properties": {
+                      "Devices": {
+                        "type": "object",
+                        "properties": {
+                          "Offline": {
+                            "type": "Integer",
+                            "description": "HostManager Host offline devices count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Online": {
+                            "type": "Integer",
+                            "description": "HostManager Host online devices count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Total": {
+                            "type": "Integer",
+                            "description": "HostManager Host total devices count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "Interfaces": {
+                        "type": "object",
+                        "properties": {
+                          "{InterfaceId}": {
+                            "type": "object",
+                            "properties": {
+                              "Offline": {
+                                "type": "Integer",
+                                "description": "HostManager Host offline devices count (on specified interface).",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "Online": {
+                                "type": "Integer",
+                                "description": "HostManager Host online devices count (on specified interface).",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "Total": {
+                                "type": "Integer",
+                                "description": "HostManager Host total devices count (on specified interface).",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "required": []
+                      }
+                    },
+                    "required": []
+                  },
+                  "Status": {
+                    "type": "object",
+                    "properties": {
+                      "State": {
+                        "type": "String",
+                        "description": "HostManager Host operational status.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\n- \"Online\" (connected to the interface with internet connectivity).\n- \"Pending\" (temporarily blocked from Internet access, waiting for user approval).\n- \"Blocked\" (device is blocked from Internet access).\n- \"Offline\" (not connected).",
+                        "readOnly": true
+                      },
+                      "Time": {
+                        "type": "object",
+                        "properties": {
+                          "Connected": {
+                            "type": "Integer",
+                            "description": "HostManager Host time elapsed since connected.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Idle": {
+                            "type": "Integer",
+                            "description": "HostManager Host idle time.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Stamp": {
+                            "type": "String",
+                            "description": "HostManager Host timestamp when connected.",
+                            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          }
+                        },
+                        "required": []
+                      }
+                    },
+                    "required": []
+                  },
+                  "Type": {
+                    "type": "String",
+                    "description": "HostManager Host type.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"Unknown\", \"Laptop\", \"Router\", \"Console\", \"Tablet\", \"Phone\", \"TV\", \"Extender\"",
+                    "readOnly": true
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -370,67 +635,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -442,61 +713,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -518,8 +795,8 @@
         }
       ]
     },
-    "Set": {
-      "operationId": "SetServices.Local.HostManager.Hosts.{HostId}",
+    "Services.Local.HostManager.Hosts.{HostId}.Set": {
+      "operationId": "Services.Local.HostManager.Hosts.{HostId}.Set",
       "summary": "Modifies the status and configuration parameters of the (specified) HostManager Host.",
       "tags": [
         "Services.Local.HostManager.Hosts.{HostId}"
@@ -530,7 +807,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.HostManager.Hosts"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -539,67 +817,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -611,61 +895,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -673,7 +963,17 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Services.Local.HostManager.Hosts"
+              "properties": {
+                "Name": {
+                  "type": "String",
+                  "description": "HostManager Host name (alias).",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                }
+              },
+              "required": []
             },
             "example": "{\"Name\": \"iPhone\"}"
           }
@@ -705,6 +1005,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -717,6 +1018,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -757,12 +1059,40 @@
             "type": "object",
             "properties": {
               "IP": {
-                "type": "String",
-                "description": "HostManager Host IPv4 address.",
-                "format": "-",
-                "default_value": "-",
-                "possible_values": "null or valid IPv4 address",
-                "readOnly": true
+                "type": "object",
+                "properties": {
+                  "v4": {
+                    "type": "String",
+                    "description": "HostManager Host IPv4 address.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "null or valid IPv4 address",
+                    "readOnly": true
+                  },
+                  "v6": {
+                    "type": "object",
+                    "properties": {
+                      "Global": {
+                        "type": "String",
+                        "description": "HostManager Host IPv6 Global address.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "null or valid IPv6 address",
+                        "readOnly": true
+                      },
+                      "LinkLocal": {
+                        "type": "String",
+                        "description": "HostManager Host IPv6 Link Local address.",
+                        "format": "fe80:*",
+                        "default_value": "-",
+                        "possible_values": "null or valid IPv6 address",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
               },
               "MAC": {
                 "type": "String",
@@ -802,20 +1132,70 @@
             "type": "object",
             "properties": {
               "Devices": {
-                "type": "Integer",
-                "description": "HostManager Host offline devices count.",
-                "format": "-",
-                "default_value": "-",
-                "possible_values": ">= 0",
-                "readOnly": true
+                "type": "object",
+                "properties": {
+                  "Offline": {
+                    "type": "Integer",
+                    "description": "HostManager Host offline devices count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Online": {
+                    "type": "Integer",
+                    "description": "HostManager Host online devices count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Total": {
+                    "type": "Integer",
+                    "description": "HostManager Host total devices count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
               },
               "Interfaces": {
-                "type": "Integer",
-                "description": "HostManager Host offline devices count (on specified interface).",
-                "format": "-",
-                "default_value": "-",
-                "possible_values": ">= 0",
-                "readOnly": true
+                "type": "object",
+                "properties": {
+                  "{InterfaceId}": {
+                    "type": "object",
+                    "properties": {
+                      "Offline": {
+                        "type": "Integer",
+                        "description": "HostManager Host offline devices count (on specified interface).",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 0",
+                        "readOnly": true
+                      },
+                      "Online": {
+                        "type": "Integer",
+                        "description": "HostManager Host online devices count (on specified interface).",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 0",
+                        "readOnly": true
+                      },
+                      "Total": {
+                        "type": "Integer",
+                        "description": "HostManager Host total devices count (on specified interface).",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 0",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
               }
             },
             "required": []
@@ -832,12 +1212,34 @@
                 "readOnly": true
               },
               "Time": {
-                "type": "Integer",
-                "description": "HostManager Host time elapsed since connected.",
-                "format": "-",
-                "default_value": "-",
-                "possible_values": ">= 0",
-                "readOnly": true
+                "type": "object",
+                "properties": {
+                  "Connected": {
+                    "type": "Integer",
+                    "description": "HostManager Host time elapsed since connected.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Idle": {
+                    "type": "Integer",
+                    "description": "HostManager Host idle time.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Stamp": {
+                    "type": "String",
+                    "description": "HostManager Host timestamp when connected.",
+                    "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  }
+                },
+                "required": []
               }
             },
             "required": []
@@ -852,7 +1254,8 @@
           }
         },
         "events": {},
-        "example": {}
+        "example": {},
+        "layer": 2
       }
     }
   }

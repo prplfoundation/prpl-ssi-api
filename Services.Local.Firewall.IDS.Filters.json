@@ -1,7 +1,7 @@
 {
   "paths": {
-    "Add": {
-      "operationId": "AddServices.Local.Firewall.IDS.Filters",
+    "Services.Local.Firewall.IDS.Filters.Add": {
+      "operationId": "Services.Local.Firewall.IDS.Filters.Add",
       "summary": "Adds a new Intrusion Detection System Filter.",
       "tags": [
         "Services.Local.Firewall.IDS.Filters"
@@ -12,7 +12,16 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+                "properties": {
+                  "Id": {
+                    "type": "String",
+                    "description": "Intrusion Detection System Filter unique identifier.",
+                    "format": "-",
+                    "default_value": "an integer starting at 0",
+                    "possible_values": "any string with length from 1 up to 64 chars"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +30,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +108,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,15 +176,162 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "Intrusion Detection System Filter administrative status.",
+                  "format": "-",
+                  "default_value": "true",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Events": {
+                  "type": "List",
+                  "description": "Intrusion Detection System Filter list of events to listen.",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "list of unsigned integers (should match valid event codes)",
+                  "writeOnly": true
+                },
+                "Id": {
+                  "type": "String",
+                  "description": "Intrusion Detection System Filter unique identifier.",
+                  "format": "-",
+                  "default_value": "an integer starting at 0",
+                  "possible_values": "any string with length from 1 up to 64 chars"
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "Intrusion Detection System Filter name (alias).",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "Permanent": {
+                  "type": "object",
+                  "properties": {
+                    "AllowedTemporaryBans": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter permanent ban number of allowed temporary bans threshold.",
+                      "format": "-",
+                      "default_value": "15",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    },
+                    "Enabled": {
+                      "type": "Boolean",
+                      "description": "Intrusion Detection System Filter permanent ban administrative state flag",
+                      "format": "-",
+                      "default_value": "true",
+                      "possible_values": "\"true\" or \"false\"",
+                      "enum": [
+                        "true",
+                        "false"
+                      ],
+                      "writeOnly": true
+                    },
+                    "FindTime": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter permanent ban lookup time interval.",
+                      "format": "expressed in seconds",
+                      "default_value": "86400",
+                      "possible_values": ">= 60",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Ports": {
+                  "type": "object",
+                  "properties": {
+                    "TCP": {
+                      "type": "List",
+                      "description": "Intrusion Detection System Filter list of TCP ports applicable for the ban.",
+                      "format": "-",
+                      "default_value": "[22, 23] (\"Services.Management.CLI\"), [80, 443] (\"Services.Management.WUI\") or [] (Empty list for other)",
+                      "possible_values": "0 - 65535",
+                      "writeOnly": true
+                    },
+                    "UDP": {
+                      "type": "List",
+                      "description": "Intrusion Detection System Filter list of UDP ports applicable for the ban.",
+                      "format": "-",
+                      "default_value": "[] (Empty list)",
+                      "possible_values": "0 - 65535",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "ServiceId": {
+                  "type": "String",
+                  "description": "Intrusion Detection System Filter Id of the linked service.",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "valid ubus object",
+                  "writeOnly": true
+                },
+                "Temporary": {
+                  "type": "object",
+                  "properties": {
+                    "AllowedFailedAttempts": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter temporary ban number of allowed failed authentication attempts threshold.",
+                      "format": "-",
+                      "default_value": "20",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    },
+                    "BanTime": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter temporary ban time.",
+                      "format": "expressed in seconds",
+                      "default_value": "900",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    },
+                    "Enabled": {
+                      "type": "Boolean",
+                      "description": "Intrusion Detection System Filter temporary ban administrative state flag.",
+                      "format": "-",
+                      "default_value": "true",
+                      "possible_values": "\"true\" or \"false\"",
+                      "enum": [
+                        "true",
+                        "false"
+                      ],
+                      "writeOnly": true
+                    },
+                    "FindTime": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter temporary ban lookup time interval.",
+                      "format": "expressed in seconds",
+                      "default_value": "60",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                }
+              },
+              "required": [
+                "Events",
+                "Name",
+                "ServiceId"
+              ]
             },
             "example": "{\"Id\": 0, \"Name\": \"WUI\", \"Enabled\": true, \"ServiceId\": \"Services.Management.WUI\", \"Events\": [5, 17], \"Ports\": {\"TCP\": [80, 443], \"UDP\": []}, \"Temporary\": {\"Enabled\": true, \"AllowedFailedAttempts\": 50, \"FindTime\": 300, \"BanTime\": 3600}, \"Permanent\": {\"Enabled\": true, \"AllowedTemporaryBans\": 3, \"FindTime\": 500}}"
           }
         }
       }
     },
-    "List": {
-      "operationId": "ListServices.Local.Firewall.IDS.Filters",
+    "Services.Local.Firewall.IDS.Filters.List": {
+      "operationId": "Services.Local.Firewall.IDS.Filters.List",
       "summary": "Retrieves a list of Intrusion Detection System Filters.",
       "tags": [
         "Services.Local.Firewall.IDS.Filters"
@@ -174,7 +342,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": 0, \"Name\": \"WUI\", \"Enabled\": true, \"ServiceId\": \"Services.Management.WUI\", \"Events\": [5, 17], \"Ports\": {\"TCP\": [80, 443], \"UDP\": []}, \"Temporary\": {\"Enabled\": true, \"AllowedFailedAttempts\": 50, \"FindTime\": 300, \"BanTime\": 3600}, \"Permanent\": {\"Enabled\": true, \"AllowedTemporaryBans\": 3, \"FindTime\": 500}}], \"Limit\": 0, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "Intrusion Detection System Filter maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "Intrusion Detection System Filter list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "Intrusion Detection System Filter list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -183,67 +375,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -255,61 +453,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -317,7 +521,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "Intrusion Detection System Filter maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "Intrusion Detection System Filter list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 0, \"Offset\": 0}"
           }
@@ -342,8 +562,8 @@
         }
       }
     },
-    "Delete": {
-      "operationId": "DeleteServices.Local.Firewall.IDS.Filters.{FilterId}",
+    "Services.Local.Firewall.IDS.Filters.{FilterId}.Delete": {
+      "operationId": "Services.Local.Firewall.IDS.Filters.{FilterId}.Delete",
       "summary": "Deletes the specified Intrusion Detection System Filter.",
       "tags": [
         "Services.Local.Firewall.IDS.Filters.{FilterId}"
@@ -354,7 +574,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -363,67 +584,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -435,61 +662,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -511,8 +744,8 @@
         }
       ]
     },
-    "Get": {
-      "operationId": "GetServices.Local.Firewall.IDS.Filters.{FilterId}",
+    "Services.Local.Firewall.IDS.Filters.{FilterId}.Get": {
+      "operationId": "Services.Local.Firewall.IDS.Filters.{FilterId}.Get",
       "summary": "Retrieves the status and configuration parameters in regards to the (specified) Intrusion Detection System Filter.",
       "tags": [
         "Services.Local.Firewall.IDS.Filters.{FilterId}"
@@ -523,7 +756,151 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": 0, \"Name\": \"WUI\", \"Enabled\": true, \"ServiceId\": \"Services.Management.WUI\", \"Events\": [5, 17], \"Ports\": {\"TCP\": [80, 443], \"UDP\": []}, \"Temporary\": {\"Enabled\": true, \"AllowedFailedAttempts\": 50, \"FindTime\": 300, \"BanTime\": 3600}, \"Permanent\": {\"Enabled\": true, \"AllowedTemporaryBans\": 3, \"FindTime\": 500}}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+                "properties": {
+                  "Enabled": {
+                    "type": "Boolean",
+                    "description": "Intrusion Detection System Filter administrative status.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"true\" or \"false\"",
+                    "enum": [
+                      "true",
+                      "false"
+                    ],
+                    "readOnly": true
+                  },
+                  "Events": {
+                    "type": "List",
+                    "description": "Intrusion Detection System Filter list of events to listen.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "list of unsigned integers (should match valid event codes)",
+                    "readOnly": true
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "Intrusion Detection System Filter unique identifier.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Name": {
+                    "type": "String",
+                    "description": "Intrusion Detection System Filter name (alias).",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Permanent": {
+                    "type": "object",
+                    "properties": {
+                      "AllowedTemporaryBans": {
+                        "type": "Integer",
+                        "description": "Intrusion Detection System Filter permanent ban number of allowed temporary bans threshold.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 1",
+                        "readOnly": true
+                      },
+                      "Enabled": {
+                        "type": "Boolean",
+                        "description": "Intrusion Detection System Filter permanent ban administrative state flag",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"true\" or \"false\"",
+                        "enum": [
+                          "true",
+                          "false"
+                        ],
+                        "readOnly": true
+                      },
+                      "FindTime": {
+                        "type": "Integer",
+                        "description": "Intrusion Detection System Filter permanent ban lookup time interval.",
+                        "format": "expressed in seconds",
+                        "default_value": "-",
+                        "possible_values": ">= 60",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Ports": {
+                    "type": "object",
+                    "properties": {
+                      "TCP": {
+                        "type": "List",
+                        "description": "Intrusion Detection System Filter list of TCP ports applicable for the ban.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "0 - 65535",
+                        "readOnly": true
+                      },
+                      "UDP": {
+                        "type": "List",
+                        "description": "Intrusion Detection System Filter list of UDP ports applicable for the ban.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "0 - 65535",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "ServiceId": {
+                    "type": "String",
+                    "description": "Intrusion Detection System Filter Id of the linked service.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "valid ubus object",
+                    "readOnly": true
+                  },
+                  "Temporary": {
+                    "type": "object",
+                    "properties": {
+                      "AllowedFailedAttempts": {
+                        "type": "Integer",
+                        "description": "Intrusion Detection System Filter temporary ban number of allowed failed authentication attempts threshold.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 1",
+                        "readOnly": true
+                      },
+                      "BanTime": {
+                        "type": "Integer",
+                        "description": "Intrusion Detection System Filter temporary ban time.",
+                        "format": "expressed in seconds",
+                        "default_value": "-",
+                        "possible_values": ">= 1",
+                        "readOnly": true
+                      },
+                      "Enabled": {
+                        "type": "Boolean",
+                        "description": "Intrusion Detection System Filter temporary ban administrative state flag.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"true\" or \"false\"",
+                        "enum": [
+                          "true",
+                          "false"
+                        ],
+                        "readOnly": true
+                      },
+                      "FindTime": {
+                        "type": "Integer",
+                        "description": "Intrusion Detection System Filter temporary ban lookup time interval.",
+                        "format": "expressed in seconds",
+                        "default_value": "-",
+                        "possible_values": ">= 1",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -532,67 +909,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -604,61 +987,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -680,8 +1069,8 @@
         }
       ]
     },
-    "Set": {
-      "operationId": "SetServices.Local.Firewall.IDS.Filters.{FilterId}",
+    "Services.Local.Firewall.IDS.Filters.{FilterId}.Set": {
+      "operationId": "Services.Local.Firewall.IDS.Filters.{FilterId}.Set",
       "summary": "Modifies the status and configuration parameters of the (specified) Intrusion Detection System Filter.",
       "tags": [
         "Services.Local.Firewall.IDS.Filters.{FilterId}"
@@ -692,7 +1081,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -701,67 +1091,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -773,61 +1169,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -835,7 +1237,143 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Services.Local.Firewall.IDS.Filters"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "Intrusion Detection System Filter administrative status.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Events": {
+                  "type": "List",
+                  "description": "Intrusion Detection System Filter list of events to listen.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "list of unsigned integers (should match valid event codes)",
+                  "writeOnly": true
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "Intrusion Detection System Filter name (alias).",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "Permanent": {
+                  "type": "object",
+                  "properties": {
+                    "AllowedTemporaryBans": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter permanent ban number of allowed temporary bans threshold.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    },
+                    "Enabled": {
+                      "type": "Boolean",
+                      "description": "Intrusion Detection System Filter permanent ban administrative state flag",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "\"true\" or \"false\"",
+                      "enum": [
+                        "true",
+                        "false"
+                      ],
+                      "writeOnly": true
+                    },
+                    "FindTime": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter permanent ban lookup time interval.",
+                      "format": "expressed in seconds",
+                      "default_value": "the existing configuration",
+                      "possible_values": ">= 60",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Ports": {
+                  "type": "object",
+                  "properties": {
+                    "TCP": {
+                      "type": "List",
+                      "description": "Intrusion Detection System Filter list of TCP ports applicable for the ban.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "0 - 65535",
+                      "writeOnly": true
+                    },
+                    "UDP": {
+                      "type": "List",
+                      "description": "Intrusion Detection System Filter list of UDP ports applicable for the ban.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "0 - 65535",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "ServiceId": {
+                  "type": "String",
+                  "description": "Intrusion Detection System Filter Id of the linked service.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "valid ubus object",
+                  "writeOnly": true
+                },
+                "Temporary": {
+                  "type": "object",
+                  "properties": {
+                    "AllowedFailedAttempts": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter temporary ban number of allowed failed authentication attempts threshold.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    },
+                    "BanTime": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter temporary ban time.",
+                      "format": "expressed in seconds",
+                      "default_value": "the existing configuration",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    },
+                    "Enabled": {
+                      "type": "Boolean",
+                      "description": "Intrusion Detection System Filter temporary ban administrative state flag.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "\"true\" or \"false\"",
+                      "enum": [
+                        "true",
+                        "false"
+                      ],
+                      "writeOnly": true
+                    },
+                    "FindTime": {
+                      "type": "Integer",
+                      "description": "Intrusion Detection System Filter temporary ban lookup time interval.",
+                      "format": "expressed in seconds",
+                      "default_value": "the existing configuration",
+                      "possible_values": ">= 1",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                }
+              },
+              "required": []
             },
             "example": "{\"Name\": \"WUI\", \"Enabled\": true, \"ServiceId\": \"Services.Management.WUI\", \"Events\": [5, 17], \"Ports\": {\"TCP\": [80, 443], \"UDP\": []}, \"Temporary\": {\"Enabled\": true, \"AllowedFailedAttempts\": 50, \"FindTime\": 300, \"BanTime\": 3600}, \"Permanent\": {\"Enabled\": true, \"AllowedTemporaryBans\": 3, \"FindTime\": 500}}"
           }
@@ -867,6 +1405,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -879,6 +1418,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1049,8 +1589,20 @@
           }
         },
         "events": {},
-        "example": {}
+        "example": {},
+        "layer": 2
       }
+    }
+  },
+  "instances": {
+    "CLI": {
+      "description": "Command Line Interface filter."
+    },
+    "CWMP": {
+      "description": "CPE WAN Management Protocol filter"
+    },
+    "WUI": {
+      "description": "Web-GUI filter."
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "paths": {
-    "List": {
-      "operationId": "ListInterfaces.Physical.Data.USB.Ports.{PortId}.Devices",
+    "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.List": {
+      "operationId": "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.List",
       "summary": "Retrieves a list of USB Devices.",
       "tags": [
         "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices"
@@ -12,7 +12,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"External HD\", \"Device\": {\"Number\": 2, \"Class\": \"0x00\", \"SubClass\": \"0x00\", \"Version\": \"2\", \"Protocol\": \"0x00\"}, \"Product\": {\"VendorId\": 2, \"Class\": \"Storage\", \"Manufacturer\": \"prplFoundation\", \"SerialNumber\": \"ABC123\"}, \"USB\": {\"Version\": \"3.0\", \"Rate\": \"Super\"}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Data.USB.Ports.{PortId}.Devices"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "USB Device maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": ">= 0"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "USB Device list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "Empty list or list of valid objects.",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "USB Device list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": ">= 0"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +45,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +123,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,7 +191,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "USB Device maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": ">= 0"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "USB Device list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": ">= 0"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
@@ -197,8 +249,8 @@
         }
       ]
     },
-    "Get": {
-      "operationId": "GetInterfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}",
+    "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}.Get": {
+      "operationId": "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}.Get",
       "summary": "Retrieves the status and configuration parameters in regards to the (specified) USB Device.",
       "tags": [
         "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}"
@@ -209,7 +261,135 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"External HD\", \"Device\": {\"Number\": 2, \"Class\": \"0x00\", \"SubClass\": \"0x00\", \"Version\": \"2\", \"Protocol\": \"0x00\"}, \"Product\": {\"VendorId\": 2, \"Class\": \"Storage\", \"Manufacturer\": \"prplFoundation\", \"SerialNumber\": \"ABC123\"}, \"USB\": {\"Version\": \"3.0\", \"Rate\": \"Super\"}}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Data.USB.Ports.{PortId}.Devices"
+                "properties": {
+                  "Device": {
+                    "type": "object",
+                    "properties": {
+                      "Class": {
+                        "type": "String",
+                        "description": "USB Device class code as assigned by USB-IF.",
+                        "format": "0xXX",
+                        "default_value": "-",
+                        "possible_values": "hex code.",
+                        "readOnly": true
+                      },
+                      "Number": {
+                        "type": "Integer",
+                        "description": "USB Device number on bus.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 0",
+                        "readOnly": true
+                      },
+                      "Protocol": {
+                        "type": "String",
+                        "description": "USB Device protocol code (assigned by USB-IF).",
+                        "format": "0xXX",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "SubClass": {
+                        "type": "String",
+                        "description": "USB Device subclass code (assigned by USB-IF).",
+                        "format": "0xXX",
+                        "default_value": "-",
+                        "possible_values": "hex code.",
+                        "readOnly": true
+                      },
+                      "Version": {
+                        "type": "Integer",
+                        "description": "USB Device device version.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "USB Device unique identifier.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Name": {
+                    "type": "String",
+                    "description": "USB Device name (alias).",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "Product": {
+                    "type": "object",
+                    "properties": {
+                      "Class": {
+                        "type": "String",
+                        "description": "USB Device product class descriptor.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "any string with length from 1 up to 64 chars",
+                        "readOnly": true
+                      },
+                      "Manufacturer": {
+                        "type": "String",
+                        "description": "USB Device product manufacturer.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "any string with length from 1 up to 64 chars",
+                        "readOnly": true
+                      },
+                      "SerialNumber": {
+                        "type": "String",
+                        "description": "USB Device product serial number.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "any string with length from 1 up to 64 chars",
+                        "readOnly": true
+                      },
+                      "VendorId": {
+                        "type": "Integer",
+                        "description": "USB Device vendor identifier (assigned by USB-IF).",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "USB": {
+                    "type": "object",
+                    "properties": {
+                      "Rate": {
+                        "type": "String",
+                        "description": "USB Device speed.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"Low\" (1.5 Mbps), \"Full\" (12 Mbps), \"High\" (480 Mbps), \"Super\" (5 Gbps).",
+                        "readOnly": true
+                      },
+                      "Version": {
+                        "type": "String",
+                        "description": "USB Device version specification with which the device complies. Example: \"1.1\".",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"1.1\", \"2.0\", \"3.0\" or \"3.1\"",
+                        "enum": [
+                          "1.1, 2.0, 3.0",
+                          "3.1"
+                        ],
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -218,67 +398,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -290,61 +476,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -389,6 +581,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -401,6 +594,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -565,7 +759,8 @@
           }
         },
         "events": {},
-        "example": {}
+        "example": {},
+        "layer": 3
       }
     }
   }

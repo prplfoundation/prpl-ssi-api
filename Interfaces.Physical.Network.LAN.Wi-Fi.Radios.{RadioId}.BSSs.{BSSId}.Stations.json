@@ -1,7 +1,7 @@
 {
   "paths": {
-    "List": {
-      "operationId": "ListInterfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations",
+    "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.List": {
+      "operationId": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.List",
       "summary": "Retrieves a list of Wi-Fi Stations.",
       "tags": [
         "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations"
@@ -12,7 +12,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": 1, \"MAC\": {\"Host\": \"AA:BB:CC:00:11:22\", \"Transmitter\": \"DD:EE:FF:33:44:55\"}, \"Status\": {\"State\": \"Connected\", \"Idle\": \"53\", \"MCS\": 15, \"PhysicalRate\": 300, \"ReceivedSignalStrength\": -40, \"Bandwidth\": 20, \"GuardInterval\": 400, \"SpatialStreams\": 2, \"Standard\": \"802.11n\", \"Beamforming\": true}, \"Statistics\": {\"Bytes\": {\"Transmitted\": 0, \"Received\": 0}, \"Packets\": {\"Transmitted\": 0, \"Received\": 0}}, \"Capabilities\": {\"Beamforming\": true}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "Wi-Fi Station maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "Wi-Fi Station list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "Wi-Fi Station list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +45,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +123,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,7 +191,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "Wi-Fi Station maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "Wi-Fi Station list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
@@ -212,8 +264,8 @@
         }
       ]
     },
-    "Get": {
-      "operationId": "GetInterfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}",
+    "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}.Get": {
+      "operationId": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}.Get",
       "summary": "Retrieves the status and configuration parameters in regards to the (specified) Wi-Fi Station.",
       "tags": [
         "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}"
@@ -224,7 +276,209 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"MAC\": {\"Host\": \"AA:BB:CC:00:11:22\", \"Transmitter\": \"DD:EE:FF:33:44:55\"}, \"Status\": {\"State\": \"Connected\", \"Idle\": \"53\", \"MCS\": 15, \"PhysicalRate\": 300, \"ReceivedSignalStrength\": -40, \"Bandwidth\": 20, \"GuardInterval\": 400, \"SpatialStreams\": 2, \"Standard\": \"802.11n\", \"Beamforming\": true}, \"Statistics\": {\"Bytes\": {\"Transmitted\": 0, \"Received\": 0}, \"Packets\": {\"Transmitted\": 0, \"Received\": 0}}, \"Capabilities\": {\"Beamforming\": true}}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations"
+                "properties": {
+                  "Capabilities": {
+                    "type": "object",
+                    "properties": {
+                      "Beamforming": {
+                        "type": "Boolean",
+                        "description": "Wi-Fi Station support for beamforming flag.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"true\" (station supports beamforming) or \"false\"",
+                        "enum": [
+                          "true (station supports beamforming)",
+                          "false"
+                        ],
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "Wi-Fi Station unique identifier.",
+                    "format": "1 up to 64 chars",
+                    "default_value": "-",
+                    "possible_values": "any string with length from 1 up to 64 chars",
+                    "readOnly": true
+                  },
+                  "MAC": {
+                    "type": "object",
+                    "properties": {
+                      "Host": {
+                        "type": "String",
+                        "description": "Wi-Fi Station MAC address of the host.",
+                        "format": "AA:BB:CC:00:11:22:33",
+                        "default_value": "-",
+                        "possible_values": "valid MAC Address",
+                        "readOnly": true
+                      },
+                      "Transmitter": {
+                        "type": "String",
+                        "description": "Wi-Fi Station MAC address of the transmitter (e.g.: extender).",
+                        "format": "AA:BB:CC:00:11:22:33",
+                        "default_value": "-",
+                        "possible_values": "valid MAC Address",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Statistics": {
+                    "type": "object",
+                    "properties": {
+                      "Bytes": {
+                        "type": "object",
+                        "properties": {
+                          "Received": {
+                            "type": "Integer",
+                            "description": "Wi-Fi Station received bytes count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Transmitted": {
+                            "type": "Integer",
+                            "description": "Wi-Fi Station transmitted bytes count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          }
+                        },
+                        "required": []
+                      },
+                      "Packets": {
+                        "type": "object",
+                        "properties": {
+                          "Received": {
+                            "type": "Integer",
+                            "description": "Wi-Fi Station received packets count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Transmitted": {
+                            "type": "Integer",
+                            "description": "Wi-Fi Station transmitted packets count.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          }
+                        },
+                        "required": []
+                      }
+                    },
+                    "required": []
+                  },
+                  "Status": {
+                    "type": "object",
+                    "properties": {
+                      "Bandwidth": {
+                        "type": "Integer",
+                        "description": "Wi-Fi Station active bandwidth.",
+                        "format": "expressed in MHz",
+                        "default_value": "-",
+                        "possible_values": "\"20\", \"40\", \"80\" or \"160\"",
+                        "enum": [
+                          "20, 40, 80",
+                          "160"
+                        ],
+                        "readOnly": true
+                      },
+                      "Beamforming": {
+                        "type": "Boolean",
+                        "description": "Wi-Fi Station beamforming operational status.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"true\" or \"false\"",
+                        "enum": [
+                          "true",
+                          "false"
+                        ],
+                        "readOnly": true
+                      },
+                      "GuardInterval": {
+                        "type": "Integer",
+                        "description": "Wi-Fi Station current guard interval.",
+                        "format": "expressed in ns",
+                        "default_value": "-",
+                        "possible_values": "400 or 800",
+                        "enum": [
+                          "400",
+                          "800"
+                        ],
+                        "readOnly": true
+                      },
+                      "Idle": {
+                        "type": "String",
+                        "description": "Wi-Fi Station idle time.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": ">= 0",
+                        "readOnly": true
+                      },
+                      "MCS": {
+                        "type": "Integer",
+                        "description": "Wi-Fi Station current MCS.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "0-23",
+                        "readOnly": true
+                      },
+                      "PhysicalRate": {
+                        "type": "Integer",
+                        "description": "Wi-Fi Station current transmit physical rate.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "ReceivedSignalStrength": {
+                        "type": "Integer",
+                        "description": "Wi-Fi Station current received signal strength (RSSI).",
+                        "format": "expressed in dBm",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "SpatialStreams": {
+                        "type": "Integer",
+                        "description": "Wi-Fi Station current MIMO spatial streams.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "1-4",
+                        "readOnly": true
+                      },
+                      "Standard": {
+                        "type": "String",
+                        "description": "Wi-Fi Station current standard.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"802.11b\", \"802.11g\", \"802.11n\", \"802.11a\" or \"802.11ac\"",
+                        "enum": [
+                          "802.11b, 802.11g, 802.11n, 802.11a",
+                          "802.11ac"
+                        ],
+                        "readOnly": true
+                      },
+                      "State": {
+                        "type": "String",
+                        "description": "Wi-Fi Station operational status.",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -233,67 +487,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -305,61 +565,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -411,8 +677,8 @@
         }
       ]
     },
-    "ResetStatistics": {
-      "operationId": "ResetStatisticsInterfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}",
+    "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}.ResetStatistics": {
+      "operationId": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}.ResetStatistics",
       "summary": "Resets the statistics counters of the (specified) Wi-Fi Station.",
       "tags": [
         "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}"
@@ -423,7 +689,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -432,67 +699,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -504,61 +777,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -566,7 +845,8 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations"
+              "properties": {},
+              "required": []
             },
             "example": ""
           }
@@ -628,6 +908,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -640,6 +921,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -728,20 +1010,48 @@
             "type": "object",
             "properties": {
               "Bytes": {
-                "type": "Integer",
-                "description": "Wi-Fi Station received bytes count.",
-                "format": "-",
-                "default_value": "-",
-                "possible_values": ">= 0",
-                "readOnly": true
+                "type": "object",
+                "properties": {
+                  "Received": {
+                    "type": "Integer",
+                    "description": "Wi-Fi Station received bytes count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Transmitted": {
+                    "type": "Integer",
+                    "description": "Wi-Fi Station transmitted bytes count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
               },
               "Packets": {
-                "type": "Integer",
-                "description": "Wi-Fi Station received packets count.",
-                "format": "-",
-                "default_value": "-",
-                "possible_values": ">= 0",
-                "readOnly": true
+                "type": "object",
+                "properties": {
+                  "Received": {
+                    "type": "Integer",
+                    "description": "Wi-Fi Station received packets count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Transmitted": {
+                    "type": "Integer",
+                    "description": "Wi-Fi Station transmitted packets count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
               }
             },
             "required": []
@@ -850,7 +1160,8 @@
           }
         },
         "events": {},
-        "example": {}
+        "example": {},
+        "layer": 3
       }
     }
   }

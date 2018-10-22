@@ -1,7 +1,7 @@
 {
   "paths": {
-    "Add": {
-      "operationId": "AddUser.Certificates",
+    "User.Certificates.Add": {
+      "operationId": "User.Certificates.Add",
       "summary": "Adds a new User Certificate.",
       "tags": [
         "User.Certificates"
@@ -12,7 +12,16 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\"}}",
               "schema": {
-                "$ref": "#/components/schemas/User.Certificates"
+                "properties": {
+                  "Id": {
+                    "type": "String",
+                    "description": "User Certificate unique identifier.",
+                    "format": "-",
+                    "default_value": "Integer starting at 0",
+                    "possible_values": "-"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -21,67 +30,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -93,61 +108,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -155,15 +176,202 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/User.Certificates"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "User Certificate administrative status.",
+                  "format": "-",
+                  "default_value": "false",
+                  "possible_values": "true or false",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Id": {
+                  "type": "String",
+                  "description": "User Certificate unique identifier.",
+                  "format": "-",
+                  "default_value": "Integer starting at 0",
+                  "possible_values": "-"
+                },
+                "Issuer": {
+                  "type": "object",
+                  "properties": {
+                    "CommonName": {
+                      "type": "String",
+                      "description": "User Certificate issuer common name",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Country": {
+                      "type": "String",
+                      "description": "User Certificate issuer country",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Organization": {
+                      "type": "String",
+                      "description": "User Certificate issuer organization",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": [
+                    "CommonName",
+                    "Country",
+                    "Organization"
+                  ]
+                },
+                "Locale": {
+                  "type": "String",
+                  "description": "User Certificate language/locale.",
+                  "format": "lc-CC (lc = language code, CC = country code)",
+                  "default_value": "same locale as defined on User.Profile",
+                  "possible_values": "any ISO-639-1 language code and any ISO-3166-Alpha-2 country code",
+                  "writeOnly": true
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "User Certificate name (alias).",
+                  "format": "-",
+                  "default_value": "same value as Id",
+                  "possible_values": "-",
+                  "writeOnly": true
+                },
+                "PublicKey": {
+                  "type": "object",
+                  "properties": {
+                    "Encoding": {
+                      "type": "String",
+                      "description": "User Certificate public key encoding",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "Base64",
+                      "writeOnly": true
+                    },
+                    "Hash": {
+                      "type": "String",
+                      "description": "User Certificate public key hash",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Type": {
+                      "type": "String",
+                      "description": "User Certificate public key type",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                      "enum": [
+                        "MD5, SHA-256",
+                        "SHA-512"
+                      ],
+                      "writeOnly": true
+                    }
+                  },
+                  "required": [
+                    "Encoding",
+                    "Hash",
+                    "Type"
+                  ]
+                },
+                "RoleId": {
+                  "type": "String",
+                  "description": "User Certificate Id of the linked role.",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "valid \"User.Roles.{RoleId}\" object",
+                  "writeOnly": true
+                },
+                "SerialNumber": {
+                  "type": "String",
+                  "description": "User Certificate serial number.",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "-",
+                  "writeOnly": true
+                },
+                "Subject": {
+                  "type": "object",
+                  "properties": {
+                    "CommonName": {
+                      "type": "String",
+                      "description": "User Certificate subject common name",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Country": {
+                      "type": "String",
+                      "description": "User Certificate subject country",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Organization": {
+                      "type": "String",
+                      "description": "User Certificate subject organization",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": [
+                    "CommonName",
+                    "Country",
+                    "Organization"
+                  ]
+                },
+                "Valid": {
+                  "type": "object",
+                  "properties": {
+                    "From": {
+                      "type": "String",
+                      "description": "User Certificate valid from timestamp.",
+                      "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "To": {
+                      "type": "String",
+                      "description": "User Certificate valid till timestamp.",
+                      "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                      "default_value": "-",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": [
+                    "From",
+                    "To"
+                  ]
+                }
+              },
+              "required": [
+                "RoleId",
+                "SerialNumber"
+              ]
             },
             "example": "{\"Id\": \"1\", \"Name\": \"iPhone-App\", \"Enabled\": true, \"Issuer\": {\"CommonName\": \"prpl Foundation Authority\", \"Organization\": \"prpl Foundation\", \"Country\": \"DE\"}, \"Subject\": {\"CommonName\": \"*.iphone.lan\", \"Organization\": \"prpl Foundation\", \"Country\": \"DE\"}, \"Valid\": {\"From\": \"date\", \"To\": \"date\"}, \"SerialNumber\": \"\\u200e53d3afc6729cbfce\", \"PublicKey\": {\"Encoding\": \"Base64\", \"Type\": \"MD5\", \"Hash\": \"2a6571da26602a67be14ea8c5ab82349\"}, \"RoleId\": \"User.Roles.CLI:Admin\", \"Locale\": \"en-GB\"}"
           }
         }
       }
     },
-    "List": {
-      "operationId": "ListUser.Certificates",
+    "User.Certificates.List": {
+      "operationId": "User.Certificates.List",
       "summary": "Retrieves a list of User Certificates.",
       "tags": [
         "User.Certificates"
@@ -174,7 +382,31 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"1\", \"Name\": \"iPhone-App\", \"Enabled\": true, \"Status\": \"Pending\", \"Issuer\": {\"CommonName\": \"prpl Foundation Authority\", \"Organization\": \"prpl Foundation\", \"Country\": \"DE\"}, \"Subject\": {\"CommonName\": \"*.iphone.lan\", \"Organization\": \"prpl Foundation\", \"Country\": \"DE\"}, \"Valid\": {\"From\": \"date\", \"To\": \"date\"}, \"SerialNumber\": \"\\u200e53d3afc6729cbfce\", \"PublicKey\": {\"Encoding\": \"Base64\", \"Type\": \"MD5\", \"Hash\": \"2a6571da26602a67be14ea8c5ab82349\"}, \"Timestamp\": {\"Installed\": \"2018-04-09T20:45:00+01:00\", \"LastUsed\": \"2018-04-09T20:45:00+01:00\"}, \"RoleId\": \"User.Roles.CLI:Admin\", \"Locale\": \"en-GB\"}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
-                "$ref": "#/components/schemas/User.Certificates"
+                "properties": {
+                  "Limit": {
+                    "type": "Integer",
+                    "description": "User Certificate maximum number of returned entries.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  },
+                  "List": {
+                    "type": "List",
+                    "description": "User Certificate list of entries.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Offset": {
+                    "type": "Integer",
+                    "description": "User Certificate list start offset.",
+                    "format": "-",
+                    "default_value": "0",
+                    "possible_values": "\"0\" to fetch all entries or positive integer"
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -183,67 +415,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -255,61 +493,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -317,7 +561,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/ListRequest"
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "User Certificate maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "User Certificate list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
@@ -342,8 +602,8 @@
         }
       }
     },
-    "Delete": {
-      "operationId": "DeleteUser.Certificates.{CertificateId}",
+    "User.Certificates.{CertificateId}.Delete": {
+      "operationId": "User.Certificates.{CertificateId}.Delete",
       "summary": "Deletes the specified User Certificate.",
       "tags": [
         "User.Certificates.{CertificateId}"
@@ -354,7 +614,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/User.Certificates"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -363,67 +624,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -435,61 +702,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -511,8 +784,8 @@
         }
       ]
     },
-    "Get": {
-      "operationId": "GetUser.Certificates.{CertificateId}",
+    "User.Certificates.{CertificateId}.Get": {
+      "operationId": "User.Certificates.{CertificateId}.Get",
       "summary": "Retrieves the status and configuration parameters in regards to the (specified) User Certificate.",
       "tags": [
         "User.Certificates.{CertificateId}"
@@ -523,7 +796,207 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"Name\": \"iPhone-App\", \"Enabled\": true, \"Status\": \"Pending\", \"Issuer\": {\"CommonName\": \"prpl Foundation Authority\", \"Organization\": \"prpl Foundation\", \"Country\": \"DE\"}, \"Subject\": {\"CommonName\": \"*.iphone.lan\", \"Organization\": \"prpl Foundation\", \"Country\": \"DE\"}, \"Valid\": {\"From\": \"date\", \"To\": \"date\"}, \"SerialNumber\": \"\\u200e53d3afc6729cbfce\", \"PublicKey\": {\"Encoding\": \"Base64\", \"Type\": \"MD5\", \"Hash\": \"2a6571da26602a67be14ea8c5ab82349\"}, \"Timestamp\": {\"Installed\": \"2018-04-09T20:45:00+01:00\", \"LastUsed\": \"2018-04-09T20:45:00+01:00\"}, \"RoleId\": \"User.Roles.CLI:Admin\", \"Locale\": \"en-GB\"}}",
               "schema": {
-                "$ref": "#/components/schemas/User.Certificates"
+                "properties": {
+                  "Enabled": {
+                    "type": "Boolean",
+                    "description": "User Certificate administrative status.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "true or false",
+                    "enum": [
+                      "true",
+                      "false"
+                    ],
+                    "readOnly": true
+                  },
+                  "Id": {
+                    "type": "String",
+                    "description": "User Certificate unique identifier.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Issuer": {
+                    "type": "object",
+                    "properties": {
+                      "CommonName": {
+                        "type": "String",
+                        "description": "User Certificate issuer common name",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "Country": {
+                        "type": "String",
+                        "description": "User Certificate issuer country",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "Organization": {
+                        "type": "String",
+                        "description": "User Certificate issuer organization",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Locale": {
+                    "type": "String",
+                    "description": "User Certificate language/locale.",
+                    "format": "lc-CC (lc = language code, CC = country code)",
+                    "default_value": "-",
+                    "possible_values": "any ISO-639-1 language code and any ISO-3166-Alpha-2 country code",
+                    "readOnly": true
+                  },
+                  "Name": {
+                    "type": "String",
+                    "description": "User Certificate name (alias).",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "PublicKey": {
+                    "type": "object",
+                    "properties": {
+                      "Encoding": {
+                        "type": "String",
+                        "description": "User Certificate public key encoding",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "Base64",
+                        "readOnly": true
+                      },
+                      "Hash": {
+                        "type": "String",
+                        "description": "User Certificate public key hash",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "Type": {
+                        "type": "String",
+                        "description": "User Certificate public key type",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                        "enum": [
+                          "MD5, SHA-256",
+                          "SHA-512"
+                        ],
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "RoleId": {
+                    "type": "String",
+                    "description": "User Certificate Id of the linked role.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "valid \"User.Roles.{RoleId}\" object",
+                    "readOnly": true
+                  },
+                  "SerialNumber": {
+                    "type": "String",
+                    "description": "User Certificate serial number.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "-",
+                    "readOnly": true
+                  },
+                  "Status": {
+                    "type": "String",
+                    "description": "User Certificate operational status.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": "\"Pending\" (disabled certificate), \"Trusted\" (enabled, valid and trusted by a CA), \"Untrusted\" (enabled, valid but self-signed), \"Expired\" (enabled but valid time has expired)",
+                    "readOnly": true
+                  },
+                  "Subject": {
+                    "type": "object",
+                    "properties": {
+                      "CommonName": {
+                        "type": "String",
+                        "description": "User Certificate subject common name",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "Country": {
+                        "type": "String",
+                        "description": "User Certificate subject country",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "Organization": {
+                        "type": "String",
+                        "description": "User Certificate subject organization",
+                        "format": "-",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Timestamp": {
+                    "type": "object",
+                    "properties": {
+                      "Installed": {
+                        "type": "String",
+                        "description": "User Certificate instalation timestamp.",
+                        "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "LastUsed": {
+                        "type": "String",
+                        "description": "User Certificate last time used timestamp.",
+                        "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  },
+                  "Valid": {
+                    "type": "object",
+                    "properties": {
+                      "From": {
+                        "type": "String",
+                        "description": "User Certificate valid from timestamp.",
+                        "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      },
+                      "To": {
+                        "type": "String",
+                        "description": "User Certificate valid till timestamp.",
+                        "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                        "default_value": "-",
+                        "possible_values": "-",
+                        "readOnly": true
+                      }
+                    },
+                    "required": []
+                  }
+                },
+                "required": []
               }
             }
           },
@@ -532,67 +1005,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -604,61 +1083,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -680,8 +1165,8 @@
         }
       ]
     },
-    "Set": {
-      "operationId": "SetUser.Certificates.{CertificateId}",
+    "User.Certificates.{CertificateId}.Set": {
+      "operationId": "User.Certificates.{CertificateId}.Set",
       "summary": "Modifies the status and configuration parameters of the (specified) User Certificate.",
       "tags": [
         "User.Certificates.{CertificateId}"
@@ -692,7 +1177,8 @@
             "application/json": {
               "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
-                "$ref": "#/components/schemas/User.Certificates"
+                "properties": {},
+                "required": []
               }
             }
           },
@@ -701,67 +1187,73 @@
         "ARGUMENT_DATA_TYPE_MISMATCH": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request."
         },
         "ARGUMENT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_REQUIRED_MISSING": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request."
         },
         "ARGUMENT_VALUE_NOT_SUPPORTED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request."
         },
         "METHOD_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request."
         },
         "OBJECT_NOT_FOUND": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus",
           "description": "A call to a non-existing object was performed, therefore it was not possible to process the request."
         },
         "OK": {
@@ -773,61 +1265,67 @@
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window."
         },
         "OPERATION_ALREADY_IN_PROGRESS": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress."
         },
         "OPERATION_ERROR": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error."
         },
         "OPERATION_ILLEGAL": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order."
         },
         "OPERATION_PERMISSION_DENIED": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
           "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request."
         },
         "OPERATION_TIMEOUT": {
           "content": {
             "application/json": {
-              "example": "",
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
               "schema": {
                 "$ref": "#/components/schemas/Error"
               }
             }
           },
+          "raised_by": "Micro-Service",
           "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame."
         }
       },
@@ -835,7 +1333,51 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/User.Certificates"
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "User Certificate administrative status.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "true or false",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Locale": {
+                  "type": "String",
+                  "description": "User Certificate language/locale.",
+                  "format": "lc-CC (lc = language code, CC = country code)",
+                  "default_value": "the existing configuration",
+                  "possible_values": "any ISO-639-1 language code and any ISO-3166-Alpha-2 country code",
+                  "writeOnly": true
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "User Certificate name (alias).",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "-",
+                  "writeOnly": true
+                },
+                "Timestamp": {
+                  "type": "object",
+                  "properties": {
+                    "LastUsed": {
+                      "type": "String",
+                      "description": "User Certificate last time used timestamp.",
+                      "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                      "default_value": "the existing configuration",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                }
+              },
+              "required": []
             },
             "example": "{\"Name\": \"iPhone-App\", \"Enabled\": true, \"Timestamp\": {\"LastUsed\": \"2018-04-09T20:45:00+01:00\"}, \"Locale\": \"en-GB\"}"
           }
@@ -867,6 +1409,7 @@
           "Limit": {
             "description": "How many items to return at one time (max 200)",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -879,6 +1422,7 @@
           "Offset": {
             "description": "Which object index to start with",
             "required": false,
+            "type": "integer",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -1170,7 +1714,8 @@
             "code": "USER_CERTIFICATES_EXPIRED"
           }
         },
-        "example": {}
+        "example": {},
+        "layer": 1
       }
     }
   }
