@@ -1,0 +1,1805 @@
+{
+  "paths": {
+    "Interfaces.IP.Add": {
+      "operationId": "Interfaces.IP.Add",
+      "summary": "Adds a new IP Interface.",
+      "tags": [
+        "Interfaces.IP"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"InterfacesList\": [{\"Id\": \"WAN_Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"Status\": \"Connected\", \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": [\"Interfaces.Physical.WAN.xDSL.PVCs.035\"], \"Statistics\": {\"Packets\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}, \"Dropped\": {\"Transmitted\": 0, \"Received\": 0}, \"Errors\": {\"Transmitted\": 0, \"Received\": 0}, \"Collisions\": 0}}], \"Limit\": 10, \"Offset\": 0}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "InterfacesList": {
+                            "type": "List",
+                            "description": "IP Interface list of network interfaces.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "IP Interface maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "IP Interface list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "IP Interface administrative status.",
+                  "format": "-",
+                  "default_value": "true",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "IPv4": {
+                  "type": "object",
+                  "properties": {
+                    "Address": {
+                      "type": "IPv4Address",
+                      "description": "IP Interface IPv4 address.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Broadcast": {
+                      "type": "IPv4Address",
+                      "description": "IP Interface IPv4 broadbcast.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "NetworkMask": {
+                      "type": "IPv4Address",
+                      "description": "IP Interface IPv4 network mask.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Protocol": {
+                      "type": "String",
+                      "description": "IP Interface IPv4 negotiation protocol.",
+                      "format": "-",
+                      "default_value": "Static",
+                      "possible_values": "\"Static\", \"DHCP\" or \"PPP\"",
+                      "enum": [
+                        "Static, DHCP",
+                        "PPP"
+                      ],
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "IPv6": {
+                  "type": "object",
+                  "properties": {
+                    "GlobalAddress": {
+                      "type": "IPv6Address",
+                      "description": "IP Interface IPv6 Global address.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "LinkLocalAddress": {
+                      "type": "IPv6Address",
+                      "description": "IP Interface IPv6 Link Local address.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Prefix": {
+                      "type": "Integer",
+                      "description": "IP Interface IPv6 network prefix.",
+                      "format": "-",
+                      "default_value": "null",
+                      "possible_values": "valid IPv6 network prefix",
+                      "writeOnly": true
+                    },
+                    "Protocol": {
+                      "type": "String",
+                      "description": "IP Interface IPv6 negotiation protocol.",
+                      "format": "-",
+                      "default_value": "Static",
+                      "possible_values": "\"Static\", \"DHCP\" or \"PPP\"",
+                      "enum": [
+                        "Static, DHCP",
+                        "PPP"
+                      ],
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Id": {
+                  "type": "String",
+                  "description": "IP Interface unique identifier.",
+                  "format": "1 up to 64 chars",
+                  "default_value": "Integer starting at 0",
+                  "possible_values": "any string with length from 1 up to 64 chars"
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "IP Interface name (alias).",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "PhysicalInterface": {
+                  "type": "List",
+                  "description": "IP Interface linked physical interface.",
+                  "format": "-",
+                  "default_value": "null",
+                  "possible_values": "list of valid \"Interfaces.Physical.Network.WAN.{DOCSIS|Ethernet|GPON|Mobile|xDSL}\"|\n\"Interfaces.Physical.Network.LAN.EthernetSwitch.Ports.{PortId}\"|\n\"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\"|\n\"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\" objects",
+                  "writeOnly": true
+                }
+              },
+              "required": [
+                "Name"
+              ]
+            },
+            "example": "{\"Id\": \"WAN_Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": [\"Interfaces.Physical.WAN.xDSL.PVCs.035\"]}"
+          }
+        }
+      }
+    },
+    "Interfaces.IP.List": {
+      "operationId": "Interfaces.IP.List",
+      "summary": "Retrieves a list of IP Interfaces.",
+      "tags": [
+        "Interfaces.IP"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"InterfacesList\": [{\"Id\": \"WAN_Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"Status\": \"Connected\", \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": [\"Interfaces.Physical.WAN.xDSL.PVCs.035\"], \"Statistics\": {\"Packets\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}, \"Dropped\": {\"Transmitted\": 0, \"Received\": 0}, \"Errors\": {\"Transmitted\": 0, \"Received\": 0}, \"Collisions\": 0}}], \"Limit\": 10, \"Offset\": 0}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "InterfacesList": {
+                            "type": "List",
+                            "description": "IP Interface list of network interfaces.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "IP Interface maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "IP Interface list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "IP Interface maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "IP Interface list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Limit\": 10, \"Offset\": 0}"
+          }
+        }
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "description": "Which object index to start with",
+            "example": 45,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "description": "How many objects to return",
+            "min": 1,
+            "max": 200,
+            "default": 20
+          }
+        }
+      }
+    },
+    "Interfaces.IP.{InterfaceId}.Delete": {
+      "operationId": "Interfaces.IP.{InterfaceId}.Delete",
+      "summary": "Deletes the specified IP Interface.",
+      "tags": [
+        "Interfaces.IP.{InterfaceId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "InterfaceId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Interface",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Interfaces.IP.{InterfaceId}.Get": {
+      "operationId": "Interfaces.IP.{InterfaceId}.Get",
+      "summary": "Retrieves the status and configuration parameters in regards to the specified IP Interface.",
+      "tags": [
+        "Interfaces.IP.{InterfaceId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "InterfaceId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Interface",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Interfaces.IP.{InterfaceId}.ResetStatistics": {
+      "operationId": "Interfaces.IP.{InterfaceId}.ResetStatistics",
+      "summary": "Resets the statistics counters of the specified IP Interface.",
+      "tags": [
+        "Interfaces.IP.{InterfaceId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {},
+              "required": []
+            },
+            "example": ""
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "InterfaceId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Interface",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Interfaces.IP.{InterfaceId}.Set": {
+      "operationId": "Interfaces.IP.{InterfaceId}.Set",
+      "summary": "Modifies the status and configuration parameters of the specified IP Interface.",
+      "tags": [
+        "Interfaces.IP.{InterfaceId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "IP Interface administrative status.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "IPv4": {
+                  "type": "object",
+                  "properties": {
+                    "Address": {
+                      "type": "IPv4Address",
+                      "description": "IP Interface IPv4 address.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Broadcast": {
+                      "type": "IPv4Address",
+                      "description": "IP Interface IPv4 broadbcast.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "NetworkMask": {
+                      "type": "IPv4Address",
+                      "description": "IP Interface IPv4 network mask.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Protocol": {
+                      "type": "String",
+                      "description": "IP Interface IPv4 negotiation protocol.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "\"Static\", \"DHCP\" or \"PPP\"",
+                      "enum": [
+                        "Static, DHCP",
+                        "PPP"
+                      ],
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "IPv6": {
+                  "type": "object",
+                  "properties": {
+                    "GlobalAddress": {
+                      "type": "IPv6Address",
+                      "description": "IP Interface IPv6 Global address.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "LinkLocalAddress": {
+                      "type": "IPv6Address",
+                      "description": "IP Interface IPv6 Link Local address.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Prefix": {
+                      "type": "Integer",
+                      "description": "IP Interface IPv6 network prefix.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "valid IPv6 network prefix",
+                      "writeOnly": true
+                    },
+                    "Protocol": {
+                      "type": "String",
+                      "description": "IP Interface IPv6 negotiation protocol.",
+                      "format": "-",
+                      "default_value": "the existing configuration",
+                      "possible_values": "\"Static\", \"DHCP\" or \"PPP\"",
+                      "enum": [
+                        "Static, DHCP",
+                        "PPP"
+                      ],
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "IP Interface name (alias).",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "PhysicalInterface": {
+                  "type": "String",
+                  "description": "IP Interface linked physical interface.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "list of valid \"Interfaces.Physical.Network.WAN.{DOCSIS|Ethernet|GPON|Mobile|xDSL}\"|\n\"Interfaces.Physical.Network.LAN.EthernetSwitch.Ports.{PortId}\"|\n\"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\"|\n\"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\" objects",
+                  "writeOnly": true
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Name\": \"Mobile\", \"Enabled\": true, \"IPv4\": {\"Protocol\": \"DHCP\", \"Address\": \"82.14.2.1\", \"NetworkMask\": \"255.255.255.0\", \"Broadcast\": \"82.14.2.255\"}, \"IPv6\": {\"Protocol\": \"DHCP\", \"LinkLocalAddress\": \"fe80::a00:27ff:fe70:e3f5\", \"GlobalAddress\": \"2001::a00:27ff:fe70:e3f5\", \"Prefix\": 64}, \"PhysicalInterface\": [\"Interfaces.Physical.WAN.xDSL.PVCs.035\"]}"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "InterfaceId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Interface",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "description": "schema for a responses to object methods",
+        "oneOf": [
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "OK"
+                    ]
+                  }
+                },
+                "required": [
+                  "Name"
+                ],
+                "additionalProperties": false
+              },
+              "Body": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_ERROR",
+                      "OPERATION_PERMISSION_DENIED",
+                      "OPERATION_ILLEGAL",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_TIMEOUT",
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "OBJECT_NOT_FOUND",
+                      "OK",
+                      "ARGUMENT_NOT_FOUND"
+                    ]
+                  },
+                  "Description": {
+                    "type": "string",
+                    "description": "A more detailed error message. NOTE: only filled in when the operation returns an error."
+                  }
+                },
+                "required": [
+                  "Name",
+                  "Description"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Interfaces.IP": {
+        "description": "Interfaces.IP Object",
+        "id": "Interfaces.IP",
+        "type": "object",
+        "required": [
+          "Name"
+        ],
+        "properties": {
+          "Enabled": {
+            "type": "Boolean",
+            "description": "IP Interface administrative status.",
+            "format": "-",
+            "default_value": "true",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "IPv4": {
+            "type": "object",
+            "properties": {
+              "Address": {
+                "type": "IPv4Address",
+                "description": "IP Interface IPv4 address.",
+                "format": "-",
+                "default_value": "null",
+                "possible_values": "-"
+              },
+              "Broadcast": {
+                "type": "IPv4Address",
+                "description": "IP Interface IPv4 broadbcast.",
+                "format": "-",
+                "default_value": "null",
+                "possible_values": "-"
+              },
+              "NetworkMask": {
+                "type": "IPv4Address",
+                "description": "IP Interface IPv4 network mask.",
+                "format": "-",
+                "default_value": "null",
+                "possible_values": "-"
+              },
+              "Protocol": {
+                "type": "String",
+                "description": "IP Interface IPv4 negotiation protocol.",
+                "format": "-",
+                "default_value": "Static",
+                "possible_values": "\"Static\", \"DHCP\" or \"PPP\"",
+                "enum": [
+                  "Static, DHCP",
+                  "PPP"
+                ]
+              }
+            },
+            "required": []
+          },
+          "IPv6": {
+            "type": "object",
+            "properties": {
+              "GlobalAddress": {
+                "type": "IPv6Address",
+                "description": "IP Interface IPv6 Global address.",
+                "format": "-",
+                "default_value": "null",
+                "possible_values": "-"
+              },
+              "LinkLocalAddress": {
+                "type": "IPv6Address",
+                "description": "IP Interface IPv6 Link Local address.",
+                "format": "-",
+                "default_value": "null",
+                "possible_values": "-"
+              },
+              "Prefix": {
+                "type": "Integer",
+                "description": "IP Interface IPv6 network prefix.",
+                "format": "-",
+                "default_value": "null",
+                "possible_values": "valid IPv6 network prefix"
+              },
+              "Protocol": {
+                "type": "String",
+                "description": "IP Interface IPv6 negotiation protocol.",
+                "format": "-",
+                "default_value": "Static",
+                "possible_values": "\"Static\", \"DHCP\" or \"PPP\"",
+                "enum": [
+                  "Static, DHCP",
+                  "PPP"
+                ]
+              }
+            },
+            "required": []
+          },
+          "Id": {
+            "type": "String",
+            "description": "IP Interface unique identifier.",
+            "format": "1 up to 64 chars",
+            "default_value": "Integer starting at 0",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Name": {
+            "type": "String",
+            "description": "IP Interface name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "PhysicalInterface": {
+            "type": "List",
+            "description": "IP Interface linked physical interface.",
+            "format": "-",
+            "default_value": "null",
+            "possible_values": "list of valid \"Interfaces.Physical.Network.WAN.{DOCSIS|Ethernet|GPON|Mobile|xDSL}\"|\n\"Interfaces.Physical.Network.LAN.EthernetSwitch.Ports.{PortId}\"|\n\"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\"|\n\"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\" objects"
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Bytes": {
+                "type": "object",
+                "properties": {
+                  "Received": {
+                    "type": "Integer",
+                    "description": "IP Interface received bytes count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Transmitted": {
+                    "type": "Integer",
+                    "description": "IP Interface transmitted bytes count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
+              },
+              "Collisions": {
+                "type": "Integer",
+                "description": "IP Interface frame collisions count.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Dropped": {
+                "type": "object",
+                "properties": {
+                  "Received": {
+                    "type": "Integer",
+                    "description": "IP Interface received dropped frames count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Transmitted": {
+                    "type": "Integer",
+                    "description": "IP Interface transmitted dropped frames count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
+              },
+              "Errors": {
+                "type": "object",
+                "properties": {
+                  "Received": {
+                    "type": "Integer",
+                    "description": "IP Interface received frame errors count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Transmitted": {
+                    "type": "Integer",
+                    "description": "IP Interface transmitted frame errors count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
+              },
+              "Packets": {
+                "type": "object",
+                "properties": {
+                  "Received": {
+                    "type": "Integer",
+                    "description": "IP Interface received packets count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Transmitted": {
+                    "type": "Integer",
+                    "description": "IP Interface transmitted packets count.",
+                    "format": "-",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "IP Interface operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\n- \"Connected\", enabled and has connectivity/IP address.\n- \"Disconnected\", enabled but has no connectivity/IP address.\n- \"Disabled\", disabled",
+            "readOnly": true
+          }
+        },
+        "events": {
+          "INTERFACES_IP_DISABLED": {
+            "content": {
+              "application/json": {
+                "example": "{\"InterfaceId\": \"Interfaces.IP.{InterfaceId}\"}"
+              }
+            },
+            "description": "Raised when an existing IP Interface is disabled. This does not necessarily result from a configuration change of the administrative state field, but rather when it becomes operationally inactive or fails to start.",
+            "code": 1
+          },
+          "INTERFACES_IP_ENABLED": {
+            "content": {
+              "application/json": {
+                "example": "{\"InterfaceId\": \"Interfaces.IP.{InterfaceId}\"}"
+              }
+            },
+            "description": "Raised when an existing IP Interface is enabled. This does not necessarily result from a configuration change of the administrative state field, but rather when it becomes operationally active.",
+            "code": 2
+          },
+          "INTERFACES_IP_MODIFIED": {
+            "content": {
+              "application/json": {
+                "example": "{\"InterfaceId\": \"Interfaces.IP.{InterfaceId}\"}"
+              }
+            },
+            "description": "Raised when an existing IP Interface is modified. Updating the administrative state should also result in the event being triggered.",
+            "code": 3
+          }
+        },
+        "example": {},
+        "layer": 3
+      }
+    }
+  },
+  "instances": {
+    "LAN:Guest": {
+      "description": "LAN Guest IP interface."
+    },
+    "LAN:Private": {
+      "description": "LAN Private IP interface."
+    },
+    "WAN:DOCSIS": {
+      "description": "DOCSIS WAN IP interface."
+    },
+    "WAN:Ethernet": {
+      "description": "Ethernet WAN IP interface."
+    },
+    "WAN:GPON": {
+      "description": "GPON WAN IP interface."
+    },
+    "WAN:Mobile": {
+      "description": "Mobile WAN IP interface."
+    },
+    "WAN:xDSL": {
+      "description": "xDSL WAN IP interface."
+    }
+  }
+}

@@ -1,0 +1,1297 @@
+{
+  "paths": {
+    "Services.Local.Wi-Fi.ACL.Profiles.Add": {
+      "operationId": "Services.Local.Wi-Fi.ACL.Profiles.Add",
+      "summary": "Adds a new Wi-Fi MAC Address ACL Profile.",
+      "tags": [
+        "Services.Local.Wi-Fi.ACL.Profiles"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"Guest\", \"Enabled\": true, \"Mode\": \"Whitelist\", \"ServiceSetId\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.24GHz.BSSs.Guest\", \"Notify\": false, \"Status\": \"Active\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "Wi-Fi MAC Address ACL Profile maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": ">= 0"
+                          },
+                          "List": {
+                            "type": "List",
+                            "description": "Wi-Fi MAC Address ACL Profile list of entries.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "Wi-Fi MAC Address ACL Profile list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": ">= 0"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "Wi-Fi MAC Address ACL Profile administrative status.",
+                  "format": "-",
+                  "default_value": "true",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Id": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile unique identifier.",
+                  "format": "-",
+                  "default_value": "Integer starting at 0",
+                  "possible_values": "any string with length from 1 up to 64 chars"
+                },
+                "Mode": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile mode.",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "\"Whitelist\" or \"Blacklist\"",
+                  "enum": [
+                    "Whitelist",
+                    "Blacklist"
+                  ],
+                  "writeOnly": true
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile name (alias).",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "Notify": {
+                  "type": "Boolean",
+                  "description": "Wi-Fi MAC Address ACL Profile notification flag.",
+                  "format": "-",
+                  "default_value": "false",
+                  "possible_values": "\"true\" (generates an event each time a stations attempts to connect) or \"false\"",
+                  "enum": [
+                    "true (generates an event each time a stations attempts to connect)",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "ServiceSetId": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile BSS or ESS Id.",
+                  "format": "-",
+                  "default_value": "-",
+                  "possible_values": "an existing \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\" or \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSsId}\" object.",
+                  "writeOnly": true
+                }
+              },
+              "required": [
+                "Mode",
+                "Name",
+                "ServiceSetId"
+              ]
+            },
+            "example": "{\"Id\": \"0\", \"Name\": \"Guest\", \"Enabled\": true, \"Mode\": \"Whitelist\", \"ServiceSetId\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.24GHz.BSSs.Guest\", \"Notify\": false}"
+          }
+        }
+      }
+    },
+    "Services.Local.Wi-Fi.ACL.Profiles.List": {
+      "operationId": "Services.Local.Wi-Fi.ACL.Profiles.List",
+      "summary": "Retrieves a list of Wi-Fi MAC Address ACL Profiles.",
+      "tags": [
+        "Services.Local.Wi-Fi.ACL.Profiles"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"Guest\", \"Enabled\": true, \"Mode\": \"Whitelist\", \"ServiceSetId\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.24GHz.BSSs.Guest\", \"Notify\": false, \"Status\": \"Active\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "Wi-Fi MAC Address ACL Profile maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": ">= 0"
+                          },
+                          "List": {
+                            "type": "List",
+                            "description": "Wi-Fi MAC Address ACL Profile list of entries.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "Wi-Fi MAC Address ACL Profile list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": ">= 0"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "Wi-Fi MAC Address ACL Profile maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": ">= 0"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "Wi-Fi MAC Address ACL Profile list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": ">= 0"
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Limit\": 10, \"Offset\": 0}"
+          }
+        }
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "description": "Which object index to start with",
+            "example": 45,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "description": "How many objects to return",
+            "min": 1,
+            "max": 200,
+            "default": 20
+          }
+        }
+      }
+    },
+    "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Delete": {
+      "operationId": "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Delete",
+      "summary": "Deletes the specified Wi-Fi MAC Address ACL Profile.",
+      "tags": [
+        "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProfileId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Profile",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Get": {
+      "operationId": "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Get",
+      "summary": "Retrieves the status and configuration parameters in regards to the specified Wi-Fi MAC Address ACL Profile.",
+      "tags": [
+        "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProfileId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Profile",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Set": {
+      "operationId": "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Set",
+      "summary": "Modifies the status and configuration parameters of the specified Wi-Fi MAC Address ACL Profile.",
+      "tags": [
+        "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {},
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Enabled": {
+                  "type": "Boolean",
+                  "description": "Wi-Fi MAC Address ACL Profile administrative status.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" or \"false\"",
+                  "enum": [
+                    "true",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "Mode": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile mode.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"Whitelist\" or \"Blacklist\"",
+                  "enum": [
+                    "Whitelist",
+                    "Blacklist"
+                  ],
+                  "writeOnly": true
+                },
+                "Name": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile name (alias).",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "any string with length from 1 up to 64 chars",
+                  "writeOnly": true
+                },
+                "Notify": {
+                  "type": "Boolean",
+                  "description": "Wi-Fi MAC Address ACL Profile notification flag.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "\"true\" (generates an event each time a stations attempts to connect) or \"false\"",
+                  "enum": [
+                    "true (generates an event each time a stations attempts to connect)",
+                    "false"
+                  ],
+                  "writeOnly": true
+                },
+                "ServiceSetId": {
+                  "type": "String",
+                  "description": "Wi-Fi MAC Address ACL Profile BSS or ESS Id.",
+                  "format": "-",
+                  "default_value": "the existing configuration",
+                  "possible_values": "an existing \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\" or \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSsId}\" object.",
+                  "writeOnly": true
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Name\": \"Guest\", \"Enabled\": true, \"Mode\": \"Whitelist\", \"ServiceSetId\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.24GHz.BSSs.Guest\", \"Notify\": false}"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "ProfileId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Profile",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "description": "schema for a responses to object methods",
+        "oneOf": [
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "OK"
+                    ]
+                  }
+                },
+                "required": [
+                  "Name"
+                ],
+                "additionalProperties": false
+              },
+              "Body": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_ERROR",
+                      "OPERATION_PERMISSION_DENIED",
+                      "OPERATION_ILLEGAL",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_TIMEOUT",
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "OBJECT_NOT_FOUND",
+                      "OK",
+                      "ARGUMENT_NOT_FOUND"
+                    ]
+                  },
+                  "Description": {
+                    "type": "string",
+                    "description": "A more detailed error message. NOTE: only filled in when the operation returns an error."
+                  }
+                },
+                "required": [
+                  "Name",
+                  "Description"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Services.Local.Wi-Fi.ACL.Profiles": {
+        "description": "Services.Local.Wi-Fi.ACL.Profiles Object",
+        "id": "Services.Local.Wi-Fi.ACL.Profiles",
+        "type": "object",
+        "required": [
+          "Mode",
+          "Name",
+          "ServiceSetId"
+        ],
+        "properties": {
+          "Enabled": {
+            "type": "Boolean",
+            "description": "Wi-Fi MAC Address ACL Profile administrative status.",
+            "format": "-",
+            "default_value": "true",
+            "possible_values": "\"true\" or \"false\"",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "Id": {
+            "type": "String",
+            "description": "Wi-Fi MAC Address ACL Profile unique identifier.",
+            "format": "-",
+            "default_value": "Integer starting at 0",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Mode": {
+            "type": "String",
+            "description": "Wi-Fi MAC Address ACL Profile mode.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"Whitelist\" or \"Blacklist\"",
+            "enum": [
+              "Whitelist",
+              "Blacklist"
+            ]
+          },
+          "Name": {
+            "type": "String",
+            "description": "Wi-Fi MAC Address ACL Profile name (alias).",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Notify": {
+            "type": "Boolean",
+            "description": "Wi-Fi MAC Address ACL Profile notification flag.",
+            "format": "-",
+            "default_value": "false",
+            "possible_values": "\"true\" (generates an event each time a stations attempts to connect) or \"false\"",
+            "enum": [
+              "true (generates an event each time a stations attempts to connect)",
+              "false"
+            ]
+          },
+          "ServiceSetId": {
+            "type": "String",
+            "description": "Wi-Fi MAC Address ACL Profile BSS or ESS Id.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "an existing \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\" or \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSsId}\" object."
+          },
+          "Status": {
+            "type": "String",
+            "description": "Wi-Fi MAC Address ACL Profile operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+            "readOnly": true
+          }
+        },
+        "events": {},
+        "example": {},
+        "layer": 2
+      }
+    }
+  },
+  "instances": {
+    "Guest": {
+      "description": "Guest Wi-Fi BSS ACL Profile."
+    },
+    "Private": {
+      "description": "Private Wi-Fi BSS ACL Profile."
+    }
+  }
+}

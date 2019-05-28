@@ -1,0 +1,1449 @@
+{
+  "paths": {
+    "Services.Diagnostics.NetworkSpeed.Tests.List": {
+      "operationId": "Services.Diagnostics.NetworkSpeed.Tests.List",
+      "summary": "Retrieves a list of Network Speed Tests.",
+      "tags": [
+        "Services.Diagnostics.NetworkSpeed.Tests"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"prplTest\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Id": {
+                            "type": "String",
+                            "description": "Network Speed Test unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "Network Speed Test maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "Network Speed Test list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Limit\": 10, \"Offset\": 0}"
+          }
+        }
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "description": "Which object index to start with",
+            "example": 45,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "description": "How many objects to return",
+            "min": 1,
+            "max": 200,
+            "default": 20
+          }
+        }
+      }
+    },
+    "Services.Diagnostics.NetworkSpeed.Tests.Queue": {
+      "operationId": "Services.Diagnostics.NetworkSpeed.Tests.Queue",
+      "summary": "Queues a new Network Speed Test.",
+      "tags": [
+        "Services.Diagnostics.NetworkSpeed.Tests"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"prplTest\"}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Id": {
+                            "type": "String",
+                            "description": "Network Speed Test unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Address": {
+                  "type": "String",
+                  "description": "Network Speed Test address.",
+                  "format": "-",
+                  "default_value": "The default system speedtest.",
+                  "possible_values": "FQDN, IPv4 or IPv6 address",
+                  "writeOnly": true
+                },
+                "Id": {
+                  "type": "String",
+                  "description": "Network Speed Test unique identifier.",
+                  "format": "1 up to 64 chars",
+                  "default_value": "Integer starting at 0",
+                  "possible_values": "any string with length from 1 up to 64 chars"
+                },
+                "Interface": {
+                  "type": "String",
+                  "description": "Network Speed Test interface.",
+                  "format": "-",
+                  "default_value": "The currently active \"Services.Broadband.Data\" interface.",
+                  "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                  "writeOnly": true
+                },
+                "Protocol": {
+                  "type": "object",
+                  "properties": {
+                    "IP": {
+                      "type": "String",
+                      "description": "Network Speed Test Layer 3 protocol to be used.",
+                      "format": "-",
+                      "default_value": "v4",
+                      "possible_values": "-",
+                      "writeOnly": true
+                    },
+                    "Transport": {
+                      "type": "String",
+                      "description": "Network Speed Test transport protocol.",
+                      "format": "-",
+                      "default_value": "TCP",
+                      "possible_values": "\"TCP\" or \"UDP\"",
+                      "enum": [
+                        "TCP",
+                        "UDP"
+                      ],
+                      "writeOnly": true
+                    }
+                  },
+                  "required": []
+                },
+                "Traffic": {
+                  "type": "object",
+                  "properties": {
+                    "DSCP": {
+                      "type": "Integer",
+                      "description": "Network Speed Test DSCP value to be tagged on packets.",
+                      "format": "-",
+                      "default_value": "0",
+                      "possible_values": ":\n- 0 (\"CS0\").\n- 8 (\"CS1\").\n- 10 (\"AF11\").\n- 12 (\"AF12\").\n- 14 (\"AF13\").\n- 16 (\"CS2\").\n- 18 (\"AF21\").\n- 20 (\"AF22\").\n- 22 (\"AF23\").\n- 24 (\"CS3\").\n- 26 (\"AF31\").\n- 28 (\"AF32\").\n- 30 (\"AF33\").\n- 32 (\"CS4\").\n- 34 (\"AF41\").\n- 36 (\"AF42\").\n- 38 (\"AF43\").\n- 40 (\"CS5\").\n- 46 (\"EF\").\n- 48 (\"CS6\").\n- 56 (\"CS7\")",
+                      "writeOnly": true
+                    },
+                    "Direction": {
+                      "type": "String",
+                      "description": "Network Speed Test traffic direction.",
+                      "format": "-",
+                      "default_value": "-",
+                      "possible_values": "\"Download\" or \"Upload\"",
+                      "enum": [
+                        "Download",
+                        "Upload"
+                      ],
+                      "writeOnly": true
+                    },
+                    "Streams": {
+                      "type": "Integer",
+                      "description": "Network Speed Test traffic concurrent streams.",
+                      "format": "-",
+                      "default_value": "4",
+                      "possible_values": "1-10",
+                      "writeOnly": true
+                    }
+                  },
+                  "required": [
+                    "Direction"
+                  ]
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Id\": \"prplTest\", \"Address\": \"https://speedtest.prpl.com\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"Protocol\": {\"IP\": \"v4\", \"Transport\": \"TCP\"}, \"Traffic\": {\"Direction\": \"Download\", \"Streams\": 4, \"DSCP\": \"46\"}}"
+          }
+        }
+      }
+    },
+    "Services.Diagnostics.NetworkSpeed.Tests.{TestId}.Delete": {
+      "operationId": "Services.Diagnostics.NetworkSpeed.Tests.{TestId}.Delete",
+      "summary": "Deletes the specified Network Speed Test.",
+      "tags": [
+        "Services.Diagnostics.NetworkSpeed.Tests.{TestId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"prplTest\", \"Address\": \"https://speedtest.prpl.com\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"Protocol\": {\"IP\": \"v4\", \"Transport\": \"TCP\"}, \"Traffic\": {\"Direction\": \"Download\", \"Streams\": 4, \"DSCP\": \"46\"}, \"Status\": \"Complete\", \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Throughput\": {\"Minimum\": 100000000, \"Average\": 120000000, \"Maximum\": 140000000}, \"TransferedData\": 3600000000, \"Duration\": 30}}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Address": {
+                            "type": "String",
+                            "description": "Network Speed Test address.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "FQDN, IPv4 or IPv6 address",
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Network Speed Test unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "String",
+                            "description": "Network Speed Test interface.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                            "readOnly": true
+                          },
+                          "Protocol": {
+                            "type": "object",
+                            "properties": {
+                              "IP": {
+                                "type": "String",
+                                "description": "Network Speed Test Layer 3 protocol to be used.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Transport": {
+                                "type": "String",
+                                "description": "Network Speed Test transport protocol.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"TCP\" or \"UDP\"",
+                                "enum": [
+                                  "TCP",
+                                  "UDP"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Duration": {
+                                "type": "Integer",
+                                "description": "Network Speed Test duration.",
+                                "format": "expressed in seconds",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "Throughput": {
+                                "type": "object",
+                                "properties": {
+                                  "Average": {
+                                    "type": "Integer",
+                                    "description": "Network Speed Test average observed throughput.",
+                                    "format": "expressed in bps",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Maximum": {
+                                    "type": "Integer",
+                                    "description": "Network Speed Test maximum observed throughput.",
+                                    "format": "expressed in bps",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Minimum": {
+                                    "type": "Integer",
+                                    "description": "Network Speed Test minimum observed throughput.",
+                                    "format": "expressed in bps",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "TransferedData": {
+                                "type": "Integer",
+                                "description": "Network Speed Test transfered data.",
+                                "format": "expressed in bits",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Network Speed Test operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ":\n- \"Queued\" (requested or waiting on a queue for an ongoing test to be completed).\n- \"Ongoing\" (in progress/running).\n- \"Completed\" (finished successfully).\n- \"Failed\" (finished unsuccessfully, was not able to complete the test)",
+                            "readOnly": true
+                          },
+                          "Timestamp": {
+                            "type": "Timestamp",
+                            "description": "Network Speed Test timestamp.",
+                            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                            "default_value": "-",
+                            "possible_values": "the timestamp corresponding to the test status. For example, if status = \"Queued\" then the timestamp should reflect the time when the test was requested. If the status changes to \"Completed\" the timestamp should change to the time when the test has been completed",
+                            "readOnly": true
+                          },
+                          "Traffic": {
+                            "type": "object",
+                            "properties": {
+                              "DSCP": {
+                                "type": "String",
+                                "description": "Network Speed Test DSCP value to be tagged on packets.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ":\n- 0 (\"CS0\").\n- 8 (\"CS1\").\n- 10 (\"AF11\").\n- 12 (\"AF12\").\n- 14 (\"AF13\").\n- 16 (\"CS2\").\n- 18 (\"AF21\").\n- 20 (\"AF22\").\n- 22 (\"AF23\").\n- 24 (\"CS3\").\n- 26 (\"AF31\").\n- 28 (\"AF32\").\n- 30 (\"AF33\").\n- 32 (\"CS4\").\n- 34 (\"AF41\").\n- 36 (\"AF42\").\n- 38 (\"AF43\").\n- 40 (\"CS5\").\n- 46 (\"EF\").\n- 48 (\"CS6\").\n- 56 (\"CS7\")",
+                                "readOnly": true
+                              },
+                              "Direction": {
+                                "type": "String",
+                                "description": "Network Speed Test traffic direction.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Download\" or \"Upload\"",
+                                "enum": [
+                                  "Download",
+                                  "Upload"
+                                ],
+                                "readOnly": true
+                              },
+                              "Streams": {
+                                "type": "Integer",
+                                "description": "Network Speed Test traffic concurrent streams.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "1-10",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "TestId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Test",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    },
+    "Services.Diagnostics.NetworkSpeed.Tests.{TestId}.Get": {
+      "operationId": "Services.Diagnostics.NetworkSpeed.Tests.{TestId}.Get",
+      "summary": "Retrieves the status and configuration parameters in regards to the specified Network Speed Test.",
+      "tags": [
+        "Services.Diagnostics.NetworkSpeed.Tests.{TestId}"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"prplTest\", \"Address\": \"https://speedtest.prpl.com\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"Protocol\": {\"IP\": \"v4\", \"Transport\": \"TCP\"}, \"Traffic\": {\"Direction\": \"Download\", \"Streams\": 4, \"DSCP\": \"46\"}, \"Status\": \"Complete\", \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Throughput\": {\"Minimum\": 100000000, \"Average\": 120000000, \"Maximum\": 140000000}, \"TransferedData\": 3600000000, \"Duration\": 30}}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Address": {
+                            "type": "String",
+                            "description": "Network Speed Test address.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "FQDN, IPv4 or IPv6 address",
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Network Speed Test unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "String",
+                            "description": "Network Speed Test interface.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                            "readOnly": true
+                          },
+                          "Protocol": {
+                            "type": "object",
+                            "properties": {
+                              "IP": {
+                                "type": "String",
+                                "description": "Network Speed Test Layer 3 protocol to be used.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Transport": {
+                                "type": "String",
+                                "description": "Network Speed Test transport protocol.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"TCP\" or \"UDP\"",
+                                "enum": [
+                                  "TCP",
+                                  "UDP"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Duration": {
+                                "type": "Integer",
+                                "description": "Network Speed Test duration.",
+                                "format": "expressed in seconds",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "Throughput": {
+                                "type": "object",
+                                "properties": {
+                                  "Average": {
+                                    "type": "Integer",
+                                    "description": "Network Speed Test average observed throughput.",
+                                    "format": "expressed in bps",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Maximum": {
+                                    "type": "Integer",
+                                    "description": "Network Speed Test maximum observed throughput.",
+                                    "format": "expressed in bps",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Minimum": {
+                                    "type": "Integer",
+                                    "description": "Network Speed Test minimum observed throughput.",
+                                    "format": "expressed in bps",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "TransferedData": {
+                                "type": "Integer",
+                                "description": "Network Speed Test transfered data.",
+                                "format": "expressed in bits",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Network Speed Test operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ":\n- \"Queued\" (requested or waiting on a queue for an ongoing test to be completed).\n- \"Ongoing\" (in progress/running).\n- \"Completed\" (finished successfully).\n- \"Failed\" (finished unsuccessfully, was not able to complete the test)",
+                            "readOnly": true
+                          },
+                          "Timestamp": {
+                            "type": "Timestamp",
+                            "description": "Network Speed Test timestamp.",
+                            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                            "default_value": "-",
+                            "possible_values": "the timestamp corresponding to the test status. For example, if status = \"Queued\" then the timestamp should reflect the time when the test was requested. If the status changes to \"Completed\" the timestamp should change to the time when the test has been completed",
+                            "readOnly": true
+                          },
+                          "Traffic": {
+                            "type": "object",
+                            "properties": {
+                              "DSCP": {
+                                "type": "String",
+                                "description": "Network Speed Test DSCP value to be tagged on packets.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ":\n- 0 (\"CS0\").\n- 8 (\"CS1\").\n- 10 (\"AF11\").\n- 12 (\"AF12\").\n- 14 (\"AF13\").\n- 16 (\"CS2\").\n- 18 (\"AF21\").\n- 20 (\"AF22\").\n- 22 (\"AF23\").\n- 24 (\"CS3\").\n- 26 (\"AF31\").\n- 28 (\"AF32\").\n- 30 (\"AF33\").\n- 32 (\"CS4\").\n- 34 (\"AF41\").\n- 36 (\"AF42\").\n- 38 (\"AF43\").\n- 40 (\"CS5\").\n- 46 (\"EF\").\n- 48 (\"CS6\").\n- 56 (\"CS7\")",
+                                "readOnly": true
+                              },
+                              "Direction": {
+                                "type": "String",
+                                "description": "Network Speed Test traffic direction.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Download\" or \"Upload\"",
+                                "enum": [
+                                  "Download",
+                                  "Upload"
+                                ],
+                                "readOnly": true
+                              },
+                              "Streams": {
+                                "type": "Integer",
+                                "description": "Network Speed Test traffic concurrent streams.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "1-10",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "TestId",
+          "type": "integer",
+          "required": true,
+          "description": "ID of a(n) Test",
+          "schema": {
+            "type": "integer",
+            "format": "int32",
+            "default": 20,
+            "example": {
+              "Limit": 10
+            }
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "description": "schema for a responses to object methods",
+        "oneOf": [
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "OK"
+                    ]
+                  }
+                },
+                "required": [
+                  "Name"
+                ],
+                "additionalProperties": false
+              },
+              "Body": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_ERROR",
+                      "OPERATION_PERMISSION_DENIED",
+                      "OPERATION_ILLEGAL",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_TIMEOUT",
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "OBJECT_NOT_FOUND",
+                      "OK",
+                      "ARGUMENT_NOT_FOUND"
+                    ]
+                  },
+                  "Description": {
+                    "type": "string",
+                    "description": "A more detailed error message. NOTE: only filled in when the operation returns an error."
+                  }
+                },
+                "required": [
+                  "Name",
+                  "Description"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Services.Diagnostics.NetworkSpeed.Tests": {
+        "description": "Services.Diagnostics.NetworkSpeed.Tests Object",
+        "id": "Services.Diagnostics.NetworkSpeed.Tests",
+        "type": "object",
+        "required": [],
+        "properties": {
+          "Address": {
+            "type": "String",
+            "description": "Network Speed Test address.",
+            "format": "-",
+            "default_value": "The default system speedtest.",
+            "possible_values": "FQDN, IPv4 or IPv6 address"
+          },
+          "Id": {
+            "type": "String",
+            "description": "Network Speed Test unique identifier.",
+            "format": "1 up to 64 chars",
+            "default_value": "Integer starting at 0",
+            "possible_values": "any string with length from 1 up to 64 chars"
+          },
+          "Interface": {
+            "type": "String",
+            "description": "Network Speed Test interface.",
+            "format": "-",
+            "default_value": "The currently active \"Services.Broadband.Data\" interface.",
+            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object"
+          },
+          "Protocol": {
+            "type": "object",
+            "properties": {
+              "IP": {
+                "type": "String",
+                "description": "Network Speed Test Layer 3 protocol to be used.",
+                "format": "-",
+                "default_value": "v4",
+                "possible_values": "-"
+              },
+              "Transport": {
+                "type": "String",
+                "description": "Network Speed Test transport protocol.",
+                "format": "-",
+                "default_value": "TCP",
+                "possible_values": "\"TCP\" or \"UDP\"",
+                "enum": [
+                  "TCP",
+                  "UDP"
+                ]
+              }
+            },
+            "required": []
+          },
+          "Traffic": {
+            "type": "object",
+            "properties": {
+              "DSCP": {
+                "type": "Integer",
+                "description": "Network Speed Test DSCP value to be tagged on packets.",
+                "format": "-",
+                "default_value": "0",
+                "possible_values": ":\n- 0 (\"CS0\").\n- 8 (\"CS1\").\n- 10 (\"AF11\").\n- 12 (\"AF12\").\n- 14 (\"AF13\").\n- 16 (\"CS2\").\n- 18 (\"AF21\").\n- 20 (\"AF22\").\n- 22 (\"AF23\").\n- 24 (\"CS3\").\n- 26 (\"AF31\").\n- 28 (\"AF32\").\n- 30 (\"AF33\").\n- 32 (\"CS4\").\n- 34 (\"AF41\").\n- 36 (\"AF42\").\n- 38 (\"AF43\").\n- 40 (\"CS5\").\n- 46 (\"EF\").\n- 48 (\"CS6\").\n- 56 (\"CS7\")"
+              },
+              "Direction": {
+                "type": "String",
+                "description": "Network Speed Test traffic direction.",
+                "format": "-",
+                "default_value": "-",
+                "possible_values": "\"Download\" or \"Upload\"",
+                "enum": [
+                  "Download",
+                  "Upload"
+                ]
+              },
+              "Streams": {
+                "type": "Integer",
+                "description": "Network Speed Test traffic concurrent streams.",
+                "format": "-",
+                "default_value": "4",
+                "possible_values": "1-10"
+              }
+            },
+            "required": [
+              "Direction"
+            ]
+          },
+          "Statistics": {
+            "type": "object",
+            "properties": {
+              "Duration": {
+                "type": "Integer",
+                "description": "Network Speed Test duration.",
+                "format": "expressed in seconds",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              },
+              "Throughput": {
+                "type": "object",
+                "properties": {
+                  "Average": {
+                    "type": "Integer",
+                    "description": "Network Speed Test average observed throughput.",
+                    "format": "expressed in bps",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Maximum": {
+                    "type": "Integer",
+                    "description": "Network Speed Test maximum observed throughput.",
+                    "format": "expressed in bps",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  },
+                  "Minimum": {
+                    "type": "Integer",
+                    "description": "Network Speed Test minimum observed throughput.",
+                    "format": "expressed in bps",
+                    "default_value": "-",
+                    "possible_values": ">= 0",
+                    "readOnly": true
+                  }
+                },
+                "required": []
+              },
+              "TransferedData": {
+                "type": "Integer",
+                "description": "Network Speed Test transfered data.",
+                "format": "expressed in bits",
+                "default_value": "-",
+                "possible_values": ">= 0",
+                "readOnly": true
+              }
+            },
+            "required": []
+          },
+          "Status": {
+            "type": "String",
+            "description": "Network Speed Test operational status.",
+            "format": "-",
+            "default_value": "-",
+            "possible_values": ":\n- \"Queued\" (requested or waiting on a queue for an ongoing test to be completed).\n- \"Ongoing\" (in progress/running).\n- \"Completed\" (finished successfully).\n- \"Failed\" (finished unsuccessfully, was not able to complete the test)",
+            "readOnly": true
+          },
+          "Timestamp": {
+            "type": "Timestamp",
+            "description": "Network Speed Test timestamp.",
+            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+            "default_value": "-",
+            "possible_values": "the timestamp corresponding to the test status. For example, if status = \"Queued\" then the timestamp should reflect the time when the test was requested. If the status changes to \"Completed\" the timestamp should change to the time when the test has been completed",
+            "readOnly": true
+          }
+        },
+        "events": {
+          "SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_COMPLETE": {
+            "content": {
+              "application/json": {
+                "example": "{\"TestId\": \"Services.Diagnostics.NetworkSpeed.Tests.0\"}"
+              }
+            },
+            "description": "Raised when a queued Network Speed Test Test is complete.",
+            "code": 1
+          },
+          "SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_FAILED": {
+            "content": {
+              "application/json": {
+                "example": "{\"TestId\": \"Services.Diagnostics.NetworkSpeed.Tests.0\"}"
+              }
+            },
+            "description": "Raised when a queued Network Speed Test Test fails.",
+            "code": 2
+          },
+          "SERVICES_DIAGNOSTICS_NETWORKSPEED_TESTS_TEST_TIMEOUT": {
+            "content": {
+              "application/json": {
+                "example": "{\"TestId\": \"Services.Diagnostics.NetworkSpeed.Tests.0\"}"
+              }
+            },
+            "description": "Raised when a queued Network Speed Test Test times out.",
+            "code": 3
+          }
+        },
+        "example": {},
+        "layer": 2
+      }
+    }
+  }
+}

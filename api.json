@@ -1,0 +1,1589 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "3.8.2.7",
+    "title": "prpl Software Stack Independent API",
+    "license": {
+      "name": "ISC"
+    }
+  },
+  "servers": [
+    {
+      "url": "ubus"
+    }
+  ],
+  "paths": {
+    "User.Accounts": {
+      "$ref": "User.Accounts.json#/paths"
+    },
+    "User.Certificates": {
+      "$ref": "User.Certificates.json#/paths"
+    },
+    "User.Profile": {
+      "$ref": "User.Profile.json#/paths"
+    },
+    "User.Roles": {
+      "$ref": "User.Roles.json#/paths"
+    },
+    "User.Roles.{RoleId}.ACL.Rules": {
+      "$ref": "User.Roles.{RoleId}.ACL.Rules.json#/paths"
+    },
+    "Services.Broadband": {
+      "$ref": "Services.Broadband.json#/paths"
+    },
+    "Services.Broadband.CommunityWi-Fi": {
+      "$ref": "Services.Broadband.CommunityWi-Fi.json#/paths"
+    },
+    "Services.Broadband.Data": {
+      "$ref": "Services.Broadband.Data.json#/paths"
+    },
+    "Services.Broadband.TV": {
+      "$ref": "Services.Broadband.TV.json#/paths"
+    },
+    "Services.Broadband.TV.IGMP.Proxy": {
+      "$ref": "Services.Broadband.TV.IGMP.Proxy.json#/paths"
+    },
+    "Services.Broadband.TV.IGMP.Snooping": {
+      "$ref": "Services.Broadband.TV.IGMP.Snooping.json#/paths"
+    },
+    "Services.Broadband.Voice": {
+      "$ref": "Services.Broadband.Voice.json#/paths"
+    },
+    "Services.Broadband.Voice.SIP.Client": {
+      "$ref": "Services.Broadband.Voice.SIP.Client.json#/paths"
+    },
+    "Services.Broadband.Voice.SIP.Client.Codecs": {
+      "$ref": "Services.Broadband.Voice.SIP.Client.Codecs.json#/paths"
+    },
+    "Services.Broadband.Voice.SIP.Client.Extensions": {
+      "$ref": "Services.Broadband.Voice.SIP.Client.Extensions.json#/paths"
+    },
+    "Services.Diagnostics.NSLookup.Tests": {
+      "$ref": "Services.Diagnostics.NSLookup.Tests.json#/paths"
+    },
+    "Services.Diagnostics.NetworkSpeed.Tests": {
+      "$ref": "Services.Diagnostics.NetworkSpeed.Tests.json#/paths"
+    },
+    "Services.Diagnostics.Ping.Tests": {
+      "$ref": "Services.Diagnostics.Ping.Tests.json#/paths"
+    },
+    "Services.Diagnostics.Traceroute.Tests": {
+      "$ref": "Services.Diagnostics.Traceroute.Tests.json#/paths"
+    },
+    "Services.Diagnostics.Wi-Fi.SiteSurveys": {
+      "$ref": "Services.Diagnostics.Wi-Fi.SiteSurveys.json#/paths"
+    },
+    "Services.Local.Bridge": {
+      "$ref": "Services.Local.Bridge.json#/paths"
+    },
+    "Services.Local.DHCP.Client.v4": {
+      "$ref": "Services.Local.DHCP.Client.v4.json#/paths"
+    },
+    "Services.Local.DHCP.Client.v4.{ClientId}.Options.Rx": {
+      "$ref": "Services.Local.DHCP.Client.v4.{ClientId}.Options.Rx.json#/paths"
+    },
+    "Services.Local.DHCP.Client.v4.{ClientId}.Options.Tx": {
+      "$ref": "Services.Local.DHCP.Client.v4.{ClientId}.Options.Tx.json#/paths"
+    },
+    "Services.Local.DHCP.Server.v4": {
+      "$ref": "Services.Local.DHCP.Server.v4.json#/paths"
+    },
+    "Services.Local.DHCP.Server.v4.Leases": {
+      "$ref": "Services.Local.DHCP.Server.v4.Leases.json#/paths"
+    },
+    "Services.Local.DHCP.Server.v4.Pools": {
+      "$ref": "Services.Local.DHCP.Server.v4.Pools.json#/paths"
+    },
+    "Services.Local.DHCP.Server.v4.Pools.{PoolId}.Rules": {
+      "$ref": "Services.Local.DHCP.Server.v4.Pools.{PoolId}.Rules.json#/paths"
+    },
+    "Services.Local.DNS.Dynamic": {
+      "$ref": "Services.Local.DNS.Dynamic.json#/paths"
+    },
+    "Services.Local.DNS.Dynamic.Providers": {
+      "$ref": "Services.Local.DNS.Dynamic.Providers.json#/paths"
+    },
+    "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames": {
+      "$ref": "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.json#/paths"
+    },
+    "Services.Local.DNS.Multicast": {
+      "$ref": "Services.Local.DNS.Multicast.json#/paths"
+    },
+    "Services.Local.DNS.Proxy": {
+      "$ref": "Services.Local.DNS.Proxy.json#/paths"
+    },
+    "Services.Local.DNS.Proxy.Domains": {
+      "$ref": "Services.Local.DNS.Proxy.Domains.json#/paths"
+    },
+    "Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts": {
+      "$ref": "Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts.json#/paths"
+    },
+    "Services.Local.DNS.Proxy.Forwarders": {
+      "$ref": "Services.Local.DNS.Proxy.Forwarders.json#/paths"
+    },
+    "Services.Local.Firewall": {
+      "$ref": "Services.Local.Firewall.json#/paths"
+    },
+    "Services.Local.Firewall.Filter.Chains": {
+      "$ref": "Services.Local.Firewall.Filter.Chains.json#/paths"
+    },
+    "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules": {
+      "$ref": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.json#/paths"
+    },
+    "Services.Local.Firewall.IDS": {
+      "$ref": "Services.Local.Firewall.IDS.json#/paths"
+    },
+    "Services.Local.Firewall.IDS.Filters": {
+      "$ref": "Services.Local.Firewall.IDS.Filters.json#/paths"
+    },
+    "Services.Local.Firewall.IDS.Filters.{FilterId}.Clients": {
+      "$ref": "Services.Local.Firewall.IDS.Filters.{FilterId}.Clients.json#/paths"
+    },
+    "Services.Local.Firewall.NAT.ALGs": {
+      "$ref": "Services.Local.Firewall.NAT.ALGs.json#/paths"
+    },
+    "Services.Local.Firewall.NAT.DMZ": {
+      "$ref": "Services.Local.Firewall.NAT.DMZ.json#/paths"
+    },
+    "Services.Local.Firewall.NAT.Rules": {
+      "$ref": "Services.Local.Firewall.NAT.Rules.json#/paths"
+    },
+    "Services.Local.Firewall.NAT.Templates": {
+      "$ref": "Services.Local.Firewall.NAT.Templates.json#/paths"
+    },
+    "Services.Local.Firewall.NAT.UPnPIGD": {
+      "$ref": "Services.Local.Firewall.NAT.UPnPIGD.json#/paths"
+    },
+    "Services.Local.Firewall.Profiles": {
+      "$ref": "Services.Local.Firewall.Profiles.json#/paths"
+    },
+    "Services.Local.Firewall.Scheduler": {
+      "$ref": "Services.Local.Firewall.Scheduler.json#/paths"
+    },
+    "Services.Local.Firewall.Scheduler.Rules": {
+      "$ref": "Services.Local.Firewall.Scheduler.Rules.json#/paths"
+    },
+    "Services.Local.HostManager": {
+      "$ref": "Services.Local.HostManager.json#/paths"
+    },
+    "Services.Local.HostManager.Hosts": {
+      "$ref": "Services.Local.HostManager.Hosts.json#/paths"
+    },
+    "Services.Local.Media.DLNA": {
+      "$ref": "Services.Local.Media.DLNA.json#/paths"
+    },
+    "Services.Local.Media.FTP": {
+      "$ref": "Services.Local.Media.FTP.json#/paths"
+    },
+    "Services.Local.Media.SMB": {
+      "$ref": "Services.Local.Media.SMB.json#/paths"
+    },
+    "Services.Local.Media.SMB.Shares": {
+      "$ref": "Services.Local.Media.SMB.Shares.json#/paths"
+    },
+    "Services.Local.Media.UPnPAV": {
+      "$ref": "Services.Local.Media.UPnPAV.json#/paths"
+    },
+    "Services.Local.PPP.Client": {
+      "$ref": "Services.Local.PPP.Client.json#/paths"
+    },
+    "Services.Local.QoS.Prioritization": {
+      "$ref": "Services.Local.QoS.Prioritization.json#/paths"
+    },
+    "Services.Local.QoS.Tagging": {
+      "$ref": "Services.Local.QoS.Tagging.json#/paths"
+    },
+    "Services.Local.QoS.Tagging.Rules": {
+      "$ref": "Services.Local.QoS.Tagging.Rules.json#/paths"
+    },
+    "Services.Local.VPN.GRE.Tunnel": {
+      "$ref": "Services.Local.VPN.GRE.Tunnel.json#/paths"
+    },
+    "Services.Local.VPN.IPSec.Client": {
+      "$ref": "Services.Local.VPN.IPSec.Client.json#/paths"
+    },
+    "Services.Local.VPN.IPSec.Server": {
+      "$ref": "Services.Local.VPN.IPSec.Server.json#/paths"
+    },
+    "Services.Local.VPN.L2TP.Client": {
+      "$ref": "Services.Local.VPN.L2TP.Client.json#/paths"
+    },
+    "Services.Local.VPN.L2TP.Server": {
+      "$ref": "Services.Local.VPN.L2TP.Server.json#/paths"
+    },
+    "Services.Local.VPN.OpenVPN.Client": {
+      "$ref": "Services.Local.VPN.OpenVPN.Client.json#/paths"
+    },
+    "Services.Local.VPN.OpenVPN.Server": {
+      "$ref": "Services.Local.VPN.OpenVPN.Server.json#/paths"
+    },
+    "Services.Local.VPN.PPTP.Client": {
+      "$ref": "Services.Local.VPN.PPTP.Client.json#/paths"
+    },
+    "Services.Local.VPN.PPTP.Server": {
+      "$ref": "Services.Local.VPN.PPTP.Server.json#/paths"
+    },
+    "Services.Local.Wi-Fi.ACL": {
+      "$ref": "Services.Local.Wi-Fi.ACL.json#/paths"
+    },
+    "Services.Local.Wi-Fi.ACL.Profiles": {
+      "$ref": "Services.Local.Wi-Fi.ACL.Profiles.json#/paths"
+    },
+    "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules": {
+      "$ref": "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules.json#/paths"
+    },
+    "Services.Local.Wi-Fi.Scheduler.ACL": {
+      "$ref": "Services.Local.Wi-Fi.Scheduler.ACL.json#/paths"
+    },
+    "Services.Local.Wi-Fi.Scheduler.ACL.Rules": {
+      "$ref": "Services.Local.Wi-Fi.Scheduler.ACL.Rules.json#/paths"
+    },
+    "Services.Local.Wi-Fi.Scheduler.Timer": {
+      "$ref": "Services.Local.Wi-Fi.Scheduler.Timer.json#/paths"
+    },
+    "Services.Local.Wi-Fi.Scheduler.Timer.Rules": {
+      "$ref": "Services.Local.Wi-Fi.Scheduler.Timer.Rules.json#/paths"
+    },
+    "Services.Local.Wi-Fi.WPS": {
+      "$ref": "Services.Local.Wi-Fi.WPS.json#/paths"
+    },
+    "Services.Local.Wi-Fi.WPS.PIN": {
+      "$ref": "Services.Local.Wi-Fi.WPS.PIN.json#/paths"
+    },
+    "Services.Local.Wi-Fi.WPS.Pairing": {
+      "$ref": "Services.Local.Wi-Fi.WPS.Pairing.json#/paths"
+    },
+    "Services.Management.CLI": {
+      "$ref": "Services.Management.CLI.json#/paths"
+    },
+    "Services.Management.CWMP": {
+      "$ref": "Services.Management.CWMP.json#/paths"
+    },
+    "Services.Management.CWMP.ACS": {
+      "$ref": "Services.Management.CWMP.ACS.json#/paths"
+    },
+    "Services.Management.CWMP.ConnectionRequest": {
+      "$ref": "Services.Management.CWMP.ConnectionRequest.json#/paths"
+    },
+    "Services.Management.LCM": {
+      "$ref": "Services.Management.LCM.json#/paths"
+    },
+    "Services.Management.LCM.ExecutionEnvironments": {
+      "$ref": "Services.Management.LCM.ExecutionEnvironments.json#/paths"
+    },
+    "Services.Management.LCM.ExecutionEnvironments.{ExecutionEnvironmentId}.Packages": {
+      "$ref": "Services.Management.LCM.ExecutionEnvironments.{ExecutionEnvironmentId}.Packages.json#/paths"
+    },
+    "Services.Management.WUI": {
+      "$ref": "Services.Management.WUI.json#/paths"
+    },
+    "Interfaces.IP": {
+      "$ref": "Interfaces.IP.json#/paths"
+    },
+    "Interfaces.Physical.Data.USB": {
+      "$ref": "Interfaces.Physical.Data.USB.json#/paths"
+    },
+    "Interfaces.Physical.Data.USB.Ports": {
+      "$ref": "Interfaces.Physical.Data.USB.Ports.json#/paths"
+    },
+    "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices": {
+      "$ref": "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.json#/paths"
+    },
+    "Interfaces.Physical.Network.LAN.EthernetSwitch.Ports": {
+      "$ref": "Interfaces.Physical.Network.LAN.EthernetSwitch.Ports.json#/paths"
+    },
+    "Interfaces.Physical.Network.LAN.Wi-Fi.ESSs": {
+      "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.json#/paths"
+    },
+    "Interfaces.Physical.Network.LAN.Wi-Fi.Radios": {
+      "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.json#/paths"
+    },
+    "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs": {
+      "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.json#/paths"
+    },
+    "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations": {
+      "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN": {
+      "$ref": "Interfaces.Physical.Network.WAN.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN.DOCSIS": {
+      "$ref": "Interfaces.Physical.Network.WAN.DOCSIS.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN.Ethernet": {
+      "$ref": "Interfaces.Physical.Network.WAN.Ethernet.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN.GPON": {
+      "$ref": "Interfaces.Physical.Network.WAN.GPON.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN.Mobile": {
+      "$ref": "Interfaces.Physical.Network.WAN.Mobile.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN.Mobile.SIM": {
+      "$ref": "Interfaces.Physical.Network.WAN.Mobile.SIM.json#/paths"
+    },
+    "Interfaces.Physical.Network.WAN.xDSL": {
+      "$ref": "Interfaces.Physical.Network.WAN.xDSL.json#/paths"
+    },
+    "Interfaces.Physical.Voice.DECT": {
+      "$ref": "Interfaces.Physical.Voice.DECT.json#/paths"
+    },
+    "Interfaces.Physical.Voice.FXS": {
+      "$ref": "Interfaces.Physical.Voice.FXS.json#/paths"
+    },
+    "System.Buttons": {
+      "$ref": "System.Buttons.json#/paths"
+    },
+    "System.Firmware": {
+      "$ref": "System.Firmware.json#/paths"
+    },
+    "System.Firmware.Images": {
+      "$ref": "System.Firmware.Images.json#/paths"
+    },
+    "System.Hardware": {
+      "$ref": "System.Hardware.json#/paths"
+    },
+    "System.LEDs": {
+      "$ref": "System.LEDs.json#/paths"
+    },
+    "System.Log": {
+      "$ref": "System.Log.json#/paths"
+    },
+    "System.Log.Events": {
+      "$ref": "System.Log.Events.json#/paths"
+    },
+    "System.Resources": {
+      "$ref": "System.Resources.json#/paths"
+    },
+    "System.Settings": {
+      "$ref": "System.Settings.json#/paths"
+    },
+    "System.Settings.Configurations": {
+      "$ref": "System.Settings.Configurations.json#/paths"
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "properties": {
+          "header": {
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "User.Accounts": {
+        "$ref": "User.Accounts.json#/components/schemas/User.Accounts"
+      },
+      "User.Certificates": {
+        "$ref": "User.Certificates.json#/components/schemas/User.Certificates"
+      },
+      "User.Profile": {
+        "$ref": "User.Profile.json#/components/schemas/User.Profile"
+      },
+      "User.Roles": {
+        "$ref": "User.Roles.json#/components/schemas/User.Roles"
+      },
+      "User.Roles.{RoleId}.ACL.Rules": {
+        "$ref": "User.Roles.{RoleId}.ACL.Rules.json#/components/schemas/User.Roles.{RoleId}.ACL.Rules"
+      },
+      "Services.Broadband": {
+        "$ref": "Services.Broadband.json#/components/schemas/Services.Broadband"
+      },
+      "Services.Broadband.CommunityWi-Fi": {
+        "$ref": "Services.Broadband.CommunityWi-Fi.json#/components/schemas/Services.Broadband.CommunityWi-Fi"
+      },
+      "Services.Broadband.Data": {
+        "$ref": "Services.Broadband.Data.json#/components/schemas/Services.Broadband.Data"
+      },
+      "Services.Broadband.TV": {
+        "$ref": "Services.Broadband.TV.json#/components/schemas/Services.Broadband.TV"
+      },
+      "Services.Broadband.TV.IGMP.Proxy": {
+        "$ref": "Services.Broadband.TV.IGMP.Proxy.json#/components/schemas/Services.Broadband.TV.IGMP.Proxy"
+      },
+      "Services.Broadband.TV.IGMP.Snooping": {
+        "$ref": "Services.Broadband.TV.IGMP.Snooping.json#/components/schemas/Services.Broadband.TV.IGMP.Snooping"
+      },
+      "Services.Broadband.Voice": {
+        "$ref": "Services.Broadband.Voice.json#/components/schemas/Services.Broadband.Voice"
+      },
+      "Services.Broadband.Voice.SIP.Client": {
+        "$ref": "Services.Broadband.Voice.SIP.Client.json#/components/schemas/Services.Broadband.Voice.SIP.Client"
+      },
+      "Services.Broadband.Voice.SIP.Client.Codecs": {
+        "$ref": "Services.Broadband.Voice.SIP.Client.Codecs.json#/components/schemas/Services.Broadband.Voice.SIP.Client.Codecs"
+      },
+      "Services.Broadband.Voice.SIP.Client.Extensions": {
+        "$ref": "Services.Broadband.Voice.SIP.Client.Extensions.json#/components/schemas/Services.Broadband.Voice.SIP.Client.Extensions"
+      },
+      "Services.Diagnostics.NSLookup.Tests": {
+        "$ref": "Services.Diagnostics.NSLookup.Tests.json#/components/schemas/Services.Diagnostics.NSLookup.Tests"
+      },
+      "Services.Diagnostics.NetworkSpeed.Tests": {
+        "$ref": "Services.Diagnostics.NetworkSpeed.Tests.json#/components/schemas/Services.Diagnostics.NetworkSpeed.Tests"
+      },
+      "Services.Diagnostics.Ping.Tests": {
+        "$ref": "Services.Diagnostics.Ping.Tests.json#/components/schemas/Services.Diagnostics.Ping.Tests"
+      },
+      "Services.Diagnostics.Traceroute.Tests": {
+        "$ref": "Services.Diagnostics.Traceroute.Tests.json#/components/schemas/Services.Diagnostics.Traceroute.Tests"
+      },
+      "Services.Diagnostics.Wi-Fi.SiteSurveys": {
+        "$ref": "Services.Diagnostics.Wi-Fi.SiteSurveys.json#/components/schemas/Services.Diagnostics.Wi-Fi.SiteSurveys"
+      },
+      "Services.Local.Bridge": {
+        "$ref": "Services.Local.Bridge.json#/components/schemas/Services.Local.Bridge"
+      },
+      "Services.Local.DHCP.Client.v4": {
+        "$ref": "Services.Local.DHCP.Client.v4.json#/components/schemas/Services.Local.DHCP.Client.v4"
+      },
+      "Services.Local.DHCP.Client.v4.{ClientId}.Options.Rx": {
+        "$ref": "Services.Local.DHCP.Client.v4.{ClientId}.Options.Rx.json#/components/schemas/Services.Local.DHCP.Client.v4.{ClientId}.Options.Rx"
+      },
+      "Services.Local.DHCP.Client.v4.{ClientId}.Options.Tx": {
+        "$ref": "Services.Local.DHCP.Client.v4.{ClientId}.Options.Tx.json#/components/schemas/Services.Local.DHCP.Client.v4.{ClientId}.Options.Tx"
+      },
+      "Services.Local.DHCP.Server.v4": {
+        "$ref": "Services.Local.DHCP.Server.v4.json#/components/schemas/Services.Local.DHCP.Server.v4"
+      },
+      "Services.Local.DHCP.Server.v4.Leases": {
+        "$ref": "Services.Local.DHCP.Server.v4.Leases.json#/components/schemas/Services.Local.DHCP.Server.v4.Leases"
+      },
+      "Services.Local.DHCP.Server.v4.Pools": {
+        "$ref": "Services.Local.DHCP.Server.v4.Pools.json#/components/schemas/Services.Local.DHCP.Server.v4.Pools"
+      },
+      "Services.Local.DHCP.Server.v4.Pools.{PoolId}.Rules": {
+        "$ref": "Services.Local.DHCP.Server.v4.Pools.{PoolId}.Rules.json#/components/schemas/Services.Local.DHCP.Server.v4.Pools.{PoolId}.Rules"
+      },
+      "Services.Local.DNS.Dynamic": {
+        "$ref": "Services.Local.DNS.Dynamic.json#/components/schemas/Services.Local.DNS.Dynamic"
+      },
+      "Services.Local.DNS.Dynamic.Providers": {
+        "$ref": "Services.Local.DNS.Dynamic.Providers.json#/components/schemas/Services.Local.DNS.Dynamic.Providers"
+      },
+      "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames": {
+        "$ref": "Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.json#/components/schemas/Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames"
+      },
+      "Services.Local.DNS.Multicast": {
+        "$ref": "Services.Local.DNS.Multicast.json#/components/schemas/Services.Local.DNS.Multicast"
+      },
+      "Services.Local.DNS.Proxy": {
+        "$ref": "Services.Local.DNS.Proxy.json#/components/schemas/Services.Local.DNS.Proxy"
+      },
+      "Services.Local.DNS.Proxy.Domains": {
+        "$ref": "Services.Local.DNS.Proxy.Domains.json#/components/schemas/Services.Local.DNS.Proxy.Domains"
+      },
+      "Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts": {
+        "$ref": "Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts.json#/components/schemas/Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts"
+      },
+      "Services.Local.DNS.Proxy.Forwarders": {
+        "$ref": "Services.Local.DNS.Proxy.Forwarders.json#/components/schemas/Services.Local.DNS.Proxy.Forwarders"
+      },
+      "Services.Local.Firewall": {
+        "$ref": "Services.Local.Firewall.json#/components/schemas/Services.Local.Firewall"
+      },
+      "Services.Local.Firewall.Filter.Chains": {
+        "$ref": "Services.Local.Firewall.Filter.Chains.json#/components/schemas/Services.Local.Firewall.Filter.Chains"
+      },
+      "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules": {
+        "$ref": "Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.json#/components/schemas/Services.Local.Firewall.Filter.Chains.{ChainId}.Rules"
+      },
+      "Services.Local.Firewall.IDS": {
+        "$ref": "Services.Local.Firewall.IDS.json#/components/schemas/Services.Local.Firewall.IDS"
+      },
+      "Services.Local.Firewall.IDS.Filters": {
+        "$ref": "Services.Local.Firewall.IDS.Filters.json#/components/schemas/Services.Local.Firewall.IDS.Filters"
+      },
+      "Services.Local.Firewall.IDS.Filters.{FilterId}.Clients": {
+        "$ref": "Services.Local.Firewall.IDS.Filters.{FilterId}.Clients.json#/components/schemas/Services.Local.Firewall.IDS.Filters.{FilterId}.Clients"
+      },
+      "Services.Local.Firewall.NAT.ALGs": {
+        "$ref": "Services.Local.Firewall.NAT.ALGs.json#/components/schemas/Services.Local.Firewall.NAT.ALGs"
+      },
+      "Services.Local.Firewall.NAT.DMZ": {
+        "$ref": "Services.Local.Firewall.NAT.DMZ.json#/components/schemas/Services.Local.Firewall.NAT.DMZ"
+      },
+      "Services.Local.Firewall.NAT.Rules": {
+        "$ref": "Services.Local.Firewall.NAT.Rules.json#/components/schemas/Services.Local.Firewall.NAT.Rules"
+      },
+      "Services.Local.Firewall.NAT.Templates": {
+        "$ref": "Services.Local.Firewall.NAT.Templates.json#/components/schemas/Services.Local.Firewall.NAT.Templates"
+      },
+      "Services.Local.Firewall.NAT.UPnPIGD": {
+        "$ref": "Services.Local.Firewall.NAT.UPnPIGD.json#/components/schemas/Services.Local.Firewall.NAT.UPnPIGD"
+      },
+      "Services.Local.Firewall.Profiles": {
+        "$ref": "Services.Local.Firewall.Profiles.json#/components/schemas/Services.Local.Firewall.Profiles"
+      },
+      "Services.Local.Firewall.Scheduler": {
+        "$ref": "Services.Local.Firewall.Scheduler.json#/components/schemas/Services.Local.Firewall.Scheduler"
+      },
+      "Services.Local.Firewall.Scheduler.Rules": {
+        "$ref": "Services.Local.Firewall.Scheduler.Rules.json#/components/schemas/Services.Local.Firewall.Scheduler.Rules"
+      },
+      "Services.Local.HostManager": {
+        "$ref": "Services.Local.HostManager.json#/components/schemas/Services.Local.HostManager"
+      },
+      "Services.Local.HostManager.Hosts": {
+        "$ref": "Services.Local.HostManager.Hosts.json#/components/schemas/Services.Local.HostManager.Hosts"
+      },
+      "Services.Local.Media.DLNA": {
+        "$ref": "Services.Local.Media.DLNA.json#/components/schemas/Services.Local.Media.DLNA"
+      },
+      "Services.Local.Media.FTP": {
+        "$ref": "Services.Local.Media.FTP.json#/components/schemas/Services.Local.Media.FTP"
+      },
+      "Services.Local.Media.SMB": {
+        "$ref": "Services.Local.Media.SMB.json#/components/schemas/Services.Local.Media.SMB"
+      },
+      "Services.Local.Media.SMB.Shares": {
+        "$ref": "Services.Local.Media.SMB.Shares.json#/components/schemas/Services.Local.Media.SMB.Shares"
+      },
+      "Services.Local.Media.UPnPAV": {
+        "$ref": "Services.Local.Media.UPnPAV.json#/components/schemas/Services.Local.Media.UPnPAV"
+      },
+      "Services.Local.PPP.Client": {
+        "$ref": "Services.Local.PPP.Client.json#/components/schemas/Services.Local.PPP.Client"
+      },
+      "Services.Local.QoS.Prioritization": {
+        "$ref": "Services.Local.QoS.Prioritization.json#/components/schemas/Services.Local.QoS.Prioritization"
+      },
+      "Services.Local.QoS.Tagging": {
+        "$ref": "Services.Local.QoS.Tagging.json#/components/schemas/Services.Local.QoS.Tagging"
+      },
+      "Services.Local.QoS.Tagging.Rules": {
+        "$ref": "Services.Local.QoS.Tagging.Rules.json#/components/schemas/Services.Local.QoS.Tagging.Rules"
+      },
+      "Services.Local.VPN.GRE.Tunnel": {
+        "$ref": "Services.Local.VPN.GRE.Tunnel.json#/components/schemas/Services.Local.VPN.GRE.Tunnel"
+      },
+      "Services.Local.VPN.IPSec.Client": {
+        "$ref": "Services.Local.VPN.IPSec.Client.json#/components/schemas/Services.Local.VPN.IPSec.Client"
+      },
+      "Services.Local.VPN.IPSec.Server": {
+        "$ref": "Services.Local.VPN.IPSec.Server.json#/components/schemas/Services.Local.VPN.IPSec.Server"
+      },
+      "Services.Local.VPN.L2TP.Client": {
+        "$ref": "Services.Local.VPN.L2TP.Client.json#/components/schemas/Services.Local.VPN.L2TP.Client"
+      },
+      "Services.Local.VPN.L2TP.Server": {
+        "$ref": "Services.Local.VPN.L2TP.Server.json#/components/schemas/Services.Local.VPN.L2TP.Server"
+      },
+      "Services.Local.VPN.OpenVPN.Client": {
+        "$ref": "Services.Local.VPN.OpenVPN.Client.json#/components/schemas/Services.Local.VPN.OpenVPN.Client"
+      },
+      "Services.Local.VPN.OpenVPN.Server": {
+        "$ref": "Services.Local.VPN.OpenVPN.Server.json#/components/schemas/Services.Local.VPN.OpenVPN.Server"
+      },
+      "Services.Local.VPN.PPTP.Client": {
+        "$ref": "Services.Local.VPN.PPTP.Client.json#/components/schemas/Services.Local.VPN.PPTP.Client"
+      },
+      "Services.Local.VPN.PPTP.Server": {
+        "$ref": "Services.Local.VPN.PPTP.Server.json#/components/schemas/Services.Local.VPN.PPTP.Server"
+      },
+      "Services.Local.Wi-Fi.ACL": {
+        "$ref": "Services.Local.Wi-Fi.ACL.json#/components/schemas/Services.Local.Wi-Fi.ACL"
+      },
+      "Services.Local.Wi-Fi.ACL.Profiles": {
+        "$ref": "Services.Local.Wi-Fi.ACL.Profiles.json#/components/schemas/Services.Local.Wi-Fi.ACL.Profiles"
+      },
+      "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules": {
+        "$ref": "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules.json#/components/schemas/Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules"
+      },
+      "Services.Local.Wi-Fi.Scheduler.ACL": {
+        "$ref": "Services.Local.Wi-Fi.Scheduler.ACL.json#/components/schemas/Services.Local.Wi-Fi.Scheduler.ACL"
+      },
+      "Services.Local.Wi-Fi.Scheduler.ACL.Rules": {
+        "$ref": "Services.Local.Wi-Fi.Scheduler.ACL.Rules.json#/components/schemas/Services.Local.Wi-Fi.Scheduler.ACL.Rules"
+      },
+      "Services.Local.Wi-Fi.Scheduler.Timer": {
+        "$ref": "Services.Local.Wi-Fi.Scheduler.Timer.json#/components/schemas/Services.Local.Wi-Fi.Scheduler.Timer"
+      },
+      "Services.Local.Wi-Fi.Scheduler.Timer.Rules": {
+        "$ref": "Services.Local.Wi-Fi.Scheduler.Timer.Rules.json#/components/schemas/Services.Local.Wi-Fi.Scheduler.Timer.Rules"
+      },
+      "Services.Local.Wi-Fi.WPS": {
+        "$ref": "Services.Local.Wi-Fi.WPS.json#/components/schemas/Services.Local.Wi-Fi.WPS"
+      },
+      "Services.Local.Wi-Fi.WPS.PIN": {
+        "$ref": "Services.Local.Wi-Fi.WPS.PIN.json#/components/schemas/Services.Local.Wi-Fi.WPS.PIN"
+      },
+      "Services.Local.Wi-Fi.WPS.Pairing": {
+        "$ref": "Services.Local.Wi-Fi.WPS.Pairing.json#/components/schemas/Services.Local.Wi-Fi.WPS.Pairing"
+      },
+      "Services.Management.CLI": {
+        "$ref": "Services.Management.CLI.json#/components/schemas/Services.Management.CLI"
+      },
+      "Services.Management.CWMP": {
+        "$ref": "Services.Management.CWMP.json#/components/schemas/Services.Management.CWMP"
+      },
+      "Services.Management.CWMP.ACS": {
+        "$ref": "Services.Management.CWMP.ACS.json#/components/schemas/Services.Management.CWMP.ACS"
+      },
+      "Services.Management.CWMP.ConnectionRequest": {
+        "$ref": "Services.Management.CWMP.ConnectionRequest.json#/components/schemas/Services.Management.CWMP.ConnectionRequest"
+      },
+      "Services.Management.LCM": {
+        "$ref": "Services.Management.LCM.json#/components/schemas/Services.Management.LCM"
+      },
+      "Services.Management.LCM.ExecutionEnvironments": {
+        "$ref": "Services.Management.LCM.ExecutionEnvironments.json#/components/schemas/Services.Management.LCM.ExecutionEnvironments"
+      },
+      "Services.Management.LCM.ExecutionEnvironments.{ExecutionEnvironmentId}.Packages": {
+        "$ref": "Services.Management.LCM.ExecutionEnvironments.{ExecutionEnvironmentId}.Packages.json#/components/schemas/Services.Management.LCM.ExecutionEnvironments.{ExecutionEnvironmentId}.Packages"
+      },
+      "Services.Management.WUI": {
+        "$ref": "Services.Management.WUI.json#/components/schemas/Services.Management.WUI"
+      },
+      "Interfaces.IP": {
+        "$ref": "Interfaces.IP.json#/components/schemas/Interfaces.IP"
+      },
+      "Interfaces.Physical.Data.USB": {
+        "$ref": "Interfaces.Physical.Data.USB.json#/components/schemas/Interfaces.Physical.Data.USB"
+      },
+      "Interfaces.Physical.Data.USB.Ports": {
+        "$ref": "Interfaces.Physical.Data.USB.Ports.json#/components/schemas/Interfaces.Physical.Data.USB.Ports"
+      },
+      "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices": {
+        "$ref": "Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.json#/components/schemas/Interfaces.Physical.Data.USB.Ports.{PortId}.Devices"
+      },
+      "Interfaces.Physical.Network.LAN.EthernetSwitch.Ports": {
+        "$ref": "Interfaces.Physical.Network.LAN.EthernetSwitch.Ports.json#/components/schemas/Interfaces.Physical.Network.LAN.EthernetSwitch.Ports"
+      },
+      "Interfaces.Physical.Network.LAN.Wi-Fi.ESSs": {
+        "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.json#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.ESSs"
+      },
+      "Interfaces.Physical.Network.LAN.Wi-Fi.Radios": {
+        "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.json#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios"
+      },
+      "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs": {
+        "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.json#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs"
+      },
+      "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations": {
+        "$ref": "Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.json#/components/schemas/Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations"
+      },
+      "Interfaces.Physical.Network.WAN": {
+        "$ref": "Interfaces.Physical.Network.WAN.json#/components/schemas/Interfaces.Physical.Network.WAN"
+      },
+      "Interfaces.Physical.Network.WAN.DOCSIS": {
+        "$ref": "Interfaces.Physical.Network.WAN.DOCSIS.json#/components/schemas/Interfaces.Physical.Network.WAN.DOCSIS"
+      },
+      "Interfaces.Physical.Network.WAN.Ethernet": {
+        "$ref": "Interfaces.Physical.Network.WAN.Ethernet.json#/components/schemas/Interfaces.Physical.Network.WAN.Ethernet"
+      },
+      "Interfaces.Physical.Network.WAN.GPON": {
+        "$ref": "Interfaces.Physical.Network.WAN.GPON.json#/components/schemas/Interfaces.Physical.Network.WAN.GPON"
+      },
+      "Interfaces.Physical.Network.WAN.Mobile": {
+        "$ref": "Interfaces.Physical.Network.WAN.Mobile.json#/components/schemas/Interfaces.Physical.Network.WAN.Mobile"
+      },
+      "Interfaces.Physical.Network.WAN.Mobile.SIM": {
+        "$ref": "Interfaces.Physical.Network.WAN.Mobile.SIM.json#/components/schemas/Interfaces.Physical.Network.WAN.Mobile.SIM"
+      },
+      "Interfaces.Physical.Network.WAN.xDSL": {
+        "$ref": "Interfaces.Physical.Network.WAN.xDSL.json#/components/schemas/Interfaces.Physical.Network.WAN.xDSL"
+      },
+      "Interfaces.Physical.Voice.DECT": {
+        "$ref": "Interfaces.Physical.Voice.DECT.json#/components/schemas/Interfaces.Physical.Voice.DECT"
+      },
+      "Interfaces.Physical.Voice.FXS": {
+        "$ref": "Interfaces.Physical.Voice.FXS.json#/components/schemas/Interfaces.Physical.Voice.FXS"
+      },
+      "System.Buttons": {
+        "$ref": "System.Buttons.json#/components/schemas/System.Buttons"
+      },
+      "System.Firmware": {
+        "$ref": "System.Firmware.json#/components/schemas/System.Firmware"
+      },
+      "System.Firmware.Images": {
+        "$ref": "System.Firmware.Images.json#/components/schemas/System.Firmware.Images"
+      },
+      "System.Hardware": {
+        "$ref": "System.Hardware.json#/components/schemas/System.Hardware"
+      },
+      "System.LEDs": {
+        "$ref": "System.LEDs.json#/components/schemas/System.LEDs"
+      },
+      "System.Log": {
+        "$ref": "System.Log.json#/components/schemas/System.Log"
+      },
+      "System.Log.Events": {
+        "$ref": "System.Log.Events.json#/components/schemas/System.Log.Events"
+      },
+      "System.Resources": {
+        "$ref": "System.Resources.json#/components/schemas/System.Resources"
+      },
+      "System.Settings": {
+        "$ref": "System.Settings.json#/components/schemas/System.Settings"
+      },
+      "System.Settings.Configurations": {
+        "$ref": "System.Settings.Configurations.json#/components/schemas/System.Settings.Configurations"
+      }
+    }
+  },
+  "versions": {
+    "3.8.2.7": {
+      "date": "2018-01-03",
+      "changes": [
+        [
+          1,
+          "Removed the \"Get\" method from the \"System.Log.Events.{EventId}\" object."
+        ],
+        [
+          2,
+          "Fixed invalid JSON event samples."
+        ],
+        [
+          3,
+          "Renamed the following collumns on \"Objects\" sheet.\n- \"Request Body (Sample)\" (previously \"Arguments\").\n- \"Response Body (Sample)\" (previously \"Sample\").\n- \"Method\" (previously \"Procedure\")."
+        ],
+        [
+          4,
+          "Removed \"Status\" field from the request body of the \"Services.Broadband.CommunityWi-Fi\" (Set) object."
+        ],
+        [
+          5,
+          "Added \"Product.Id\" field to the \"Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}\" object (Get/List)."
+        ],
+        [
+          6,
+          "The possible values of the \"ServiceId\" field (\"User.Roles.{RoleId}.ACL.Rules.{RuleId}\" object) have been updated."
+        ],
+        [
+          7,
+          "The possible values of the \"BSSsList\" field (\"Services.Local.Wi-Fi.Scheduler.Timer.Rules.{RuleId}\" object) have been updated."
+        ],
+        [
+          8,
+          "The possible values of the \"ServiceSetId\" field (\"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}\" object) have been updated."
+        ],
+        [
+          9,
+          "The possible values of the \"Volume\" field (\"Services.Local.Media.SMB.Shares.{ShareId}\" object) have been updated."
+        ],
+        [
+          10,
+          "The possible values of the \"RulesList\" field (\"Services.Local.Firewall.Scheduler.Rules.{RuleId}\" object) have been updated."
+        ],
+        [
+          11,
+          "The possible values of the \"Chains\" field (\"Services.Local.Firewall.Profiles.{ProfileId}\" object) have been updated."
+        ],
+        [
+          12,
+          "The possible values of the \"Range.Start\" and \"Range.End\" fields (\"Services.Local.DHCP.Server.v4.Pools.{PoolId}\" object) have been updated."
+        ],
+        [
+          13,
+          "The possible values of the \"Interface\" and \"Name\" fields (\"Services.Local.DHCP.Client.v4.{ClientId}\" object) have been updated."
+        ],
+        [
+          14,
+          "The possible values of the \"Size\" field (\"Services.Diagnostics.Ping.Tests.{TestId}\" object) have been updated."
+        ],
+        [
+          15,
+          "The \"Id\" field has been changed from read only to read/write on the \"Add\"/\"Queue\" method in regards to the following objects:\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.SiteSurveys\n- Services.Diagnostics.NetworkSpeed.Tests\n- Services.Diagnostics.NSLookup.Tests\n- Services.Diagnostics.Ping.Tests\n- Services.Diagnostics.Traceroute.Tests\n- Services.Local.DHCP.Server.v4.Pools.{PoolId}.Rules\n- Services.Local.DNS.Proxy.Domains.{DomainId}.Host\n- Services.Local.DNS.Proxy.Forwarders\n- System.Firmware.Images\n- System.Settings.Configurations"
+        ],
+        [
+          16,
+          "The possibles values of the \"Encryption\" field have been updated on the following objects:\n- Interfaces.Physical.Network.LAN.Wi-Fi.ESSs\n- Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\n- Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}"
+        ],
+        [
+          17,
+          "The possibles values of the \"Encryption\" field have been updated on the following objects:\n- Interfaces.Physical.Network.LAN.Wi-Fi.ESSs\n- Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\n- Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}"
+        ],
+        [
+          18,
+          "The data type of the \"PhysicalInterface\" has been updated to \"List\". In addition the possible values have also been updated on the following objects:\n- Interfaces.IP\n- Interfaces.IP.{InterfaceId}"
+        ],
+        [
+          19,
+          "Added a \"Version\" method to the \"Services.Management.LCM\" object."
+        ],
+        [
+          20,
+          "Fixed the description of the single-instance object methods, which was misleading users to interpret them as multi-instance operations."
+        ],
+        [
+          21,
+          "Added a new \"Data Types\" sheet, which includes information on how to map the HL-API API Data Types to uBus and TR-181."
+        ],
+        [
+          22,
+          "The data types of the following fields have been updated to \"MACAddress\" (previously \"String\"):\n- Services.Local.DHCP.Server.v4.Leases (Add) [MAC]\n- Services.Local.DHCP.Server.v4.Leases.{LeaseId} (Get) [MAC]\n- Services.Local.DHCP.Server.v4.Leases.{LeaseId} (Set) [MAC]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules (Add) [MAC.Destination]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules (Add) [MAC.Source]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Get) [MAC.Destination]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Get) [MAC.Source]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Set) [MAC.Destination]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Set) [MAC.Source]\n- Services.Local.Firewall.NAT.DMZ (Get) [MAC]\n- Services.Local.Firewall.NAT.DMZ (Set) [MAC]\n- Services.Local.HostManager.Hosts.{HostId} (Get) [Address.MAC]\n- Services.Local.QoS.Tagging.Rules (Add) [MAC.Destination]\n- Services.Local.QoS.Tagging.Rules (Add) [MAC.Source]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Get) [MAC.Destination]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Get) [MAC.Source]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Set) [MAC.Destination]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Set) [MAC.Source]\n- Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules (Add) [MAC]\n- Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules.{RuleId} (Get) [MAC]\n- Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules.{RuleId} (Set) [MAC]\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId} (Get) [MAC.Host]\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId} (Get) [MAC.Transmitter]\n- System.Hardware (Get) [MAC]"
+        ],
+        [
+          23,
+          "The data type of the following fields has been updated to \"IPv4Address\" (previously \"String\"):\n- Services.Local.DHCP.Server.v4.Leases (Add) [IP]\n- Services.Local.DHCP.Server.v4.Leases.{LeaseId} (Get) [IP]\n- Services.Local.DHCP.Server.v4.Leases.{LeaseId} (Set) [IP]\n- Services.Local.Firewall.NAT.Rules (Add) [IP]\n- Services.Local.Firewall.NAT.Rules.{RuleId} (Get) [IP]\n- Services.Local.Firewall.NAT.Rules.{RuleId} (Set) [IP]\n- Services.Local.HostManager.Hosts.{HostId} (Get) [Address.IP.v4]\n- Interfaces.IP (Add) [IPv4.Address]\n- Interfaces.IP (Add) [IPv4.Broadcast]\n- Interfaces.IP (Add) [IPv4.NetworkMask]\n- Interfaces.IP.{InterfaceId} (Get) [IPv4.Address]\n- Interfaces.IP.{InterfaceId} (Get) [IPv4.Broadcast]\n- Interfaces.IP.{InterfaceId} (Get) [IPv4.NetworkMask]\n- Interfaces.IP.{InterfaceId} (Set) [IPv4.Address]\n- Interfaces.IP.{InterfaceId} (Set) [IPv4.Broadcast]\n- Interfaces.IP.{InterfaceId} (Set) [IPv4.NetworkMask]"
+        ],
+        [
+          24,
+          "The data types of the following fields have been updated to \"IPv6Address\" (previously \"String\"):\n- Services.Local.HostManager.Hosts.{HostId} (Get) [Address.IP.v6.Global]\n- Services.Local.HostManager.Hosts.{HostId} (Get) [Address.IP.v6.LinkLocal]\n- Interfaces.IP (Add) [IPv6.GlobalAddress]\n- Interfaces.IP (Add) [IPv6.LinkLocalAddress]\n- Interfaces.IP.{InterfaceId} (Get) [IPv6.GlobalAddress]\n- Interfaces.IP.{InterfaceId} (Get) [IPv6.LinkLocalAddress]\n- Interfaces.IP.{InterfaceId} (Set) [IPv6.GlobalAddress]\n- Interfaces.IP.{InterfaceId} (Set) [IPv6.LinkLocalAddress]"
+        ],
+        [
+          25,
+          "The data types of the following fields have been updated to \"IPv6Prefix\" (previously \"String\"):\n- Interfaces.IP.{InterfaceId} (Get) [IPv6.Prefix]"
+        ],
+        [
+          26,
+          "The data types of the following fields have been updated to \"IP\" (previously \"String\"):\n- Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts (Add) [IP]\n- Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts.{HostId} (Get) [IP]\n- Services.Local.DNS.Proxy.Domains.{DomainId}.Hosts.{HostId} (Set) [IP]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules (Add) [IP.Destination]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules (Add) [IP.Source]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Get) [IP.Destination]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Get) [IP.Source]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Set) [IP.Destination]\n- Services.Local.Firewall.Filter.Chains.{ChainId}.Rules.{RuleId} (Set) [IP.Source]\n- Services.Local.Firewall.IDS.Filters.{FilterId}.Clients (Add) [IP]\n- Services.Local.Firewall.IDS.Filters.{FilterId}.Clients.{ClientId} (Get) [IP]\n- Services.Local.QoS.Tagging.Rules (Add) [IP.Destination]\n- Services.Local.QoS.Tagging.Rules (Add) [IP.Source]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Get) [IP.Destination]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Get) [IP.Source]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Set) [IP.Destination]\n- Services.Local.QoS.Tagging.Rules.{RuleId} (Set) [IP.Source]\n- Services.Management.RemoteAdapter.Monitor.Filters.IP (Get) [IP]\n- Services.Management.RemoteAdapter.Monitor.Filters.IP (Set) [IP]\n- Services.Management.RemoteAdapter.Sessions.{SessionId} (Get) (Client.IP]"
+        ],
+        [
+          27,
+          "The data types of the following fields have been updated to \"Timestamp\" (previously \"String\"):\n- User.Certificates.{CertificateId} (Get) [Timestamp.Installed]\n- User.Certificates.{CertificateId} (Get) [Timestamp.LastUsed]\n- User.Certificates.{CertificateId} (Set) [Timestamp.LastUsed]\n- Services.Diagnostics.NetworkSpeed.Tests.{TestId} (Get) [Timestamp]\n- Services.Diagnostics.NSLookup.Tests.{TestId} (Get) [Timestamp]\n- Services.Diagnostics.Ping.Tests.{TestId} (Get) [Timestamp]\n- Services.Diagnostics.Traceroute.Tests.{TestId} (Get) [Timestamp]\n- Services.Diagnostics.Wi-Fi.SiteSurveys.{SurveyId} (Get) [Timestamp]\n- Services.Local.Firewall.IDS.Filters.{FilterId}.Clients.{ClientId} (Get) [Timestamp]\n- Services.Local.HostManager.Hosts.{HostId} (Get) [Status.Time.Stamp]\n- Services.Management.LCM.ExecutionEnvironments.{ExecutionEnvironmentId}.Packages.{PackageId} (Get) [Install.Timestamp]\n- Services.Management.RemoteAdapter.Sessions.{SessionId} (Get) [Status.Timestamp]\n- System.Firmware (Get) [InstallTimestamp]\n- System.Firmware.Images.{ImageId} (Get) [DownloadTimestamp]\n- System.Settings.Configurations.{ConfigurationId} (Get) [Timestamp]"
+        ],
+        [
+          28,
+          "Added new \"Package\" column, which groups objects into services/deployable units."
+        ]
+      ]
+    },
+    "3.8.1": {
+      "date": "2018-11-15",
+      "changes": [
+        [
+          1,
+          "Updated ToC sheet with default instances for the \"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}\" object."
+        ],
+        [
+          2,
+          "Added LCM service under \"Services.Management.LCM\" object namespace."
+        ],
+        [
+          3,
+          "Default hashing algorithm has been updated to SHA512 on \"User.Accounts.{AccountId}\" method \"Add\"."
+        ],
+        [
+          4,
+          "Updated the descriptions of the \"ENABLED\", \"DISABLED\" and \"MODIFIED\" events."
+        ]
+      ]
+    },
+    "3.8": {
+      "date": "2018-08-28",
+      "changes": [
+        [
+          1,
+          "The response codes have been renamed: \n- \"INVALID_OBJECT\" -> \"OBJECT_NOT_FOUND\"\n- \"INVALID_COMMAND\" -> \"METHOD_NOT_FOUND\"\n- \"MISSING_REQUIRED_ARGUMENT\" -> \"ARGUMENT_REQUIRED_MISSING\"\n- \"TIMEOUT\" -> \"OPERATION_TIMEOUT\"\n- \"PERMISSION_DENIED -> \"OPERATION_PERMISSION_DENIED\""
+        ],
+        [
+          2,
+          "New responde code has been added \"OPERATION_ERROR\"."
+        ],
+        [
+          3,
+          "The \"INVALID_ARGUMENT\" response code has been split into:\n- \"ARGUMENT_NOT_FOUND\"\n- \"ARGUMENT_DATA_TYPE_MISMATCH\""
+        ],
+        [
+          4,
+          "Return codes no longer have ids, only names."
+        ],
+        [
+          5,
+          "Added collumn \"Raised By\" on the return codes which depicts at which layer to implement the code (e.g.: \"Micro-service\", \"IPC Bus\", \"Remote Protocol Adapter\")."
+        ],
+        [
+          6,
+          "Fixed typo with all events with the \"SUCCESSFULL\" keywoard. These have been renamed to \"SUCCESSFUL\"."
+        ],
+        [
+          7,
+          "Renamed the \"Brute-Force Prevention Mechanism\" to \"Intrusion Detection System\" which affected the following objects:\n- \"Services.Local.Firewall.IDS\" (previously \"Services.Local.Firewall.BFP\")\n- \"Services.Local.Firewall.IDS.Filters\" (previously \"Services.Local.Firewall.BFP.Filters\")\n- \"Services.Local.Firewall.IDS.Filters.{FilterId}\" (previously \"Services.Local.Firewall.BFP.Filters.{FilterId}\")\n- \"Services.Local.Firewall.IDS.Filters.{FilterId}.Clients\" (previously \"Services.Local.Firewall.BFP.Filters.{FilterId}.Clients\")\n- \"Services.Local.Firewall.IDS.Filters.{FilterId}.Clients.{ClientId}\" (previously \"Services.Local.Firewall.BFP.Filters.{FilterId}.Clients.{ClientId}\")."
+        ],
+        [
+          8,
+          "Updated the data-model of the \"User.Certificates\" services and included the following events:\n- \"USER_CERTIFICATES_ADDED\"\n- \"USER_CERTIFICATES_DELETED\"\n- \"USER_CERTIFICATES_REVOKED\"\n- \"USER_CERTIFICATES_ENABLED\"\n- \"USER_CERTIFICATES_DISABLED\"\n- \"USER_CERTIFICATES_EXPIRED\""
+        ],
+        [
+          9,
+          "Added the following events to object \"User.Accounts\":\n- \"USER_ACCOUNTS_ENABLED\"\n- \"USER_ACCOUNTS_DISABLED\""
+        ],
+        [
+          10,
+          "Performing the following changes to the \"User.Account.{AccountId}\" object:\n- Field \"Name\" is now used as an alias (was previously the username).\n- New field \"Username\" to be used as the user name of the account."
+        ],
+        [
+          11,
+          "Performed the following changes on SIP Extensions, namely:\n- Method \"Add\" was introduced on object \"Services.Broadband.Voice.SIP.Client.Extensions\".\n- Method \"Delete\" was added to object \"Services.Broadband.Voice.SIP.Client.Extensions.{ExtensionId}\".\n- Field \"Authentication\" was introduced.\n- Updated the descriptions resource name to \"SIP Client Extension\" (was previously incorrectly set to \"SIP Client Codec\")."
+        ],
+        [
+          12,
+          "Now possible to create and update accounts through hashes in addition to passwords:\n- The \"Hash.Fingerprint\" and \"Hash.Type\" fields are now also available on the \"Set\" and \"Add\" methods on \"User.Accounts.{AccountId}\" object.\n- The \"Password\" field on the \"Add\" method (\"User.Accounts\" object) is now \"Optional\".\n- Added new \"Hash.Salt\" field to add some security to smaller passwords."
+        ],
+        [
+          13,
+          "Added support for User Certificates under the following objects:\n- \"User.Certificates\"\n- \"User.Certificates.{CertificateId}\""
+        ],
+        [
+          14,
+          "Added \"Locale\" field to the following user management objects:\n- \"User.Accounts\"\n- \"User.Accounts.{AccountId}\"\n- \"User.Certificates\"\n- \"User.Certificates.{CertificateId}\""
+        ],
+        [
+          15,
+          "The \"User.Profile\" object has been updated accordingly:\n- The \"Locale\" parameter is now described according to  ISO-639-1  language code and ISO-3166-Alpha-2 country code.\n- Field \"ModemInstallationCode\" has been removed."
+        ],
+        [
+          16,
+          "New method \"Authenticate\" has been added to the \"User.Accounts\" object."
+        ]
+      ]
+    },
+    "3.7": {
+      "date": "2018-06-04",
+      "changes": [
+        [
+          1,
+          "Added supported for a Brute-Force Prevention (BFP) mechanism under the following objects:\n- \"Services.Local.Firewall.BFP\"\n- \"Services.Local.Firewall.BFP.Filters\"\n- \"Services.Local.Firewall.BFP.Filters.{FilterId}\"\n- \"Services.Local.Firewall.BFP.Filters.{FilterId}.Clients\"\n- \"Services.Local.Firewall.BFP.Filters.{FilterId}.Clients.{ClientId}\""
+        ],
+        [
+          2,
+          "Removed the MobileAgent service as specified by the following objects:\n- \"Services.Management.MobileAgent\"\n- \"Services.Management.MobileAgent.Certificate\"\n- \"Services.Management.MobileAgent.Client.Certificates\"\n- \"Services.Management.MobileAgent.Client.Certificates.{CertificateId}\""
+        ],
+        [
+          3,
+          "Added the following authentication events to the \"Services.Management.CLI\" object:\n- \"CLIENT_AUTHENTICATION_SUCCESSFULL\"\n- \"CLIENT_AUTHENTICATION_FAILED\""
+        ],
+        [
+          4,
+          "Added the folloowing authentication events to the \"Services.Management.CWMP\" object:\n- \"CLIENT_AUTHENTICATION_SUCCESSFULL\"\n- \"CLIENT_AUTHENTICATION_FAILED\""
+        ],
+        [
+          5,
+          "Added the folloowing authentication events to the \"Services.Management.WUI\" object:\n- \"CLIENT_AUTHENTICATION_SUCCESSFULL\"\n- \"CLIENT_AUTHENTICATION_FAILED\""
+        ]
+      ]
+    },
+    "3.6.1": {
+      "date": "2018-05-07",
+      "changes": [
+        [
+          1,
+          "The API contained some descriptions with empty cells which have been fixed."
+        ]
+      ]
+    },
+    "3.6": {
+      "date": "2018-05-02",
+      "changes": [
+        [
+          1,
+          "Some fields flag as \"Required\" no longer have a \"Default Value\". This is only applicable to optional fields."
+        ],
+        [
+          2,
+          "The \"System.Firmware.Images\" object has been updated to support \"Add\"ing a new Firmware from the Filesystem.\n- Possible values for the \"Source.Protocol\" field have been updated to \"HTTP\", \"HTTPS\", \"FTP\", \"FS\" (look internaly on the File System).\n- Field \"Source.Port\" is now optional with the following default values: 80 (HTTP), 443 (HTTPS), 21 (FTP) and Not Applicable (FS)."
+        ],
+        [
+          3,
+          "Updated ToC with MobileApp User.Roles instance Ids."
+        ],
+        [
+          4,
+          "Removed extra spaces between each API version on the Change-Log sheet in order to make it parseable."
+        ],
+        [
+          5,
+          "Included \"Layer\" column on the \"ToC\" field for sorting purposes."
+        ],
+        [
+          6,
+          "Events for object \"Services.Diagnostics\" have been split into the following objects:\n- \"Services.Diagnostics.NetworkSpeed.Tests\"\n- \"Services.Diagnostics.NSLookup.Tests\"\n- \"Services.Diagnostics.Ping.Tests\"\n- \"Services.Diagnostics.Traceroute.Tests\""
+        ],
+        [
+          7,
+          "Events for object \"Services.Local.Wi-Fi.Scheduler\" have been split into objects:\n- \"Services.Local.Wi-Fi.Scheduler.ACL\"\n- \"Services.Local.Wi-Fi.Scheduler.Timer\""
+        ],
+        [
+          8,
+          "Added master toggle on/off switch on object \"Services.Local.Wi-Fi.Scheduler.Timer\"."
+        ],
+        [
+          9,
+          "Moved ethernet switch events to object \"Interfaces.Physical.Network.LAN.EthernetSwitch.Ports\"."
+        ],
+        [
+          10,
+          "Moved object \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.SiteSurveys\" to \"Services.Diagnostics.Wi-Fi.SiteSurveys\"."
+        ],
+        [
+          11,
+          "Events for object \"Interfaces.Physical.Network.LAN.Wi-Fi\" have been split into different objects:\n- \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios\"\n- \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs\"\n- \"Services.Local.Wi-Fi.SiteSurveys\""
+        ]
+      ]
+    },
+    "3.5": {
+      "date": "2018-04-13",
+      "changes": [
+        [
+          1,
+          "Updated the description of the possible values in regards to the \"Status\" field on \"Services.Local.DNS.Dynamic\"."
+        ],
+        [
+          2,
+          "Updated list of recommended object names (ToC)."
+        ],
+        [
+          3,
+          "Updated the possible values of the \"Colour\" field on object \"System.LEDs.{LEDId}\"."
+        ],
+        [
+          4,
+          "Added new error code \"ARGUMENT_VALUE_NOT_SUPPORTED\"."
+        ],
+        [
+          5,
+          "Object \"Services.Broadband.Voice\" has been added with methods \"Get\" and \"Set\"."
+        ],
+        [
+          6,
+          "It is not longer possible to modify the \"Id\" field on the \"Services.Broadband.{BroadbandId}\" service using the \"Set\" method."
+        ],
+        [
+          7,
+          "The \"Id\" field of some objects was incorrectly tagged as \"Integer\". All \"Id\" fields are now set as \"String\"."
+        ],
+        [
+          8,
+          "Object \"Services.Diagnostics.NetworkSpeed.Tests.{TestId}\" was updated with new fields:\n- \"Protocol.IP\".\n- \"Traffic.DSCP\".\nExisting fields renamed to:\n- \"Protocol.Transport\" (previously \"TransportProtocol\").\n- \"Traffic.Direction\" (previously \"Direction\").\n- \"Traffic.Streams\" (previously \"Streams\")."
+        ],
+        [
+          9,
+          "An \"Ongoing\" state has been added to the possible values of the \"Status\" field on the diagnostics tests which include the following objects:\n- Services.Diagnostics.NetworkSpeed.Tests.{TestId}\n- Services.Diagnostics.NSLookup.Tests.{TestId}\n- Services.Diagnostics.Ping.Tests.{TestId}\n- Services.Diagnostics.Traceroute.Tests.{TestId}"
+        ],
+        [
+          10,
+          "Updated the description of the \"Timestamp\" field on the diagnostics tests:\n- Services.Diagnostics.NetworkSpeed.Tests.{TestId}\n- Services.Diagnostics.NSLookup.Tests.{TestId}\n- Services.Diagnostics.Ping.Tests.{TestId}\n- Services.Diagnostics.Traceroute.Tests.{TestId}"
+        ],
+        [
+          11,
+          "The Timestamp of the following formats has been changed to UTC 8601 (yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm:\n- Services.Diagnostics.NetworkSpeed.Tests.{TestId}: \"Timestamp\"\n- Services.Diagnostics.NSLookup.Tests.{TestId}: \"Timestamp\"\n- Services.Diagnostics.Ping.Tests.{TestId}: \"Timestamp\"\n- Services.Diagnostics.Traceroute.Tests.{TestId}: \"Timestamp\"\n- Services.Management.MobileAgent.Client.Certificates.{CertificateId}: \"Timestamp.Installed\"\n- Services.Management.MobileAgent.Client.Certificates.{CertificateId}: \"Timestamp.LastUsed\"\n- Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.SiteSurveys.{SiteSurvey}: \"Timestamp\"\n- System.Firmware: \"InstallTimestamp\"\n- System.Firmware.Images.{ImageId}: \"DownloadTimestamp\"\n- System.Log.Events.{EventId}: \"Timestamp\"\n- System.Settings.Configurations.{ConfigurationId}: \"Timestamp\"\n- Services.Local.HostManager.Hosts.{HostId}: \"Status.Time.Stamp\""
+        ],
+        [
+          12,
+          "The Dynamic DNS API has been reshaped. Each DNS Provider is now a separate client, meaning that it is possible to run various Dynamic DNS services simultaenous (e.g.: \"DuckDNS\" and \"No-IP\").\n\nEach Dynamic DNS Client now has a list of Hostnames:\n- Services.Local.DNS.Dynamic.Providers.{ProviderId}.Hostnames.{HostnameId}\n\nIt is possible to configure multiple hosts.\n\nThe list of events was also updated to reflect the new structure:\n- SERVICES_LOCAL_DNS_DYNAMIC_ENABLED\n- SERVICES_LOCAL_DNS_DYNAMIC_DISABLED\n- SERVICES_LOCAL_DNS_DYNAMIC_PROVIDER_ENABLED\n- SERVICES_LOCAL_DNS_DYNAMIC_PROVIDER_DISABLED\n- SERVICES_LOCAL_DNS_DYNAMIC_PROVIDER_MODIFIED\n- SERVICES_LOCAL_DNS_DYNAMIC_HOSTNAME_ADDED\n- SERVICES_LOCAL_DNS_DYNAMIC_HOSTNAME_MODIFIED\n- SERVICES_LOCAL_DNS_DYNAMIC_HOSTNAME_DELETED\n- SERVICES_LOCAL_DNS_DYNAMIC_HOSTNAME_UPDATE_PERIODIC\n- SERVICES_LOCAL_DNS_DYNAMIC_HOSTNAME_UPDATE_IP_CHANGE\n- SERVICES_LOCAL_DNS_DYNAMIC_HOSTNAME_UPDATE_FAILED"
+        ]
+      ]
+    },
+    "3.4.1": {
+      "date": "2018-03-20",
+      "changes": [
+        [
+          1,
+          "Object \"Services.Local.HostManager\" procedure \"Get\":\n- Fixed the sample and added description for the missing fields."
+        ],
+        [
+          2,
+          "Updated the \"Required\" and \"Default Value\"  columns whose fields were not applicable (output fields) to \"-\" in order to make it consistent (was previously a mix of \"-\" and \"N/A\")."
+        ],
+        [
+          3,
+          "Updated the \"Default Value\" fields which were missing."
+        ],
+        [
+          4,
+          "Fixed the fields of the object \"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules.{RuleId}\" for the \"Get\" and \"Set\" methods which were incorrectly described on \"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules\"."
+        ],
+        [
+          5,
+          "Fixed the description of some fields on \"Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}\" which were not matching the sample."
+        ]
+      ]
+    },
+    "3.4": {
+      "date": "2018-03-19",
+      "changes": [
+        [
+          1,
+          "Object \"Services.Local.HostManager.Hosts.{HostId}\":\n- The possible values of the \"Status.State\" field on object have been updated to:\n\"Online\" (connected to the interface with internet connectivity).\n\"Pending\" (temporarily blocked from Internet access, waiting for user approval).\n\"Blocked\" (device is blocked from Internet access).\n\"Offline\" (not connected)."
+        ],
+        [
+          2,
+          "Object \"Services.Local.DNS.Dynamic\":\n- The possible values of the \"Status\" field on object  have been updated to:\n\"Synced\" (the client has performed an update request since the last IP address change).\n\"Pending\" (the IP has changed, but the client has not yet updated the server).\n\"Disabled\" (the client is disabled).\n\"Unauthorized\" (client is able to reach the server but credentials were refused).\n\"Unreachable\" (client is not able to reach the server).\n\"Error\" (generic error used in other circumstances such as invalid configuration)."
+        ],
+        [
+          3,
+          "Object \"Services.Local.Wi-Fi.Scheduler.ACL\":\n- The possible values of the \"Status\" field on object  have been updated to:\n\"Active\" (enabled and schedule is active).\n\"Enabled\" (enabled but no schedule/rule is currently active).\n\"Disabled\" (service is disabled).\n\"Error\" (enabled but service cannot run due to configuration error for example)."
+        ],
+        [
+          4,
+          "Object \"Services.Local.Wi-Fi.WPS\"\n- The \"Timer\" field on  is no longer writable."
+        ],
+        [
+          5,
+          "Object \"Interfaces.IP.{InterfaceId}\":\n- The possible values of the \"Status\" field on the  have been updated to:\n\"Connected\", enabled and has connectivity/IP address.\n\"Disconnected\", enabled but has no connectivity/IP address.\n\"Disabled\", disabled."
+        ],
+        [
+          6,
+          "Object \"Interfaces.Physical.Data.USB\":\n- The possible values of the \"Status\" field have been updated to:\n\"Disabled\", the interface is disabled.\n\"Connected\", the interface is enabled and there is one device connected.\n\"Disconnected\", the interface is enabled but there are no devices connected.\n\n- The \"Type\" and \"Version\" fields on object are no longer available for \"Set\"."
+        ],
+        [
+          7,
+          "Object \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.SiteSurveys.{SiteSurvey}\":\n- The sample request of the \"List\" operation was incorrect and has been fixed."
+        ],
+        [
+          8,
+          "Object \"Interfaces.Physical.Network.WAN.Mobile.SIM\":\n- \"IMEI\" field has been removed.\n- \"IMSI\" field has been added as read-only parameter."
+        ],
+        [
+          9,
+          "Object \"Interfaces.Physical.Network.LAN.EthernetSwitch.Ports.{PortId}\":\n- The sample of the \"Get\" command has been updated to make it consistent with the possible values described on the fields sheet."
+        ],
+        [
+          10,
+          "Object \"Services.Local.DHCP.Client.{ClientId}\":\n- New object with following procedures: \"Add\", \"List\", \"Delete\", \"Get\", \"Set\" and \"ResetStatistics\".\n- Associated events also includded."
+        ],
+        [
+          11,
+          "Object \"Services.Local.PPP.Client.{ClientId}\":\n- New object with following procedures \"Add\", \"List\", \"Delete\", \"Get\", \"Set\".\n- Associated events also includded."
+        ]
+      ]
+    },
+    "3.3": {
+      "date": "2018-02-26",
+      "changes": [
+        [
+          1,
+          "The field \"Username\" on the \"User.Accounts.{AccountId}\" object was renamed to \"Name\" to make it consistent with other objects."
+        ],
+        [
+          2,
+          "The fields on object \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}\" have been updated:\n- \"Capabilities.Beamforming\" new."
+        ],
+        [
+          3,
+          "The possible values of the \"Status.State\" field on object \"Services.Local.HostManager.Hosts.{HostId}\" were updated to \"Connected\" and \"Disconnected\" (were previously \"Active\", \"Disabled\" or \"Error\")."
+        ],
+        [
+          4,
+          "The \"Password\" field was replaced by \"Hash.Fingerprint\" and \"Hash.Type\" on the following objects:\n- Services.Broadband.Voice.SIP.Client.Extensions.{ExtensionId}\n- Services.Local.DNS.Dynamic.Providers.{ProviderId}\n- Services.Local.VPN.IPSec.Client\n- Services.Local.VPN.L2TP.Client\n- Services.Local.VPN.OpenVPN.Client\n- Services.Local.VPN.PPTP.Client\n- System.Firmware.Images.{ImageId}"
+        ],
+        [
+          5,
+          "The field \"ModemInstallationCode\" (MIC) was to \"User.Profile\" (was previously on \"Services.Management.CWMP.ACS\")."
+        ]
+      ]
+    },
+    "3.2.34": {
+      "date": "2018-02-09",
+      "changes": [
+        [
+          1,
+          "The fields on \"Services.Local.HostManager.Hosts.{HostId}\" have been updated.\n- \"Address.IP.v4\" renamed (was previously \"Address.IP\").\n- \"Address.IP.v6.LinkLocal\" new.\n- \"Address.IP.v6.Global\" new."
+        ],
+        [
+          2,
+          "The fields on \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}\" have been updated.\n- \"MAC.Host\" renamed (was previously \"MAC\").\n- \"MAC.Transmitter\" added."
+        ],
+        [
+          3,
+          "The fields on \"Services.Diagnostics.NetworkSpeed.Tests\" Queue have been updated.\n- \"Direction\" is now required (was previously optional with \"Download\" as default)."
+        ],
+        [
+          4,
+          "The Wi-Fi MAC Address Filtering service (\"Services.Local.Wi-Fi.ACL\") has been restructured and some fields have been added. It now has profiles and rules (was previously just rules).\n- New object \"Services.Local.Wi-Fi.ACL.Profiles\".\n- New object \"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}\".\n- Renamed object \"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules\", (was previously \"Services.Local.Wi-Fi.ACL.Rules\").\n- Renamed object \"Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Rules.{RuleId}\", (was previously \"Services.Local.Wi-Fi.ACL.Rules.{RuleId}\").\nThe following events were also updated:\n- Removed \"SERVICES_LOCAL_WI-FI_ACL_STATION_ADDED\".\n- Removed \"SERVICES_LOCAL_WI-FI_ACL_STATION_DELETED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_PROFILE_DELETED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_PROFILE_MODIFIED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_RULE_ADDED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_RULE_DELETED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_RULE_MODIFIED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_STATION_ALLOWED\".\n- Added \"SERVICES_LOCAL_WI-FI_ACL_STATION_BLOCKED\"."
+        ],
+        [
+          5,
+          "The default value of all optional fields on the \"Set\" procedure/command have been updated to \"the existing configuration\" to make it clear that absent/non-specified fields will remain unchanged."
+        ],
+        [
+          6,
+          "Wi-Fi Extended Service Sets (ESSs) objects have been renamed:\n- \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs\" (was previously \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.ESSs\").\n- \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSId}\" (was previously \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.ESSs.{ESSId}\")."
+        ]
+      ]
+    },
+    "3.2.33": {
+      "date": "2018-02-07",
+      "changes": [
+        [
+          1,
+          "The USB interface specification has been added with the following object list:\n- Interfaces.Physical.Data.USB\n- Interfaces.Physical.Data.USB.Ports\n- Interfaces.Physical.Data.USB.Ports.{PortId}\n- Interfaces.Physical.Data.USB.Ports.{PortId}.Devices\n- Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}\nand corresponding events:\n- INTERFACES_PHYSICAL_DATA_USB_DISABLED\n- INTERFACES_PHYSICAL_DATA_USB_ENABLED\n- INTERFACES_PHYSICAL_DATA_USB_MODIFIED\n- INTERFACES_PHYSICAL_DATA_USB_PORT_DISABLED\n- INTERFACES_PHYSICAL_DATA_USB_PORT_ENABLED\n- INTERFACES_PHYSICAL_DATA_USB_DEVICE_CONNECTED\n- INTERFACES_PHYSICAL_DATA_USB_DEVICE_DISCONNECTED"
+        ],
+        [
+          2,
+          "All fields on \"Services.Diagnostics.NetworkSpeed.Tests\" Queue operation are now optional, hence it is now possible to queue a speed test without specifying a server."
+        ],
+        [
+          3,
+          "New return code was added \"OPERATION_ILLEGAL\"."
+        ],
+        [
+          4,
+          "Added \"Status.Beamforming\" nested field to the \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}.Stations.{StationId}\" object."
+        ],
+        [
+          5,
+          "Added th Boost Device specification under \"Services.Local.QoS.Prioritization\" object and corresponding events:\n- SERVICES_LOCAL_QOS_PRIORITIZATION_DISABLED\n- SERVICES_LOCAL_QOS_PRIORITIZATION_ENABLED\n- SERVICES_LOCAL_QOS_PRIORITIZATION_MODIFIED\n- SERVICES_LOCAL_QOS_PRIORITIZATION_EXPIRED\n- SERVICES_LOCAL_QOS_PRIORITIZATION_ABOUT_TO_EXPIRE"
+        ],
+        [
+          6,
+          "Updated fields on \"Services.Local.HostManager.Hosts.{HostId}\" object:\n- New \"Status.Time.Idle\".\n- New \"Status.Time.Stamp\".\n- Moved \"Status.Time.Idle\" (was previously \"Status.Idle\")."
+        ]
+      ]
+    },
+    "3.2.32": {
+      "date": "2018-02-02",
+      "changes": [
+        [
+          1,
+          "The HostManager service has been added along with the following object list:\n- \"Services.Local.HostManager\"\n- \"Services.Local.HostManager.Hosts\"\n- \"Services.Local.HostManager.Hosts.{HostId}\"\nand corresponding events:\n- SERVICES_LOCAL_HOSTMANAGER_ENABLED\n- SERVICES_LOCAL_HOSTMANAGER_DISABLED\n- SERVICES_LOCAL_HOSTMANAGER_MODIFIED\n- SERVICES_LOCAL_HOSTMANAGER_HOST_ADDED\n- SERVICES_LOCAL_HOSTMANAGER_HOST_DELETED\n- SERVICES_LOCAL_HOSTMANAGER_HOST_MODIFIED"
+        ]
+      ]
+    },
+    "3.2.31": {
+      "date": "2018-01-30",
+      "changes": [
+        [
+          1,
+          "The field \"BSSId\" on object \"Services.Local.Wi-Fi.Scheduler.Timer.Rules.{RuleId}\" has been changed to \"BSSsList\" to be able to reuse one rule to multiple BSSs."
+        ],
+        [
+          2,
+          "New event named \"SERVICES_LOCAL_WI-FI_SCHEDULER_TIMER_RULE_ABOUT_TO_EXPIRE\" added to object \"Services.Local.Wi-Fi.Scheduler\"."
+        ],
+        [
+          3,
+          "New field named \"ExpireTimer\" was added to object \"Services.Local.Wi-Fi.Scheduler.Timer.Rules.{RuleId}\" to be able to customize the event trigger time."
+        ],
+        [
+          4,
+          "Object \"Services.Local.Wi-Fi.ACL.Stations.{StationId}\" was renamed to \"Services.Local.Wi-Fi.ACL.Rules.{RuleId}\"."
+        ],
+        [
+          5,
+          "New fields (\"Id\", \"Name\", \"Enabled\", \"BSSsList\", \"Statistics\") were added to \"Services.Local.Wi-Fi.ACL.Rules.{RuleId}\" (was previously just \"MAC\")."
+        ],
+        [
+          6,
+          "The \"ClearStatistics\" procedure was added to \"Services.Local.Wi-Fi.ACL.Rules.{RuleId}\"."
+        ]
+      ]
+    },
+    "3.2.29": {
+      "date": "2018-01-26",
+      "changes": [
+        [
+          1,
+          "\"Id\" field on objects \"Services.Local.Firewall.Scheduler.Rules\", \"Services.Local.Firewall.Scheduler.Rules.{RuleId}\", \"Services.Local.Wi-Fi.Scheduler.Rules\" and \"Services.Local.Wi-Fi.Scheduler.Rules.{RuleId}\" data types have been changed to \"String\" (was \"Integer\" previously)."
+        ],
+        [
+          2,
+          "The \"Time.Start\" and \"Time.End\" fields samples on objects \"Services.Local.Firewall.Scheduler.Rules\", \"Services.Local.Firewall.Scheduler.Rules.{RuleId}\", \"Services.Local.Wi-Fi.Scheduler.Rules\" and \"Services.Local.Wi-Fi.Scheduler.Rules.{RuleId}\" were inconsistent with the descriptions, hence have been updated to reflect the \"hh:mm\" (e.g.: 17:00) time format."
+        ],
+        [
+          3,
+          "Even though \"24:00\" and \"00:00\" in practice represent the same time-instant, from a conceptual point of view they represent different instants (start of day vs. end). Given this, the \"Time.End\" field on objects \"Services.Local.Firewall.Scheduler.Rules\", \"Services.Local.Firewall.Scheduler.Rules.{RuleId}\", \"Services.Local.Wi-Fi.Scheduler.Rules\" and \"Services.Local.Wi-Fi.Scheduler.Rules.{RuleId}\" has been updated to range from \"00:01\" - \"24:00\"."
+        ],
+        [
+          4,
+          "The \"OPERATION_ALREADY_IN_PROGRESS\" return code has been added. This may be usefull for example when the user attempts to trigger WPS Pairing when it is already in progress."
+        ],
+        [
+          5,
+          "Added events to the \"Services.Management.CWMP\" object."
+        ],
+        [
+          6,
+          "Added \"SERVICES_LOCAL_WI-FI_WPS_PAIRING_STOPPED\" event."
+        ],
+        [
+          7,
+          "Changed \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.Band\" field to String, was previously integer."
+        ],
+        [
+          8,
+          "Added new objects \"Services.Local.Wi-Fi.Scheduler.Timer.Rules\" and \"Services.Local.Wi-Fi.Scheduler.Timer.Rules.{RuleId}\" with corresponding CRUD methods and events."
+        ],
+        [
+          9,
+          "Wi-Fi Scheduler object path has been updated to \"Services.Local.Wi-Fi.Scheduler.ACL\" (was previously \"Services.Local.Wi-Fi.Scheduler\")."
+        ]
+      ]
+    },
+    "3.2.28": {
+      "date": "2017-12-12",
+      "changes": [
+        [
+          1,
+          "Added fields sheet with detailed information (e.g.: Description, Data Type, Default Value) in regards to objects' fields."
+        ],
+        [
+          2,
+          "Removed some read-only fields from input commands."
+        ]
+      ]
+    },
+    "3.2.21": {
+      "date": "2017-12-07",
+      "changes": [
+        [
+          1,
+          "Added events."
+        ],
+        [
+          2,
+          "Added errors."
+        ],
+        [
+          3,
+          "Added object call samples with \"body\" and \"headers\"."
+        ],
+        [
+          4,
+          "Replaced \"User.Accounts\" password field with a \"Hash.Fingerprint\" and \"Hash.Type\" in order to increase security."
+        ],
+        [
+          5,
+          "Added \"Locale\" field to the \"User.Profile\" object."
+        ],
+        [
+          6,
+          "Added \"Services.Management.WUI\" object + events."
+        ],
+        [
+          7,
+          "Added \"Services.Management.CLI\" object + events."
+        ],
+        [
+          8,
+          "Added \"Services.Local.Firewall.Scheduler\" object to allow binding rules to a Time-Frame."
+        ],
+        [
+          9,
+          "Removed \"Host\" field from \"Services.Local.Wi-Fi.Scheduler.Rules.{RuleId}\". This feature was moved to the Firewall Scheduler."
+        ],
+        [
+          10,
+          "Added \"MISSING_REQUIRED_ARGUMENT\" error as this may be necessary to some operations as the MobileApp certificate instalation process which may or may not require a password."
+        ],
+        [
+          11,
+          "Added \"Activate\" command to the \"User.Profile\" object to allow MIC Code activation. Its status can be fetched by the \"Status\" attribute."
+        ],
+        [
+          12,
+          "Added the \"Carrier\" field on the \"System.Hardware\" object to ease the validation/identification of Vodafone Gateway. This is important as the API is now part of prpl and might be adopted by other operators."
+        ],
+        [
+          13,
+          "Updated the \"Services.Management.CWMP.ACS\" object to allow inputing the username/password as plain text or as MIC code. Also added support to fetch the password hash and hashtype."
+        ],
+        [
+          14,
+          "Now possible to \"Unlock\" the \"Interfaces.Physical.Network.WAN.Mobile.SIM\" using eihther the \"PIN\" or \"PUK\" codes."
+        ],
+        [
+          15,
+          "Changing the \"Interfaces.Physical.Network.WAN.Mobile.SIM\" \"PIN\" code now requires also inputing the current/active in addition to the new."
+        ],
+        [
+          16,
+          "The object \"Interfaces.Physical.Network.WAN.Mobile.SIM\" now provides more fields such as \"IMEI\", \"PhoneNumber\" and \"RemainingUnlockAttempts\". Additionaly, it is no longer possible to fetch the PIN or PUK for security reasons."
+        ],
+        [
+          17,
+          "The \"Interfaces.Physical.Network.WAN.Mobile\" object has been updated to allow further customization of the network modes and standards (e.g.: \"2G\" and \"GSM\"). More Get fields have also been added such as \"Carrier\". The status field can now take the following modes \"Locked\", \"Unlocked\", \"Blocked\" or \"Absent\"."
+        ]
+      ]
+    },
+    "3.2.17": {
+      "date": "2017-11-10",
+      "changes": [
+        [
+          1,
+          "CRUD methods have been renamed to: add, get (previously \"info\"), set (previously \"config\"), delete, list."
+        ],
+        [
+          2,
+          "All methods and now verbs (\"spectrum\" -> \"get_spectrum\")."
+        ]
+      ]
+    },
+    "3.2.16": {
+      "date": "2017-11-09",
+      "changes": [
+        [
+          1,
+          "Converted all objects and procedures to \"CamelCase\" (previously was \"snake_case\")."
+        ],
+        [
+          2,
+          "Renamed CRUD operations to \"Add\", \"List\", \"Get\", \"Set\" and \"Delete\" (previously \"info\" and \"config\")."
+        ],
+        [
+          3,
+          "Performed global review which resulted into the addition of new fields (mostly focused on statistics, including the \"ClearStatistics\" procedure) across the different areas/objects."
+        ],
+        [
+          4,
+          "Descriptions are now being auto-generated which helps achieve higher consistency on objects with similar procedures."
+        ],
+        [
+          5,
+          "Added User Accounts + Roles."
+        ],
+        [
+          6,
+          "Added Diagnostics (NSLookup, Ping, Traceroute)."
+        ],
+        [
+          7,
+          "Added Interfaces IP."
+        ],
+        [
+          8,
+          "Added System Resources."
+        ],
+        [
+          9,
+          "Added IPTV (IGMP Proxy + Snooping)."
+        ],
+        [
+          10,
+          "Added CommunityWi-Fi."
+        ],
+        [
+          11,
+          "Added DNS Proxy (Hosts)."
+        ],
+        [
+          12,
+          "Added NAT ALGs."
+        ],
+        [
+          13,
+          "Added Firewall Logging and Chains."
+        ],
+        [
+          14,
+          "Added DMZ Isolation."
+        ],
+        [
+          15,
+          "Added Samba Shares."
+        ],
+        [
+          16,
+          "Added VPNs Server/Client (Gre, OpenVPN, IPSec, PPTP, L2TP)."
+        ],
+        [
+          17,
+          "Added Ethernet Switch."
+        ],
+        [
+          18,
+          "Added SysLog."
+        ],
+        [
+          19,
+          "Added Bridge."
+        ],
+        [
+          20,
+          "Added QoS."
+        ],
+        [
+          21,
+          "Added System Firmware."
+        ],
+        [
+          22,
+          "Added System Configurations."
+        ],
+        [
+          23,
+          "Added Buttons."
+        ]
+      ]
+    },
+    "2.2": {
+      "date": "2017-10-26",
+      "changes": [
+        [
+          1,
+          "Added DynDNS."
+        ],
+        [
+          2,
+          "Added DHCP Server."
+        ],
+        [
+          3,
+          "Added Firewall."
+        ],
+        [
+          4,
+          "Added Port-Mappings."
+        ],
+        [
+          5,
+          "Added File Sharing."
+        ]
+      ]
+    },
+    "2.1.1": {
+      "date": "2017-09-26",
+      "changes": [
+        [
+          1,
+          "New structure based on 4 layers (users, services, interfaces and system)."
+        ],
+        [
+          2,
+          "Added procedures to support CRUD operations: \"add\" (create), \"info\" (read), \"config\" (update), \"delete\" (delete), \"list\" (fetch multiple instances)."
+        ],
+        [
+          3,
+          "Added pagination support on the \"list\" method using the \"limit\" and \"offset\" attributes."
+        ],
+        [
+          4,
+          "Replaced short-term fields with long-term to make parameters explicit (e.g.: \"SNR\" vs. \"signal_to_noise_ratio\")."
+        ]
+      ]
+    }
+  }
+}

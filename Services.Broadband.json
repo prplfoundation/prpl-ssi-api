@@ -1,0 +1,377 @@
+{
+  "paths": {
+    "Services.Broadband.List": {
+      "operationId": "Services.Broadband.List",
+      "summary": "Retrieves a list of Broadband Services.",
+      "tags": [
+        "Services.Broadband"
+      ],
+      "responses": {
+        "ARGUMENT_DATA_TYPE_MISMATCH": {
+          "description": "A call attempt to a valid object and procedure was performed, however an argument value was provided with an unexpected data type, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_DATA_TYPE_MISMATCH\", \"Description\": \"Unable to process the request because the value provided on the \\u2018Enabled\\u2019 field is not a valid Boolean.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_NOT_FOUND": {
+          "description": "A call to a valid object and procedure was performed, however an unrecognized argument was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Enabled' is not a valid argument.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_REQUIRED_MISSING": {
+          "description": "A call to a valid object and procedure was performed, however a required argument was not provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_REQUIRED_MISSING\", \"Description\": \"Unable to process the request because the 'Enabled' field was not provided.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "ARGUMENT_VALUE_NOT_SUPPORTED": {
+          "description": "A call attempt to a valid object and procedure was performed, however a non-supported argument value was provided, therefore it was not possible to process the request.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"ARGUMENT_VALUE_NOT_SUPPORTED\", \"Description\": \"Unable to process the request because \\u2018Red\\u2019 is not a value supported by the \\u2018Colour\\u2019 field.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "METHOD_NOT_FOUND": {
+          "description": "A call to a valid object but non-existing procedure was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"METHOD_NOT_FOUND\", \"Description\": \"Unable to process the request because 'Set' is not a valid method\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OBJECT_NOT_FOUND": {
+          "description": "A call to a non-existing object was performed, therefore it was not possible to process the request.",
+          "raised_by": "IPC Bus",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OBJECT_NOT_FOUND\", \"Description\": \"Unable to process the request because 'prpl.Dummy' is not a valid object.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OK": {
+          "description": "A well-formed request to an authorized resource was performed, and the receiver was able to compute the response within the allowed time-window.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [\"Services.Broadband.Data\", \"Services.Broadband.Voice\", \"Services.Broadband.TV\", \"Services.Broadband.CommunityWi-Fi\"], \"Limit\": 10, \"Offset\": 0}}",
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Response"
+                  },
+                  {
+                    "properties": {
+                      "Body": {
+                        "properties": {
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "Broadband Service maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          },
+                          "List": {
+                            "type": "List",
+                            "description": "Broadband Service list of entries.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "Broadband Service list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "OPERATION_ALREADY_IN_PROGRESS": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as the required resource was temporarily locked by a different request in progress.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ALREADY_IN_PROGRESS\", \"Description\": \"Unable to process the request because there is a duplicate operation currently in progress.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ERROR": {
+          "description": "A well-formed request was performed however, it was not possible to process the request due to an unknown internal error.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ERROR\", \"Description\": \"Unable to process the request because there is a configuration error.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_ILLEGAL": {
+          "description": "A well-formed request to an authorized resource was performed, however the operation could not be completed, as it was invoked in the incorrect system state or order.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_ILLEGAL\", \"Description\": \"Unable to process the request because the 'Stop' procedure can only be invoked after the 'Start' method has been called.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_PERMISSION_DENIED": {
+          "description": "A well-formed request was performed however, the client did not meet the security conditions required to access the protected resource, therefore it is not possible to process the request.",
+          "raised_by": "IPC Bus / Remote Protocol Adapter",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_PERMISSION_DENIED\", \"Description\": \"Unable to process the request because user \\u2018Admin\\u2019 does not have access privileges to invoke the \\u2018Set\\u2019 procedure on object \\u2018prpl.Dummy\\u2019.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        },
+        "OPERATION_TIMEOUT": {
+          "description": "A well-formed request was performed however, it was not possible to process the response within the allowed time-frame.",
+          "raised_by": "Micro-Service",
+          "content": {
+            "application/json": {
+              "example": "{\"Header\": {\"Name\": \"OPERATION_TIMEOUT\", \"Description\": \"The operation has been aborted because the service did not respond within the expected 5 seconds time-frame.\"}}",
+              "schema": {
+                "$ref": "#/components/schemas/Response"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "Limit": {
+                  "type": "Integer",
+                  "description": "Broadband Service maximum number of returned entries.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                },
+                "Offset": {
+                  "type": "Integer",
+                  "description": "Broadband Service list start offset.",
+                  "format": "-",
+                  "default_value": "0",
+                  "possible_values": "\"0\" to fetch all entries or positive integer"
+                }
+              },
+              "required": []
+            },
+            "example": "{\"Limit\": 10, \"Offset\": 0}"
+          }
+        }
+      },
+      "schema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "description": "Which object index to start with",
+            "example": 45,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "description": "How many objects to return",
+            "min": 1,
+            "max": 200,
+            "default": 20
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListRequest": {
+        "properties": {
+          "Limit": {
+            "description": "How many items to return at one time (max 200)",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20,
+              "example": {
+                "Limit": 10
+              }
+            }
+          },
+          "Offset": {
+            "description": "Which object index to start with",
+            "required": false,
+            "type": "integer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "example": {
+                "Offset": 45
+              }
+            }
+          }
+        }
+      },
+      "Response": {
+        "type": "object",
+        "description": "schema for a responses to object methods",
+        "oneOf": [
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "OK"
+                    ]
+                  }
+                },
+                "required": [
+                  "Name"
+                ],
+                "additionalProperties": false
+              },
+              "Body": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "Header": {
+                "type": "object",
+                "description": "Header object specifying the name of the response type and providing a detailed description in case of an error",
+                "properties": {
+                  "Name": {
+                    "type": "string",
+                    "description": "name of the response type",
+                    "enum": [
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_ERROR",
+                      "OPERATION_PERMISSION_DENIED",
+                      "OPERATION_ILLEGAL",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_TIMEOUT",
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "OBJECT_NOT_FOUND",
+                      "OK",
+                      "ARGUMENT_NOT_FOUND"
+                    ]
+                  },
+                  "Description": {
+                    "type": "string",
+                    "description": "A more detailed error message. NOTE: only filled in when the operation returns an error."
+                  }
+                },
+                "required": [
+                  "Name",
+                  "Description"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Services.Broadband": {
+        "description": "Services.Broadband Object",
+        "id": "Services.Broadband",
+        "type": "object",
+        "required": [],
+        "properties": {},
+        "events": {
+          "SERVICES_BROADBAND_DISABLED": {
+            "content": {
+              "application/json": {
+                "example": "{\"ServiceId\": \"Services.Broadband.CommunityWi-Fi\"}"
+              }
+            },
+            "description": "Raised when an existing Broadband Service is disabled. This does not necessarily result from a configuration change of the administrative state field, but rather when it becomes operationally inactive or fails to start.",
+            "code": 1
+          },
+          "SERVICES_BROADBAND_ENABLED": {
+            "content": {
+              "application/json": {
+                "example": "{\"ServiceId\": \"Services.Broadband.CommunityWi-Fi\"}"
+              }
+            },
+            "description": "Raised when an existing Broadband Service is enabled. This does not necessarily result from a configuration change of the administrative state field, but rather when it becomes operationally active.",
+            "code": 2
+          },
+          "SERVICES_BROADBAND_MODIFIED": {
+            "content": {
+              "application/json": {
+                "example": "{\"ServiceId\": \"Services.Broadband.CommunityWi-Fi\"}"
+              }
+            },
+            "description": "Raised when an existing Broadband Service is modified. Updating the administrative state should also result in the event being triggered.",
+            "code": 3
+          }
+        },
+        "example": {},
+        "layer": 2
+      }
+    }
+  }
+}
