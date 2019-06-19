@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Enabled\": true, \"Status\": \"Active\", \"Name\": \"Media\", \"Volume\": \"Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}\", \"Statistics\": {\"Files\": 0, \"Folders\": 0}}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "SMB Server Share maximum number of returned entries.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "SMB Server Share list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "SMB Server Share list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          "Id": {
+                            "type": "String",
+                            "description": "SMB Server Share unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -450,24 +435,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "Services.Local.Media.SMB.Shares.{ShareId}.Delete": {
@@ -736,7 +703,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Enabled\": true, \"Status\": \"Active\", \"Name\": \"Media\", \"Volume\": \"Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}\", \"Statistics\": {\"Files\": 0, \"Folders\": 0}}}",
               "schema": {
                 "allOf": [
                   {
@@ -745,7 +712,74 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "SMB Server Share administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "SMB Server Share unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "SMB Server Share name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Files": {
+                                "type": "Integer",
+                                "description": "SMB Server Share files count.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "Folders": {
+                                "type": "Integer",
+                                "description": "SMB Server Share folders count.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "SMB Server Share operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                            "readOnly": true
+                          },
+                          "Volume": {
+                            "type": "String",
+                            "description": "SMB Server Share volume.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "an existing \"Interfaces.Physical.Data.USB.Ports.{PortId}.Devices.{DeviceId}\" object",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1158,18 +1192,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

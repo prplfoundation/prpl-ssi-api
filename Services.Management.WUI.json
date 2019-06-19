@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Enabled\": true, \"Status\": \"Active\", \"Protocols\": {\"HTTP\": true, \"HTTPS\": true}, \"Locale\": \"DE\", \"Authentication\": {\"MaximumAllowedUsers\": 2, \"Timeout\": 300}}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,88 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Authentication": {
+                            "type": "object",
+                            "properties": {
+                              "MaximumAllowedUsers": {
+                                "type": "Integer",
+                                "description": "Web-GUI maximum allowed number of concurrent connections.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "Integer >= 1",
+                                "readOnly": true
+                              },
+                              "Timeout": {
+                                "type": "Integer",
+                                "description": "Web-GUI session timeout timer.",
+                                "format": "expressed in seconds",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Web-GUI administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Locale": {
+                            "type": "String",
+                            "description": "Web-GUI language/locale.",
+                            "format": "2 char string in uppercase",
+                            "default_value": "-",
+                            "possible_values": "\"EN\", \"DE,\" ES\", \"IT\", \"PT\"",
+                            "readOnly": true
+                          },
+                          "Protocols": {
+                            "type": "object",
+                            "properties": {
+                              "HTTP": {
+                                "type": "Boolean",
+                                "description": "Web-GUI enable HTTP protocol flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              },
+                              "HTTPS": {
+                                "type": "Boolean",
+                                "description": "Web-GUI enable HTTPS protocol flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Web-GUI operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -486,18 +567,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

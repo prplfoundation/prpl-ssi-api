@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"e8640310-7164-4b67-87cf-4ba717d0f094\", \"UUID\": \"tOhQEAzEzk9zbf9uljt5OnjKEifP8JvQ\", \"Name\": \"libuci\", \"Description\": \"C library for the Unified Configuration Interface (UCI)\", \"Enabled\": true, \"Source\": {\"Protocol\": \"HTTPS\", \"Address\": \"feeds.prpl.org\", \"Port\": \"8080\", \"Resource\": \"uci.ipkg\"}, \"Section\": \"libs\", \"Vendor\": \"Felix Fietkau\", \"Version\": \"2016-07-04.1-1\", \"Dependencies\": [\"libc\", \"libssp\", \"libubox\"], \"License\": \"LGPL-2.1\", \"Architecture\": \"brcm63xx\", \"Status\": \"Installed\", \"Install\": {\"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Size\": 16760}}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"uci\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,96 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Filters": {
-                            "type": "object",
-                            "properties": {
-                              "Architecture": {
-                                "type": "String",
-                                "description": "LCM Package architecture filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              },
-                              "Enabled": {
-                                "type": "Boolean",
-                                "description": "LCM Package administrative status filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              },
-                              "Id": {
-                                "type": "String",
-                                "description": "LCM Package id filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              },
-                              "License": {
-                                "type": "String",
-                                "description": "LCM Package license filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              },
-                              "Name": {
-                                "type": "String",
-                                "description": "LCM Package name filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              },
-                              "Status": {
-                                "type": "String",
-                                "description": "LCM Package operational status filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "\"Installing\", \"Installed\", \"Uninstalling\", \"Retired\", \"Starting\", \"Running\", \"Stopping\", \"Installed\", \"Error\""
-                              },
-                              "UUID": {
-                                "type": "String",
-                                "description": "LCM Package universal unique identifier filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "any string with 32 chars"
-                              },
-                              "Vendor": {
-                                "type": "String",
-                                "description": "LCM Package vendor filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              },
-                              "Version": {
-                                "type": "String",
-                                "description": "LCM Package version filter.",
-                                "format": "-",
-                                "default_value": "null (do not filter out any entries)",
-                                "possible_values": "-"
-                              }
-                            },
-                            "required": []
-                          },
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "LCM Package maximum number of returned entries.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "LCM Package list of entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "LCM Package unique identifier.",
                             "format": "-",
                             "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "LCM Package list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
+                            "possible_values": "-"
                           }
                         },
                         "required": []
@@ -716,24 +632,6 @@
           }
         }
       },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
-      },
       "parameters": [
         {
           "in": "path",
@@ -1033,7 +931,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"e8640310-7164-4b67-87cf-4ba717d0f094\", \"UUID\": \"tOhQEAzEzk9zbf9uljt5OnjKEifP8JvQ\", \"Name\": \"libuci\", \"Description\": \"C library for the Unified Configuration Interface (UCI)\", \"Enabled\": true, \"Source\": {\"Protocol\": \"HTTPS\", \"Address\": \"feeds.prpl.org\", \"Port\": \"8080\", \"Resource\": \"uci.ipkg\"}, \"Section\": \"libs\", \"Vendor\": \"Felix Fietkau\", \"Version\": \"2016-07-04.1-1\", \"Dependencies\": [\"libc\", \"libssp\", \"libubox\"], \"License\": \"LGPL-2.1\", \"Architecture\": \"brcm63xx\", \"Status\": \"Installed\", \"Install\": {\"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Size\": 16760}}}",
               "schema": {
                 "allOf": [
                   {
@@ -1042,7 +940,164 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Architecture": {
+                            "type": "String",
+                            "description": "LCM Package cpu architecture.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Dependencies": {
+                            "type": "List",
+                            "description": "LCM Package libraries dependencies list.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Description": {
+                            "type": "String",
+                            "description": "LCM Package description.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "LCM Package administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "LCM Package unique identifier.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Install": {
+                            "type": "object",
+                            "properties": {
+                              "Size": {
+                                "type": "Integer",
+                                "description": "LCM Package size.",
+                                "format": "bits",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "Timestamp": {
+                                "type": "Timestamp",
+                                "description": "LCM Package instalation timestamp.",
+                                "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "License": {
+                            "type": "String",
+                            "description": "LCM Package license type.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "LCM Package name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Section": {
+                            "type": "String",
+                            "description": "LCM Package section.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Source": {
+                            "type": "object",
+                            "properties": {
+                              "Address": {
+                                "type": "String",
+                                "description": "LCM Package source address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Port": {
+                                "type": "Integer",
+                                "description": "LCM Package source port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "0-65535",
+                                "readOnly": true
+                              },
+                              "Protocol": {
+                                "type": "String",
+                                "description": "LCM Package source protocol.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "HTTP, HTTPS, FTP, SFTP, FS",
+                                "readOnly": true
+                              },
+                              "Resource": {
+                                "type": "String",
+                                "description": "LCM Package source resource.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "LCM Package operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Installing\", \"Installed\", \"Uninstalling\", \"Retired\", \"Starting\", \"Running\", \"Stopping\", \"Installed\", \"Error\"",
+                            "readOnly": true
+                          },
+                          "UUID": {
+                            "type": "String",
+                            "description": "LCM Package universal unique identifier",
+                            "format": "Universally Unique Identifier (UUID) - RFC4122",
+                            "default_value": "-",
+                            "possible_values": "any string with 32 chars",
+                            "readOnly": true
+                          },
+                          "Vendor": {
+                            "type": "String",
+                            "description": "LCM Package vendor name.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Version": {
+                            "type": "String",
+                            "description": "LCM Package version or release number.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1867,18 +1922,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

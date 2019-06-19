@@ -212,24 +212,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "Services.Local.HostManager.Hosts.{HostId}.Delete": {
@@ -498,7 +480,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"iPhone\", \"Address\": {\"IP\": {\"v4\": \"192.168.1.20\", \"v6\": {\"LinkLocal\": \"fe80::5efe:c000:0201\", \"Global\": \"3ffe:b00:1:2::5efe:c000:0201\"}}, \"MAC\": \"AA:BB:CC:00:11:22\"}, \"Type\": \"Phone\", \"Interface\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.5ghz.BSSs.Private\", \"Status\": {\"State\": \"Online\", \"Time\": {\"Idle\": 0, \"Connected\": 300, \"Stamp\": \"2018-04-09T20:45:00+01:00\"}}}}",
               "schema": {
                 "allOf": [
                   {
@@ -507,7 +489,206 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Address": {
+                            "type": "object",
+                            "properties": {
+                              "IP": {
+                                "type": "object",
+                                "properties": {
+                                  "v4": {
+                                    "type": "IPv4Address",
+                                    "description": "HostManager Host IPv4 address.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "-",
+                                    "readOnly": true
+                                  },
+                                  "v6": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Global": {
+                                        "type": "IPv6Address",
+                                        "description": "HostManager Host IPv6 Global address.",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": "-",
+                                        "readOnly": true
+                                      },
+                                      "LinkLocal": {
+                                        "type": "IPv6Address",
+                                        "description": "HostManager Host IPv6 Link Local address.",
+                                        "format": "fe80:*",
+                                        "default_value": "-",
+                                        "possible_values": "-",
+                                        "readOnly": true
+                                      }
+                                    },
+                                    "required": []
+                                  }
+                                },
+                                "required": []
+                              },
+                              "MAC": {
+                                "type": "MACAddress",
+                                "description": "HostManager Host MAC address.",
+                                "format": "AA:BB:CC:00:11:22:33",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "HostManager Host unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "String",
+                            "description": "HostManager Host interface.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid \"Interfaces.Physical.\" object.",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "HostManager Host name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Devices": {
+                                "type": "object",
+                                "properties": {
+                                  "Offline": {
+                                    "type": "Integer",
+                                    "description": "HostManager Host offline devices count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Online": {
+                                    "type": "Integer",
+                                    "description": "HostManager Host online devices count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Total": {
+                                    "type": "Integer",
+                                    "description": "HostManager Host total devices count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "Interfaces": {
+                                "type": "object",
+                                "properties": {
+                                  "{InterfaceId}": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Offline": {
+                                        "type": "Integer",
+                                        "description": "HostManager Host offline devices count (on specified interface).",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      },
+                                      "Online": {
+                                        "type": "Integer",
+                                        "description": "HostManager Host online devices count (on specified interface).",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      },
+                                      "Total": {
+                                        "type": "Integer",
+                                        "description": "HostManager Host total devices count (on specified interface).",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      }
+                                    },
+                                    "required": []
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "object",
+                            "properties": {
+                              "State": {
+                                "type": "String",
+                                "description": "HostManager Host operational status.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\n- \"Online\" (connected to the interface with internet connectivity).\n- \"Pending\" (temporarily blocked from Internet access, waiting for user approval).\n- \"Blocked\" (device is blocked from Internet access).\n- \"Offline\" (not connected).",
+                                "readOnly": true
+                              },
+                              "Time": {
+                                "type": "object",
+                                "properties": {
+                                  "Connected": {
+                                    "type": "Integer",
+                                    "description": "HostManager Host time elapsed since connected.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Idle": {
+                                    "type": "Integer",
+                                    "description": "HostManager Host idle time.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Stamp": {
+                                    "type": "Timestamp",
+                                    "description": "HostManager Host timestamp when connected.",
+                                    "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                                    "default_value": "-",
+                                    "possible_values": "-",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Type": {
+                            "type": "String",
+                            "description": "HostManager Host type.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Unknown\", \"Laptop\", \"Router\", \"Console\", \"Tablet\", \"Phone\", \"TV\", \"Extender\"",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -870,18 +1051,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Enabled\": true, \"Status\": \"Active\", \"Registrar\": {\"Address\": \"registrar.ims.prpl.com\", \"Port\": 5070}, \"InboundProxy\": {\"Address\": \"proxy.ims.prpl.com\", \"Port\": 5060}, \"OutboundProxy\": {\"Address\": \"proxy.ims.prpl.com\", \"Port\": 5060}}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,94 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "SIP Client administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "InboundProxy": {
+                            "type": "object",
+                            "properties": {
+                              "Address": {
+                                "type": "String",
+                                "description": "SIP Client inbound proxy server address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "FQDN, IPv4 or IPv6 address",
+                                "readOnly": true
+                              },
+                              "Port": {
+                                "type": "Integer",
+                                "description": "SIP Client inbound proxy server port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0 and <= 65535",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "OutboundProxy": {
+                            "type": "object",
+                            "properties": {
+                              "Address": {
+                                "type": "String",
+                                "description": "SIP Client outbound proxy server address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "FQDN, IPv4 or IPv6 address",
+                                "readOnly": true
+                              },
+                              "Port": {
+                                "type": "Integer",
+                                "description": "SIP Client outbound proxy server port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "0-65535",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Registrar": {
+                            "type": "object",
+                            "properties": {
+                              "Address": {
+                                "type": "String",
+                                "description": "SIP Client registrar server address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "FQDN, IPv4 or IPv6 address",
+                                "readOnly": true
+                              },
+                              "Port": {
+                                "type": "Integer",
+                                "description": "SIP Client registrar server port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "0-65536",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "SIP Client operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -492,18 +579,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

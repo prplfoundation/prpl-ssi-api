@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Dummy\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"1\", \"Status\": \"Complete\", \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Channels\": [{\"Id\": 1, \"Grade\": 93, \"BSSCount\": 5, \"Noise\": {\"Average\": -80, \"Background\": -100}, \"SignalNoiseRatio \": 20, \"Usage\": 0.23}]}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,12 +94,27 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Id": {
-                            "type": "String",
-                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) unique identifier.",
-                            "format": "1 up to 64 chars",
-                            "default_value": "Integer starting at 0",
-                            "possible_values": "any string with length from 1 up to 64 chars"
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          },
+                          "List": {
+                            "type": "List",
+                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) list of entries.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
                           }
                         },
                         "required": []
@@ -195,24 +210,6 @@
               "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
-          }
-        }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
           }
         }
       }
@@ -493,7 +490,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"Status\": \"Complete\", \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Channels\": [{\"Id\": 1, \"Grade\": 93, \"BSSCount\": 5, \"Noise\": {\"Average\": -80, \"Background\": -100}, \"SignalNoiseRatio \": 20, \"Usage\": 0.23}]}}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -502,46 +499,7 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {
-                          "Id": {
-                            "type": "String",
-                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) unique identifier.",
-                            "format": "1 up to 64 chars",
-                            "default_value": "-",
-                            "possible_values": "any string with length from 1 up to 64 chars",
-                            "readOnly": true
-                          },
-                          "Statistics": {
-                            "type": "object",
-                            "properties": {
-                              "Channels": {
-                                "type": "List",
-                                "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) active channels.",
-                                "format": "-",
-                                "default_value": "-",
-                                "possible_values": "list of 1-14 and/or 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165",
-                                "readOnly": true
-                              }
-                            },
-                            "required": []
-                          },
-                          "Status": {
-                            "type": "String",
-                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) operational status.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "\"Queued\", \"Failed\", \"Complete\"",
-                            "readOnly": true
-                          },
-                          "Timestamp": {
-                            "type": "Timestamp",
-                            "description": "Wi-Fi Radio Sitey Survey (Spectrum Scan) timestamp.",
-                            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          }
-                        },
+                        "properties": {},
                         "required": []
                       }
                     }
@@ -923,18 +881,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

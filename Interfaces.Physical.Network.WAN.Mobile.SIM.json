@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Status\": \"Locked\", \"RemainingUnlockAttempts\": 3, \"PhoneNumber\": \"015258749023\", \"IMSI\": \"410072821393853\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,44 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "IMSI": {
+                            "type": "String",
+                            "description": "Mobile SIM Card International Mobile Subscriber Identity (IMSI).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any 64 bit long number.",
+                            "readOnly": true
+                          },
+                          "PhoneNumber": {
+                            "type": "String",
+                            "description": "Mobile SIM Card phone number.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "RemainingUnlockAttempts": {
+                            "type": "Integer",
+                            "description": "Mobile SIM Card remaining number of unlock attempts.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ">= 0",
+                            "readOnly": true
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Mobile SIM Card operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Locked\", \"Unlocked\", \"Blocked\" or \"Absent\".",
+                            "enum": [
+                              "Locked, Unlocked, Blocked",
+                              "Absent."
+                            ],
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -632,18 +669,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

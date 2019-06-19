@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,15 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Id": {
+                            "type": "String",
+                            "description": "Firewall Filter Rule unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -419,7 +427,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"1\", \"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\", \"Statistics\": {\"Hits\": 0}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
                 "allOf": [
                   {
@@ -428,7 +436,30 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "Firewall Filter Rule maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          },
+                          "List": {
+                            "type": "List",
+                            "description": "Firewall Filter Rule list of entries.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "Firewall Filter Rule list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -522,24 +553,6 @@
               "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
-          }
-        }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
           }
         }
       },
@@ -1035,7 +1048,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"Name\": \"HTTP\", \"Enabled\": true, \"Logging\": false, \"IP\": {\"Source\": \"192.168.1.4\", \"Destination\": null}, \"MAC\": {\"Source\": null, \"Destination\": null}, \"Port\": {\"Source\": null, \"Destination\": 8080}, \"Interface\": {\"Source\": \"Interfaces.IP.LAN.Br0\", \"Destination\": null}, \"TransportProtocol\": \"TCP\", \"Statistics\": {\"Hits\": 0}}}",
               "schema": {
                 "allOf": [
                   {
@@ -1044,7 +1057,162 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Firewall Filter Rule administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "IP": {
+                            "type": "object",
+                            "properties": {
+                              "Destination": {
+                                "type": "IP",
+                                "description": "Firewall Filter Rule destination IP address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Source": {
+                                "type": "IP",
+                                "description": "Firewall Filter Rule source IP address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Firewall Filter Rule unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "object",
+                            "properties": {
+                              "Destination": {
+                                "type": "String",
+                                "description": "Firewall Filter Rule destination IP interfaces.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                                "readOnly": true
+                              },
+                              "Source": {
+                                "type": "String",
+                                "description": "Firewall Filter Rule source IP interface.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Logging": {
+                            "type": "Boolean",
+                            "description": "Firewall Filter Rule Logging flag.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "MAC": {
+                            "type": "object",
+                            "properties": {
+                              "Destination": {
+                                "type": "MACAddress",
+                                "description": "Firewall Filter Rule destination MAC address.",
+                                "format": "AA:BB:CC:00:11:22:33",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Source": {
+                                "type": "MACAddress",
+                                "description": "Firewall Filter Rule source MAD address.",
+                                "format": "AA:BB:CC:00:11:22:33",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "Firewall Filter Rule name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Port": {
+                            "type": "object",
+                            "properties": {
+                              "Destination": {
+                                "type": "Integer",
+                                "description": "Firewall Filter Rule destination transport port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "0-65536",
+                                "readOnly": true
+                              },
+                              "Source": {
+                                "type": "String",
+                                "description": "Firewall Filter Rule source transport port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "0-65536",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Hits": {
+                                "type": "Integer",
+                                "description": "Firewall Filter Rule hits count.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "TransportProtocol": {
+                            "type": "String",
+                            "description": "Firewall Filter Rule transport protocol.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"TCP\" or \"UDP\"",
+                            "enum": [
+                              "TCP",
+                              "UDP"
+                            ],
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1769,18 +1937,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

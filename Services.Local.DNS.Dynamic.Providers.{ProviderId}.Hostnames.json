@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Enabled\": true, \"Name\": \"prpl-drive\", \"FQDN\": \"prpl-drive.no-ip.org\", \"Type\": {\"A\": true, \"AAAA\": false}, \"Interface\": [\"Interfaces.IP.WAN:xDSL\", \"Interfaces.IP.WAN:GPON\", \"Interfaces.IP.WAN:Mobile\"], \"Status\": \"Synced\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "Dynamic DNS Hostname maximum number of returned entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "Dynamic DNS Hostname unique identifier.",
                             "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "Dynamic DNS Hostname list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "Dynamic DNS Hostname list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -505,24 +490,6 @@
           }
         }
       },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
-      },
       "parameters": [
         {
           "in": "path",
@@ -822,7 +789,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Enabled\": true, \"Name\": \"prpl-drive\", \"FQDN\": \"prpl-drive.no-ip.org\", \"Type\": {\"A\": true, \"AAAA\": false}, \"Interface\": [\"Interfaces.IP.WAN:xDSL\", \"Interfaces.IP.WAN:GPON\", \"Interfaces.IP.WAN:Mobile\"], \"Status\": \"Synced\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -831,7 +798,90 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Dynamic DNS Hostname administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "FQDN": {
+                            "type": "String",
+                            "description": "Dynamic DNS Hostname Fully Qualified Domain Name (FQDN).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid FQDN",
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Dynamic DNS Hostname unique identifier.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "List",
+                            "description": "Dynamic DNS Hostname interface.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any valid \"Interface.IP.{InterfaceId}\" object",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "Dynamic DNS Hostname name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Dynamic DNS Hostname operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\n- \"Synced\" (the client has performed an update request since the last IP address change).\n- \"Pending\" (the IP has changed, but the client has not yet updated the server).\n- \"Disabled\" (the client is disabled).\n- \"Unauthorized\" (client is able to reach the server but credentials were refused).\n- \"Unreachable\" (client is not able to reach the server).\n- \"Error\" (generic error used in other circumstances such as invalid configuration).",
+                            "readOnly": true
+                          },
+                          "Type": {
+                            "type": "object",
+                            "properties": {
+                              "A": {
+                                "type": "Boolean",
+                                "description": "Dynamic DNS Hostname update IPv4 address enable flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              },
+                              "AAAA": {
+                                "type": "Boolean",
+                                "description": "Dynamic DNS Hostname update IPv6 address enable flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1490,18 +1540,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

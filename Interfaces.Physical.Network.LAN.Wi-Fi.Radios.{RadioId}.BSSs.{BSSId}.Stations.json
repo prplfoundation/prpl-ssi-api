@@ -213,24 +213,6 @@
           }
         }
       },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
-      },
       "parameters": [
         {
           "in": "path",
@@ -348,7 +330,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"MAC\": {\"Host\": \"AA:BB:CC:00:11:22\", \"Transmitter\": \"DD:EE:FF:33:44:55\"}, \"Status\": {\"State\": \"Connected\", \"Idle\": \"53\", \"MCS\": 15, \"PhysicalRate\": 300, \"ReceivedSignalStrength\": -40, \"Bandwidth\": 20, \"GuardInterval\": 400, \"SpatialStreams\": 2, \"Standard\": \"802.11n\", \"Beamforming\": true}, \"Statistics\": {\"Bytes\": {\"Transmitted\": 0, \"Received\": 0}, \"Packets\": {\"Transmitted\": 0, \"Received\": 0}}, \"Capabilities\": {\"Beamforming\": true}}}",
               "schema": {
                 "allOf": [
                   {
@@ -357,7 +339,208 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Capabilities": {
+                            "type": "object",
+                            "properties": {
+                              "Beamforming": {
+                                "type": "Boolean",
+                                "description": "Wi-Fi Station support for beamforming flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" (station supports beamforming) or \"false\"",
+                                "enum": [
+                                  "true (station supports beamforming)",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Wi-Fi Station unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "MAC": {
+                            "type": "object",
+                            "properties": {
+                              "Host": {
+                                "type": "MACAddress",
+                                "description": "Wi-Fi Station MAC address of the host.",
+                                "format": "AA:BB:CC:00:11:22:33",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Transmitter": {
+                                "type": "MACAddress",
+                                "description": "Wi-Fi Station MAC address of the transmitter (e.g.: extender).",
+                                "format": "AA:BB:CC:00:11:22:33",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Bytes": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "Integer",
+                                    "description": "Wi-Fi Station received bytes count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Transmitted": {
+                                    "type": "Integer",
+                                    "description": "Wi-Fi Station transmitted bytes count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "Packets": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "Integer",
+                                    "description": "Wi-Fi Station received packets count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Transmitted": {
+                                    "type": "Integer",
+                                    "description": "Wi-Fi Station transmitted packets count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "object",
+                            "properties": {
+                              "Bandwidth": {
+                                "type": "Integer",
+                                "description": "Wi-Fi Station active bandwidth.",
+                                "format": "expressed in MHz",
+                                "default_value": "-",
+                                "possible_values": "\"20\", \"40\", \"80\" or \"160\"",
+                                "enum": [
+                                  "20, 40, 80",
+                                  "160"
+                                ],
+                                "readOnly": true
+                              },
+                              "Beamforming": {
+                                "type": "Boolean",
+                                "description": "Wi-Fi Station beamforming operational status.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              },
+                              "GuardInterval": {
+                                "type": "Integer",
+                                "description": "Wi-Fi Station current guard interval.",
+                                "format": "expressed in ns",
+                                "default_value": "-",
+                                "possible_values": "400 or 800",
+                                "enum": [
+                                  "400",
+                                  "800"
+                                ],
+                                "readOnly": true
+                              },
+                              "Idle": {
+                                "type": "String",
+                                "description": "Wi-Fi Station idle time.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              },
+                              "MCS": {
+                                "type": "Integer",
+                                "description": "Wi-Fi Station current MCS.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "0-23",
+                                "readOnly": true
+                              },
+                              "PhysicalRate": {
+                                "type": "Integer",
+                                "description": "Wi-Fi Station current transmit physical rate.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "ReceivedSignalStrength": {
+                                "type": "Integer",
+                                "description": "Wi-Fi Station current received signal strength (RSSI).",
+                                "format": "expressed in dBm",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "SpatialStreams": {
+                                "type": "Integer",
+                                "description": "Wi-Fi Station current MIMO spatial streams.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "1-4",
+                                "readOnly": true
+                              },
+                              "Standard": {
+                                "type": "String",
+                                "description": "Wi-Fi Station current standard.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"802.11b\", \"802.11g\", \"802.11n\", \"802.11a\" or \"802.11ac\"",
+                                "enum": [
+                                  "802.11b, 802.11g, 802.11n, 802.11a",
+                                  "802.11ac"
+                                ],
+                                "readOnly": true
+                              },
+                              "State": {
+                                "type": "String",
+                                "description": "Wi-Fi Station operational status.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -771,18 +954,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

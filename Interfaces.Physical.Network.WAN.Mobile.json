@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Mobile\", \"Name\": \"Mobile\", \"Enabled\": true, \"Mode\": {\"4G\": true, \"3G\": true, \"2G\": false}, \"Standards\": {\"4G\": {\"LTEAdvanced\": true, \"LTE\": true}, \"3G\": {\"HSPA+\": true, \"HSUPA\": false, \"HSDPA\": false, \"UMTS\": false}, \"2G\": {\"EDGE\": true, \"GPRS\": false, \"GSM\": false}}, \"Status\": {\"State\": \"Connected\", \"Carrier\": \"prplFoundation\", \"Mode\": \"4G\", \"Standard\": \"LTE\", \"Grade\": 0.7, \"SignalNoiseRatio\": 25, \"ReferenceSignalReceivedQuality\": -10, \"ReferenceSignalReceivedPower\": -80, \"ReceivedSignalStrengthIndicator\": 0, \"Uptime\": 3600}, \"Statistics\": {\"Frames\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}}}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,350 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Mobile WAN Interface administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Mobile WAN Interface unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Mode": {
+                            "type": "object",
+                            "properties": {
+                              "2G": {
+                                "type": "Boolean",
+                                "description": "Mobile WAN Interface enable 2G mode flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              },
+                              "3G": {
+                                "type": "Boolean",
+                                "description": "Mobile WAN Interface enable 3G mode flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              },
+                              "4G": {
+                                "type": "Boolean",
+                                "description": "Mobile WAN Interface enable 4G mode flag.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"true\" or \"false\"",
+                                "enum": [
+                                  "true",
+                                  "false"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "Mobile WAN Interface name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Standards": {
+                            "type": "object",
+                            "properties": {
+                              "2G": {
+                                "type": "object",
+                                "properties": {
+                                  "EDGE": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable EDGE flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  },
+                                  "GPRS": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable GPRS flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  },
+                                  "GSM": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable GSM flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "3G": {
+                                "type": "object",
+                                "properties": {
+                                  "HSDPA": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable HSDPA standard flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  },
+                                  "HSPA+": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable HSPA+ standard flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  },
+                                  "HSUPA": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable HSUPA standard flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  },
+                                  "UMTS": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable UMTS flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "4G": {
+                                "type": "object",
+                                "properties": {
+                                  "LTE": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable LTE standard flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  },
+                                  "LTEAdvanced": {
+                                    "type": "Boolean",
+                                    "description": "Mobile WAN Interface enable LTE Advanced standard flag.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"true\" or \"false\"",
+                                    "enum": [
+                                      "true",
+                                      "false"
+                                    ],
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Bytes": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "Integer",
+                                    "description": "Mobile WAN Interface received bytes count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Transmitted": {
+                                    "type": "Integer",
+                                    "description": "Mobile WAN Interface transmitted bytes count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "Frames": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "Integer",
+                                    "description": "Mobile WAN Interface received frames count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Transmitted": {
+                                    "type": "Integer",
+                                    "description": "Mobile WAN Interface transmitted frames count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "object",
+                            "properties": {
+                              "Carrier": {
+                                "type": "String",
+                                "description": "Mobile WAN Interface current connected carrier.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Grade": {
+                                "type": "Float",
+                                "description": "Mobile WAN Interface current grade.",
+                                "format": "2 digital places",
+                                "default_value": "-",
+                                "possible_values": ">= 0.00 and <= 1.00",
+                                "readOnly": true
+                              },
+                              "Mode": {
+                                "type": "String",
+                                "description": "Mobile WAN Interface current mode.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"4G\", \"3G\" or \"2G\"",
+                                "enum": [
+                                  "4G, 3G",
+                                  "2G"
+                                ],
+                                "readOnly": true
+                              },
+                              "ReceivedSignalStrengthIndicator": {
+                                "type": "Integer",
+                                "description": "Mobile WAN Interface current Received Signal Strength Indicator (RSSI).",
+                                "format": "expressed in dBm",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "ReferenceSignalReceivedPower": {
+                                "type": "Integer",
+                                "description": "Mobile WAN Interface current Reference Signal Received Power (RSRP).",
+                                "format": "expressed in dBm",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "ReferenceSignalReceivedQuality": {
+                                "type": "Integer",
+                                "description": "Mobile WAN Interface current Reference Signal Received Quality (RSRQ).",
+                                "format": "expressed in dBm",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "SignalNoiseRatio": {
+                                "type": "Integer",
+                                "description": "Mobile WAN Interface current Signal to Noise Ratio (SNR).",
+                                "format": "expressed in dB",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Standard": {
+                                "type": "String",
+                                "description": "Mobile WAN Interface current standard.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"LTE Advanced\", \"LTE\", \"UMTS\", \"HSUPA\", \"HSPA+\", \"HSDPA\", \"GSM\", \"GPRS\", \"EDGE\"",
+                                "readOnly": true
+                              },
+                              "State": {
+                                "type": "String",
+                                "description": "Mobile WAN Interface operational status.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                                "readOnly": true
+                              },
+                              "Uptime": {
+                                "type": "Integer",
+                                "description": "Mobile WAN Interface system uptime.",
+                                "format": "expressed in seconds",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -784,18 +1127,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

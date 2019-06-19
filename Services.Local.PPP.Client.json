@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Authentication\": \"PAP\", \"Username\": \"prpl\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}, \"Status\": \"Active\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "PPP Client maximum number of returned entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "PPP Client unique identifier.",
                             "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "PPP Client list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "PPP Client list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -469,24 +454,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "Services.Local.PPP.Client.{ClientId}.Delete": {
@@ -755,7 +722,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Authentication\": \"PAP\", \"Username\": \"prpl\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}, \"Status\": \"Active\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -764,7 +731,86 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Authentication": {
+                            "type": "String",
+                            "description": "PPP Client authentication type.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"PAP\" or \"CHAP\"",
+                            "enum": [
+                              "PAP",
+                              "CHAP"
+                            ],
+                            "readOnly": true
+                          },
+                          "Hash": {
+                            "type": "object",
+                            "properties": {
+                              "Fingerprint": {
+                                "type": "String",
+                                "description": "PPP Client password hash fingerprint.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Type": {
+                                "type": "String",
+                                "description": "PPP Client password hash type.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                                "enum": [
+                                  "MD5, SHA-256",
+                                  "SHA-512"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "PPP Client unique identifier.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "String",
+                            "description": "PPP Client interface.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid \"Interface.IP.{InterfaceId}\" object",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "PPP Client name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "PPP Client operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\n- \"Disabled\" (disabled).\n- \"Discovery (enabled and in discovery process).\n- \"Active\" (enabled with active session).\n- \"Error\" (enabled but possible configuration error)",
+                            "readOnly": true
+                          },
+                          "Username": {
+                            "type": "String",
+                            "description": "PPP Client username.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1163,18 +1209,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

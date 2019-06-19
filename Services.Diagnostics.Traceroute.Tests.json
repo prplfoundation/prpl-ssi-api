@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Dummy\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"32\", \"Status\": \"Complete\", \"Address\": \"8.8.8.8\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"TimeToLive\": 15, \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Hops\": [{\"Id\": 1, \"Name\": \"router\", \"Address\": \"192.168.1.1\", \"Latency\": {\"Minimum\": 3, \"Average\": 5, \"Maximum\": 7}, \"Jitter\": {\"Minimum\": 3, \"Average\": 5, \"Maximum\": 7}, \"PacketLoss\": 0.0}], \"Duration\": 30}}], \"Limit\": 10, \"Offset\": 0}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,12 +94,27 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Id": {
-                            "type": "String",
-                            "description": "Traceroute Test unique identifier.",
-                            "format": "1 up to 64 chars",
-                            "default_value": "Integer starting at 0",
-                            "possible_values": "any string with length from 1 up to 64 chars"
+                          "Limit": {
+                            "type": "Integer",
+                            "description": "Traceroute Test maximum number of returned entries.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          },
+                          "List": {
+                            "type": "List",
+                            "description": "Traceroute Test list of entries.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Offset": {
+                            "type": "Integer",
+                            "description": "Traceroute Test list start offset.",
+                            "format": "-",
+                            "default_value": "0",
+                            "possible_values": "\"0\" to fetch all entries or positive integer"
                           }
                         },
                         "required": []
@@ -195,24 +210,6 @@
               "required": []
             },
             "example": "{\"Limit\": 10, \"Offset\": 0}"
-          }
-        }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
           }
         }
       }
@@ -519,7 +516,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"32\", \"Status\": \"Complete\", \"Address\": \"8.8.8.8\", \"Interface\": \"Interfaces.IP.WAN_FTTH\", \"TimeToLive\": 15, \"Timestamp\": \"2018-04-09T20:45:00+01:00\", \"Statistics\": {\"Hops\": [{\"Id\": 1, \"Name\": \"router\", \"Address\": \"192.168.1.1\", \"Latency\": {\"Minimum\": 3, \"Average\": 5, \"Maximum\": 7}, \"Jitter\": {\"Minimum\": 3, \"Average\": 5, \"Maximum\": 7}, \"PacketLoss\": 0.0}], \"Duration\": 30}}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -528,78 +525,7 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {
-                          "Address": {
-                            "type": "String",
-                            "description": "Traceroute Test address.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "FQDN, IPv4 or IPv6 address",
-                            "readOnly": true
-                          },
-                          "Id": {
-                            "type": "String",
-                            "description": "Traceroute Test unique identifier.",
-                            "format": "1 up to 64 chars",
-                            "default_value": "-",
-                            "possible_values": "any string with length from 1 up to 64 chars",
-                            "readOnly": true
-                          },
-                          "Interface": {
-                            "type": "String",
-                            "description": "Traceroute Test interface.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
-                            "readOnly": true
-                          },
-                          "Statistics": {
-                            "type": "object",
-                            "properties": {
-                              "Duration": {
-                                "type": "Integer",
-                                "description": "Traceroute Test duration.",
-                                "format": "expressed in seconds",
-                                "default_value": "-",
-                                "possible_values": ">= 0",
-                                "readOnly": true
-                              },
-                              "Hops": {
-                                "type": "List",
-                                "description": "Traceroute Test number of traversed routers or hops.",
-                                "format": "-",
-                                "default_value": "-",
-                                "possible_values": ">= 0",
-                                "readOnly": true
-                              }
-                            },
-                            "required": []
-                          },
-                          "Status": {
-                            "type": "String",
-                            "description": "Traceroute Test operational status.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": ":\n- \"Queued\" (requested or waiting on a queue for an ongoing test to be completed).\n- \"Ongoing\" (in progress/running).\n- \"Completed\" (finished successfully).\n- \"Failed\" (finished unsuccessfully, was not able to complete the test)",
-                            "readOnly": true
-                          },
-                          "TimeToLive": {
-                            "type": "Integer",
-                            "description": "Traceroute Test packet maximum time to live.",
-                            "format": "expressed in hops",
-                            "default_value": "-",
-                            "possible_values": ">= 1 and <= 50",
-                            "readOnly": true
-                          },
-                          "Timestamp": {
-                            "type": "Timestamp",
-                            "description": "Traceroute Test timestamp.",
-                            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
-                            "default_value": "-",
-                            "possible_values": "the timestamp corresponding to the test status. For example, if status = \"Queued\" then the timestamp should reflect the time when the test was requested. If the status changes to \"Completed\" the timestamp should change to the time when the test has been completed",
-                            "readOnly": true
-                          }
-                        },
+                        "properties": {},
                         "required": []
                       }
                     }
@@ -1013,18 +939,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

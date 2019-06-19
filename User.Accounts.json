@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"Admin\", \"Enabled\": true, \"Name\": \"Administrator\", \"Username\": \"Admin\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\", \"Salt\": \"t4eds1\"}, \"Description\": \"Home-Gateway administrator.\", \"RoleId\": \"User.Roles.Root\", \"Locale\": \"en-GB\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Admin\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "User Account maximum number of returned entries.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "User Account list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "User Account list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          "Id": {
+                            "type": "String",
+                            "description": "User Account unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -388,7 +373,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"Admin\", \"Enabled\": true, \"Name\": \"Administrator\", \"Username\": \"Admin\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\", \"Salt\": \"t4eds1\"}, \"Description\": \"Home-Gateway administrator.\", \"RoleId\": \"User.Roles.Root\", \"Locale\": \"en-GB\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"User.Accounts.Admin\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -398,27 +383,13 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "User Account maximum number of returned entries.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "User Account list of entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "User Account unique identifier.",
                             "format": "-",
                             "default_value": "-",
-                            "possible_values": "-",
+                            "possible_values": "valid \"User.Accounts.{AccountId}\" object",
                             "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "User Account list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
                           }
                         },
                         "required": []
@@ -735,24 +706,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "User.Accounts.{AccountId}.Delete": {
@@ -1021,7 +974,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Admin\", \"Enabled\": true, \"Name\": \"Administrator\", \"Username\": \"Admin\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\", \"Salt\": \"t4eds1\"}, \"Description\": \"Home-Gateway administrator.\", \"RoleId\": \"User.Roles.Root\", \"Locale\": \"en-GB\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -1030,7 +983,102 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Description": {
+                            "type": "String",
+                            "description": "User Account description.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"null\" or any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "User Account administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Hash": {
+                            "type": "object",
+                            "properties": {
+                              "Fingerprint": {
+                                "type": "String",
+                                "description": "User Account password hash fingerprint.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Salt": {
+                                "type": "String",
+                                "description": "User Account password hash salt sufix.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"null\" or any string with length from 1 up to 64 chars",
+                                "readOnly": true
+                              },
+                              "Type": {
+                                "type": "String",
+                                "description": "User Account password hash type.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                                "enum": [
+                                  "MD5, SHA-256",
+                                  "SHA-512"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "User Account unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Locale": {
+                            "type": "String",
+                            "description": "User Account language/locale.",
+                            "format": "lc-CC (lc = language code, CC = country code)",
+                            "default_value": "-",
+                            "possible_values": "any ISO-639-1 language code and any ISO-3166-Alpha-2 country code",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "User Account name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "RoleId": {
+                            "type": "String",
+                            "description": "User Account Id of the linked role.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid \"User.Accounts.Roles.{RoleId}\" object",
+                            "readOnly": true
+                          },
+                          "Username": {
+                            "type": "String",
+                            "description": "User Account username.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1471,18 +1519,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

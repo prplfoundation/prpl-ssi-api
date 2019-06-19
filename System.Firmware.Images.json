@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"1\", \"Status\": \"Downloaded\", \"Variant\": \"DE\", \"ReleaseDate\": \"2017-04-12\", \"Version\": \"3.2.00\", \"Source\": {\"Address\": \"fs.prpl.com/devices.img\", \"Port\": 8080, \"Protocol\": \"HTTPS\", \"Username\": \"prplFoundation\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}}, \"DownloadTimestamp\": \"2018-04-09T20:45:00+01:00\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Dummy\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "Firmware Image maximum number of returned entries.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "Firmware Image list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "Firmware Image list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                          "Id": {
+                            "type": "String",
+                            "description": "Firmware Image unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -480,24 +465,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "System.Firmware.Images.{ImageId}.Delete": {
@@ -766,7 +733,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"1\", \"Status\": \"Downloaded\", \"Variant\": \"DE\", \"ReleaseDate\": \"2017-04-12\", \"Version\": \"3.2.00\", \"Source\": {\"Address\": \"fs.prpl.com/devices.img\", \"Port\": 8080, \"Protocol\": \"HTTPS\", \"Username\": \"prplFoundation\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}}, \"DownloadTimestamp\": \"2018-04-09T20:45:00+01:00\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -775,7 +742,120 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "DownloadTimestamp": {
+                            "type": "Timestamp",
+                            "description": "Firmware Image download timestamp.",
+                            "format": "yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm  (UTC ISO 8601)",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Firmware Image unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "ReleaseDate": {
+                            "type": "String",
+                            "description": "Firmware Image release date.",
+                            "format": "YYYY-MM-DD",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Source": {
+                            "type": "object",
+                            "properties": {
+                              "Address": {
+                                "type": "String",
+                                "description": "Firmware Image source address.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "FQDN, IPv4, IPv6 of File System Path.",
+                                "readOnly": true
+                              },
+                              "Hash": {
+                                "type": "object",
+                                "properties": {
+                                  "Fingerprint": {
+                                    "type": "String",
+                                    "description": "Firmware Image source password hash fingerprint.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "-",
+                                    "readOnly": true
+                                  },
+                                  "Type": {
+                                    "type": "String",
+                                    "description": "Firmware Image source password hash type.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                                    "enum": [
+                                      "MD5, SHA-256",
+                                      "SHA-512"
+                                    ],
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "Port": {
+                                "type": "Integer",
+                                "description": "Firmware Image source port.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "80 (HTTP), 443 (HTTPS), 21 (FTP) and Not Applicable (FS).",
+                                "readOnly": true
+                              },
+                              "Protocol": {
+                                "type": "String",
+                                "description": "Firmware Image source protocol.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"HTTP\", \"HTTPS\", \"FTP\", \"FS\" (look internaly on the File System).",
+                                "readOnly": true
+                              },
+                              "Username": {
+                                "type": "String",
+                                "description": "Firmware Image source username.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"null\" or any string with length from 1 up to 64 chars",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Firmware Image operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Downloading\", \"Error\", \"Active\", \"Inactive\"",
+                            "readOnly": true
+                          },
+                          "Variant": {
+                            "type": "String",
+                            "description": "Firmware Image variant.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Version": {
+                            "type": "String",
+                            "description": "Firmware Image version or release number.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1129,18 +1209,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

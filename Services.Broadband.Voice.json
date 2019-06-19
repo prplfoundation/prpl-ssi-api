@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Voice\", \"Name\": \"VoIP\", \"Enabled\": true, \"Status\": \"Active\", \"IPInterfacesList\": [\"Interfaces.IP.WAN_xDSL\", \"Interfaces.IP.WAN_Mobile\"], \"NetworkMode\": \"Fallback\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,60 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Broadband Voice Service administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "IPInterfacesList": {
+                            "type": "List",
+                            "description": "Broadband Voice Service list of linked IP interfaces.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "list of valid \"Interfaces.IP.{InterfaceId}\" objects",
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Broadband Voice Service unique identifier.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "Broadband Voice Service name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "NetworkMode": {
+                            "type": "String",
+                            "description": "Broadband Voice Service network mode.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ":\n- \"Standalone\" (only the first interface will be used to forward the traffic of the service).\n- \"Fallback\" (first interface is used as the primary and in case of failure the second will be used to support the service)",
+                            "readOnly": true
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Broadband Voice Service operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -454,18 +507,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

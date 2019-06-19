@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Address\": \"https://ACS.prpl.com/CWMP\", \"Port\": 4444, \"Username\": \"prplFoundation\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,58 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Address": {
+                            "type": "String",
+                            "description": "CWMP (TR-069) Client ACS address.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "FQDN, IPv4 or IPv6 address",
+                            "readOnly": true
+                          },
+                          "Hash": {
+                            "type": "object",
+                            "properties": {
+                              "Fingerprint": {
+                                "type": "String",
+                                "description": "CWMP (TR-069) Client ACS password hash fingerprint.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Type": {
+                                "type": "String",
+                                "description": "CWMP (TR-069) Client ACS password hash type.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                                "enum": [
+                                  "MD5, SHA-256",
+                                  "SHA-512"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Port": {
+                            "type": "Integer",
+                            "description": "CWMP (TR-069) Client ACS port.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "0-65536",
+                            "readOnly": true
+                          },
+                          "Username": {
+                            "type": "String",
+                            "description": "CWMP (TR-069) Client ACS username.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -446,18 +497,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Enabled\": true, \"Status\": \"Registered\", \"URI\": \"0015417543010@prpl.com\", \"Realm\": \"de\", \"Username\": \"0015417543010\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}, \"Authentication\": \"Digest\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "SIP Client Extension maximum number of returned entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "SIP Client Extension unique identifier.",
                             "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "SIP Client Extension list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "SIP Client Extension list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
+                            "default_value": "an integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -474,24 +459,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "Services.Broadband.Voice.SIP.Client.Extensions.{ExtensionId}.Delete": {
@@ -760,7 +727,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Enabled\": true, \"Status\": \"Registered\", \"URI\": \"0015417543010@prpl.com\", \"Realm\": \"de\", \"Username\": \"0015417543010\", \"Hash\": {\"Fingerprint\": \"21232f297a57a5a743894a0e4a801fc3\", \"Type\": \"MD5\"}, \"Authentication\": \"Digest\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -769,7 +736,94 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Authentication": {
+                            "type": "String",
+                            "description": "SIP Client Extension authentication type.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"None\" (no authentication), \"Digest\" (encrypted authentication)",
+                            "readOnly": true
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "SIP Client Extension administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Hash": {
+                            "type": "object",
+                            "properties": {
+                              "Fingerprint": {
+                                "type": "String",
+                                "description": "SIP Client Extension password hash fingerprint.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "-",
+                                "readOnly": true
+                              },
+                              "Type": {
+                                "type": "String",
+                                "description": "SIP Client Extension password hash type.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"MD5\", \"SHA-256\" or \"SHA-512\"",
+                                "enum": [
+                                  "MD5, SHA-256",
+                                  "SHA-512"
+                                ],
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "SIP Client Extension unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Realm": {
+                            "type": "String",
+                            "description": "SIP Client Extension realm.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"null\" or any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "SIP Client Extension operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                            "readOnly": true
+                          },
+                          "URI": {
+                            "type": "String",
+                            "description": "SIP Client Extension Unique Resource Identifier (URI).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "-",
+                            "readOnly": true
+                          },
+                          "Username": {
+                            "type": "String",
+                            "description": "SIP Client Extension username.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1184,18 +1238,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

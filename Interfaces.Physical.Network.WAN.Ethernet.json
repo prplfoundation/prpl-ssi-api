@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"Ethernet\", \"Name\": \"Ethernet\", \"Enabled\": true, \"Mode\": [\"FastEthernet\", \"GigabitEthernet\"], \"EnergyEfficientEthernet\": true, \"AutoNegotiation\": true, \"Duplex\": [\"Half\", \"Full\"], \"Status\": {\"State\": \"Active\", \"Protocol\": \"GigabitEthernet\", \"Duplex\": \"Full\", \"Uptime\": 3600}, \"Statistics\": {\"Frames\": {\"Transmitted\": 0, \"Received\": 0}, \"Bytes\": {\"Transmitted\": 0, \"Received\": 0}}}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,180 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "AutoNegotiation": {
+                            "type": "Boolean",
+                            "description": "Ethernet WAN Interface auto-negotation administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Duplex": {
+                            "type": "List",
+                            "description": "Ethernet WAN Interface duplex mode.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Full\" or \"Half\"",
+                            "enum": [
+                              "Full",
+                              "Half"
+                            ],
+                            "readOnly": true
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Ethernet WAN Interface administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "EnergyEfficientEthernet": {
+                            "type": "Boolean",
+                            "description": "Ethernet WAN Interface Energy Efficient Ethernet (EEE) administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Ethernet WAN Interface unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Mode": {
+                            "type": "List",
+                            "description": "Ethernet WAN Interface mode.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"GigabitEthernet\", \"FastEthernet\" or \"Ethernet\"",
+                            "enum": [
+                              "GigabitEthernet, FastEthernet",
+                              "Ethernet"
+                            ],
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "Ethernet WAN Interface name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Bytes": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "Integer",
+                                    "description": "Ethernet WAN Interface received bytes count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Transmitted": {
+                                    "type": "Integer",
+                                    "description": "Ethernet WAN Interface transmitted bytes count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "Frames": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "Integer",
+                                    "description": "Ethernet WAN Interface received frames count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Transmitted": {
+                                    "type": "Integer",
+                                    "description": "Ethernet WAN Interface transmitted frames count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "object",
+                            "properties": {
+                              "Duplex": {
+                                "type": "String",
+                                "description": "Ethernet WAN Interface duplex mode in use.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Full\" or \"Half\"",
+                                "enum": [
+                                  "Full",
+                                  "Half"
+                                ],
+                                "readOnly": true
+                              },
+                              "Protocol": {
+                                "type": "String",
+                                "description": "Ethernet WAN Interface protocol in use.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Ethernet\", \"FastEthernet\" or \"GigabitEthernet\"",
+                                "enum": [
+                                  "Ethernet, FastEthernet",
+                                  "GigabitEthernet"
+                                ],
+                                "readOnly": true
+                              },
+                              "State": {
+                                "type": "String",
+                                "description": "Ethernet WAN Interface operational status.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                                "readOnly": true
+                              },
+                              "Uptime": {
+                                "type": "Integer",
+                                "description": "Ethernet WAN Interface system uptime.",
+                                "format": "expressed in seconds",
+                                "default_value": "-",
+                                "possible_values": ">= 0",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -658,18 +831,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

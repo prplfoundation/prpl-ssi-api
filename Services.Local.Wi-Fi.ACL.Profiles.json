@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"Guest\", \"Enabled\": true, \"Mode\": \"Whitelist\", \"ServiceSetId\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.24GHz.BSSs.Guest\", \"Notify\": false, \"Status\": \"Active\"}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "Wi-Fi MAC Address ACL Profile maximum number of returned entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "Wi-Fi MAC Address ACL Profile unique identifier.",
                             "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "Wi-Fi MAC Address ACL Profile list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "-",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "Wi-Fi MAC Address ACL Profile list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -475,24 +460,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "Services.Local.Wi-Fi.ACL.Profiles.{ProfileId}.Delete": {
@@ -761,7 +728,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"Guest\", \"Enabled\": true, \"Mode\": \"Whitelist\", \"ServiceSetId\": \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.24GHz.BSSs.Guest\", \"Notify\": false, \"Status\": \"Active\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -770,7 +737,76 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Wi-Fi MAC Address ACL Profile administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "Wi-Fi MAC Address ACL Profile unique identifier.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Mode": {
+                            "type": "String",
+                            "description": "Wi-Fi MAC Address ACL Profile mode.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Whitelist\" or \"Blacklist\"",
+                            "enum": [
+                              "Whitelist",
+                              "Blacklist"
+                            ],
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "Wi-Fi MAC Address ACL Profile name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Notify": {
+                            "type": "Boolean",
+                            "description": "Wi-Fi MAC Address ACL Profile notification flag.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" (generates an event each time a stations attempts to connect) or \"false\"",
+                            "enum": [
+                              "true (generates an event each time a stations attempts to connect)",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "ServiceSetId": {
+                            "type": "String",
+                            "description": "Wi-Fi MAC Address ACL Profile BSS or ESS Id.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "an existing \"Interfaces.Physical.Network.LAN.Wi-Fi.Radios.{RadioId}.BSSs.{BSSId}\" or \"Interfaces.Physical.Network.LAN.Wi-Fi.ESSs.{ESSsId}\" object.",
+                            "readOnly": true
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "Wi-Fi MAC Address ACL Profile operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"Active\", \"Disabled\", \"Error\"",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1177,18 +1213,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

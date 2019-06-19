@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Enabled\": true, \"History\": true, \"Status\": \"Active\", \"Statistics\": {\"Devices\": {\"Online\": 6, \"Offline\": 2, \"Total\": 8}, \"Interfaces\": {\"Interfaces.Physical.Network.LAN.EthernetSwitch\": {\"Online\": 5, \"Offline\": 0, \"Total\": 5}, \"Interfaces.Physical.Data.LAN.Wi-Fi\": {\"Online\": 1, \"Offline\": 2, \"Total\": 3}, \"Interfaces.Physical.Data.USB\": {\"Online\": 0, \"Offline\": 0, \"Total\": 0}}}}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,208 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "HostManager administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "History": {
+                            "type": "Boolean",
+                            "description": "HostManager keep track of offline devices flag.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Devices": {
+                                "type": "object",
+                                "properties": {
+                                  "Offline": {
+                                    "type": "Integer",
+                                    "description": "HostManager offline devices count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Online": {
+                                    "type": "Integer",
+                                    "description": "HostManager online devices count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Total": {
+                                    "type": "Integer",
+                                    "description": "HostManager total devices count.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "Interfaces": {
+                                "type": "object",
+                                "properties": {
+                                  "Interfaces": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Physical": {
+                                        "type": "object",
+                                        "properties": {
+                                          "Data": {
+                                            "type": "object",
+                                            "properties": {
+                                              "LAN": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "Wi-Fi": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "Offline": {
+                                                        "type": "Integer",
+                                                        "description": "HostManager wi-fi offline devices count.",
+                                                        "format": "-",
+                                                        "default_value": "-",
+                                                        "possible_values": ">= 0",
+                                                        "readOnly": true
+                                                      },
+                                                      "Online": {
+                                                        "type": "Integer",
+                                                        "description": "HostManager wi-fi online devices count.",
+                                                        "format": "-",
+                                                        "default_value": "-",
+                                                        "possible_values": ">= 0",
+                                                        "readOnly": true
+                                                      },
+                                                      "Total": {
+                                                        "type": "Integer",
+                                                        "description": "HostManager wi-ifi total devices count.",
+                                                        "format": "-",
+                                                        "default_value": "-",
+                                                        "possible_values": ">= 0",
+                                                        "readOnly": true
+                                                      }
+                                                    },
+                                                    "required": []
+                                                  }
+                                                },
+                                                "required": []
+                                              },
+                                              "USB": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "Offline": {
+                                                    "type": "Integer",
+                                                    "description": "HostManager usb disconnected (inactive) devices count.",
+                                                    "format": "-",
+                                                    "default_value": "-",
+                                                    "possible_values": ">= 0",
+                                                    "readOnly": true
+                                                  },
+                                                  "Online": {
+                                                    "type": "Integer",
+                                                    "description": "HostManager usb connected devices count.",
+                                                    "format": "-",
+                                                    "default_value": "-",
+                                                    "possible_values": ">= 0",
+                                                    "readOnly": true
+                                                  },
+                                                  "Total": {
+                                                    "type": "Integer",
+                                                    "description": "HostManager usb total devices count.",
+                                                    "format": "-",
+                                                    "default_value": "-",
+                                                    "possible_values": ">= 0",
+                                                    "readOnly": true
+                                                  }
+                                                },
+                                                "required": []
+                                              }
+                                            },
+                                            "required": []
+                                          },
+                                          "Network": {
+                                            "type": "object",
+                                            "properties": {
+                                              "LAN": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "EthernetSwitch": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "Offline": {
+                                                        "type": "Integer",
+                                                        "description": "HostManager ethernet switch offline devices count.",
+                                                        "format": "-",
+                                                        "default_value": "-",
+                                                        "possible_values": ">= 0",
+                                                        "readOnly": true
+                                                      },
+                                                      "Online": {
+                                                        "type": "Integer",
+                                                        "description": "HostManager ethernet switch online devices count.",
+                                                        "format": "-",
+                                                        "default_value": "-",
+                                                        "possible_values": ">= 0",
+                                                        "readOnly": true
+                                                      },
+                                                      "Total": {
+                                                        "type": "Integer",
+                                                        "description": "HostManager ethernet switch total devices count.",
+                                                        "format": "-",
+                                                        "default_value": "-",
+                                                        "possible_values": ">= 0",
+                                                        "readOnly": true
+                                                      }
+                                                    },
+                                                    "required": []
+                                                  }
+                                                },
+                                                "required": []
+                                              }
+                                            },
+                                            "required": []
+                                          }
+                                        },
+                                        "required": []
+                                      }
+                                    },
+                                    "required": []
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "String",
+                            "description": "HostManager operational status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\n- \"Active\" (service is enabled and running).\n- \"Disabled\" (service is disabled).\n- \"Error\" (service is enabled but not running due to some error such as invalid configuration)",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -438,18 +639,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

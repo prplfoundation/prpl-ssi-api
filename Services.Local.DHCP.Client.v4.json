@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"List\": [{\"Id\": \"0\", \"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Enabled\": true, \"PreferredAddress\": \"20.0.0.2\", \"Status\": {\"State\": \"Bound\", \"Lease\": {\"Address\": \"20.0.0.1\", \"Expires\": 1800, \"Duration\": 3600}}, \"Statistics\": {\"Packets\": {\"Sent\": {\"Discover\": 1, \"Request\": 1}, \"Received\": {\"Offer\": 0, \"Ack\": 1, \"Nak\": 0}}}}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "DHCPv4 Client maximum number of returned entries.",
+                          "Id": {
+                            "type": "String",
+                            "description": "DHCPv4 Client unique identifier.",
                             "format": "-",
-                            "default_value": "0",
-                            "possible_values": ">= 0"
-                          },
-                          "List": {
-                            "type": "List",
-                            "description": "DHCPv4 Client list of entries.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "Empty list or list of DHCP Client instances.",
-                            "readOnly": true
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "DHCPv4 Client list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "-"
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -438,24 +423,6 @@
             "example": "{\"Limit\": 10, \"Offset\": 0}"
           }
         }
-      },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
       }
     },
     "Services.Local.DHCP.Client.v4.{ClientId}.Delete": {
@@ -724,7 +691,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"0\", \"Name\": \"xDSL\", \"Interface\": \"Interfaces.IP.0\", \"Enabled\": true, \"PreferredAddress\": \"20.0.0.2\", \"Status\": {\"State\": \"Bound\", \"Lease\": {\"Address\": \"20.0.0.1\", \"Expires\": 1800, \"Duration\": 3600}}, \"Statistics\": {\"Packets\": {\"Sent\": {\"Discover\": 1, \"Request\": 1}, \"Received\": {\"Offer\": 0, \"Ack\": 1, \"Nak\": 0}}}}}",
               "schema": {
                 "allOf": [
                   {
@@ -733,7 +700,160 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "DHCPv4 Client administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "DHCPv4 Client unique identifier.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "Interface": {
+                            "type": "String",
+                            "description": "DHCPv4 Client interface.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "valid \"Interfaces.IP.{InterfaceId}\" object",
+                            "readOnly": true
+                          },
+                          "Name": {
+                            "type": "String",
+                            "description": "DHCPv4 Client name (alias).",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "PreferredAddress": {
+                            "type": "String",
+                            "description": "DHCPv4 Client preferred address.",
+                            "format": "[0-255].[0-255].[0-255].[0-255]",
+                            "default_value": "-",
+                            "possible_values": "valid IPv4 address",
+                            "readOnly": true
+                          },
+                          "Statistics": {
+                            "type": "object",
+                            "properties": {
+                              "Packets": {
+                                "type": "object",
+                                "properties": {
+                                  "Received": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Ack": {
+                                        "type": "Integer",
+                                        "description": "DHCPv4 Client DHCPAck received packets count.",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      },
+                                      "Nak": {
+                                        "type": "Integer",
+                                        "description": "DHCPv4 Client DHCPNak received packets count.",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      },
+                                      "Offer": {
+                                        "type": "Integer",
+                                        "description": "DHCPv4 Client DHCPOffer received packets count.",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      }
+                                    },
+                                    "required": []
+                                  },
+                                  "Sent": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Discover": {
+                                        "type": "Integer",
+                                        "description": "DHCPv4 Client DHCPDiscover sent packets count.",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      },
+                                      "Request": {
+                                        "type": "Integer",
+                                        "description": "DHCPv4 Client DHCPRequest sent packets count.",
+                                        "format": "-",
+                                        "default_value": "-",
+                                        "possible_values": ">= 0",
+                                        "readOnly": true
+                                      }
+                                    },
+                                    "required": []
+                                  }
+                                },
+                                "required": []
+                              }
+                            },
+                            "required": []
+                          },
+                          "Status": {
+                            "type": "object",
+                            "properties": {
+                              "Lease": {
+                                "type": "object",
+                                "properties": {
+                                  "Address": {
+                                    "type": "String",
+                                    "description": "DHCPv4 Client active lease address.",
+                                    "format": "[0-255].[0-255].[0-255].[0-255]",
+                                    "default_value": "-",
+                                    "possible_values": "\"0.0.0.0\" or \"valid IP Address\"",
+                                    "readOnly": true
+                                  },
+                                  "Duration": {
+                                    "type": "Integer",
+                                    "description": "DHCPv4 Client lease time duration.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  },
+                                  "Expires": {
+                                    "type": "Integer",
+                                    "description": "DHCPv4 Client time till lease expires.",
+                                    "format": "-",
+                                    "default_value": "-",
+                                    "possible_values": ">= 0",
+                                    "readOnly": true
+                                  }
+                                },
+                                "required": []
+                              },
+                              "State": {
+                                "type": "String",
+                                "description": "DHCPv4 Client operational status.",
+                                "format": "-",
+                                "default_value": "-",
+                                "possible_values": ":\n- \"Enabled\", client is enabled but inactive.\n- \"Selecting\", client is enabled and initiated the server discovery process.\n- \"Requesting\", client has found a server but is negotiating a lease.\n- \"Bound\", client has an active lease.\n- \"Renewing\", client is renewing the lease due to T1 expire.\n- \"Rebinding\", client failed to renew the lease and will attempt at T2.\n- \"Disabled\", client is disabled.\n- \"Error\", client is enabled but cannot run due to error",
+                                "readOnly": true
+                              }
+                            },
+                            "required": []
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1703,18 +1823,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

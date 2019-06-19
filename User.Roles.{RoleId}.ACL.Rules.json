@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"RulesList\": [{\"Id\": \"WUI\", \"Enabled\": true, \"ServiceId\": \"Services.Management.WUI\", \"AllowedZones\": [\"WAN\", \"LAN\", \"WLANPrivate\", \"WLANGuest\", \"DMZ\", \"Bridge\"]}], \"Limit\": 10, \"Offset\": 0}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"WUI\"}}",
               "schema": {
                 "allOf": [
                   {
@@ -94,27 +94,12 @@
                     "properties": {
                       "Body": {
                         "properties": {
-                          "Limit": {
-                            "type": "Integer",
-                            "description": "User Role ACL Rule maximum number of returned entries.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "Offset": {
-                            "type": "Integer",
-                            "description": "User Role ACL Rule list start offset.",
-                            "format": "-",
-                            "default_value": "0",
-                            "possible_values": "\"0\" to fetch all entries or positive integer"
-                          },
-                          "RulesList": {
-                            "type": "List",
-                            "description": "User Role ACL Rule rule list.",
-                            "format": "-",
-                            "default_value": "-",
-                            "possible_values": "\"null\" or list of valid \"User.Roles.{RoleId}.ACL.Rules.{RuleId}\" objects",
-                            "readOnly": true
+                          "Id": {
+                            "type": "String",
+                            "description": "User Role ACL Rule unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "Integer starting at 0",
+                            "possible_values": "any string with length from 1 up to 64 chars"
                           }
                         },
                         "required": []
@@ -468,24 +453,6 @@
           }
         }
       },
-      "schema": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "description": "Which object index to start with",
-            "example": 45,
-            "default": 0
-          },
-          "limit": {
-            "type": "integer",
-            "description": "How many objects to return",
-            "min": 1,
-            "max": 200,
-            "default": 20
-          }
-        }
-      },
       "parameters": [
         {
           "in": "path",
@@ -785,7 +752,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Id\": \"WUI\", \"Enabled\": true, \"ServiceId\": \"Services.Management.WUI\", \"AllowedZones\": [\"WAN\", \"LAN\", \"WLANPrivate\", \"WLANGuest\", \"DMZ\", \"Bridge\"]}}",
               "schema": {
                 "allOf": [
                   {
@@ -794,7 +761,44 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "AllowedZones": {
+                            "type": "List",
+                            "description": "User Role ACL Rule allowed network zones.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"WAN\", \"DMZ\", \"LAN\", \"WLAN\", \"Guest\", \"Bridge\"",
+                            "readOnly": true
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "User Role ACL Rule administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "Id": {
+                            "type": "String",
+                            "description": "User Role ACL Rule unique identifier.",
+                            "format": "1 up to 64 chars",
+                            "default_value": "-",
+                            "possible_values": "any string with length from 1 up to 64 chars",
+                            "readOnly": true
+                          },
+                          "ServiceId": {
+                            "type": "String",
+                            "description": "User Role ACL Rule Id of the linked service.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "any valid object with \"Services.\" prefix",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -1207,18 +1211,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {

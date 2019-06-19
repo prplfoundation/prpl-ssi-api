@@ -84,7 +84,7 @@
           "raised_by": "Micro-Service",
           "content": {
             "application/json": {
-              "example": "{\"Header\": {\"Name\": \"OK\"}}",
+              "example": "{\"Header\": {\"Name\": \"OK\"}, \"Body\": {\"Enabled\": true, \"RenewInterval\": 3600, \"AdvertisePublicAddress\": false}}",
               "schema": {
                 "allOf": [
                   {
@@ -93,7 +93,36 @@
                   {
                     "properties": {
                       "Body": {
-                        "properties": {},
+                        "properties": {
+                          "AdvertisePublicAddress": {
+                            "type": "Boolean",
+                            "description": "Dynamic DNS advertised public address.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": ":\n- \"true\" (if the gateway has a public wan IP address, then it advertises this address, otherwise it finds out what it the public address of the CG-NAT and reports back that one).\n- \"false\", (advertises the WAN public IP address, despite having either a public or private address, e.g.: CG-NAT)",
+                            "readOnly": true
+                          },
+                          "Enabled": {
+                            "type": "Boolean",
+                            "description": "Dynamic DNS administrative status.",
+                            "format": "-",
+                            "default_value": "-",
+                            "possible_values": "\"true\" or \"false\"",
+                            "enum": [
+                              "true",
+                              "false"
+                            ],
+                            "readOnly": true
+                          },
+                          "RenewInterval": {
+                            "type": "Integer",
+                            "description": "Dynamic DNS renew interval.",
+                            "format": "expressed in seconds",
+                            "default_value": "-",
+                            "possible_values": ">= 60",
+                            "readOnly": true
+                          }
+                        },
                         "required": []
                       }
                     }
@@ -446,18 +475,18 @@
                     "type": "string",
                     "description": "name of the response type",
                     "enum": [
-                      "ARGUMENT_VALUE_NOT_SUPPORTED",
-                      "OPERATION_ERROR",
-                      "OPERATION_PERMISSION_DENIED",
-                      "OPERATION_ILLEGAL",
-                      "ARGUMENT_REQUIRED_MISSING",
-                      "ARGUMENT_DATA_TYPE_MISMATCH",
-                      "METHOD_NOT_FOUND",
-                      "OPERATION_TIMEOUT",
-                      "OPERATION_ALREADY_IN_PROGRESS",
-                      "OBJECT_NOT_FOUND",
                       "OK",
-                      "ARGUMENT_NOT_FOUND"
+                      "OPERATION_ALREADY_IN_PROGRESS",
+                      "ARGUMENT_NOT_FOUND",
+                      "ARGUMENT_DATA_TYPE_MISMATCH",
+                      "OPERATION_TIMEOUT",
+                      "METHOD_NOT_FOUND",
+                      "OPERATION_ILLEGAL",
+                      "OBJECT_NOT_FOUND",
+                      "ARGUMENT_REQUIRED_MISSING",
+                      "OPERATION_ERROR",
+                      "ARGUMENT_VALUE_NOT_SUPPORTED",
+                      "OPERATION_PERMISSION_DENIED"
                     ]
                   },
                   "Description": {
